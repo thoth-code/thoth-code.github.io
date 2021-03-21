@@ -9,7 +9,7 @@
   <body>
     <header>
         <div id="logo"><div class="hov_box"><a href="../index.html">Thoth</a></div></div>
-        <div id="title">반복/조건문</div>
+        <div id="title">연산자</div>
     </header>
     <nav>
       <div id="selected"><div class="hov_box"><a href="./index.html">Code</a></div></div>
@@ -17,72 +17,57 @@
     </nav>
     <main>
       <article class="code">
-        <h2>기본구조</h2>
+        <h2>증감연산자</h2>
         <ul class="command">
-          <li>if 조건 :</li>
-          <li>elif 조건 :</li>
-          <li>else :</li>
+          <li>a = b++;</li>
+        </ul>
+        <ul class="describe">
+          <li>a=b를 먼저하고 b를 증가시킨다</li>
+        </ul>
+        <ul class="command">
+          <li>a = ++b;</li>
+        </ul>
+        <ul class="describe">
+          <li>b를 증가시키고 a=b를 수행한다</li>
+        </ul>
+      </article>
+      <article class="code">
+        <h2>비교연산자</h2>
+        <ul class="command">
+          <li>==, !=</li>
+        </ul>
+        <ul class="describe">
+          <li>는 자료형과 관계없이 겉모습만 판단한다</li>
+        </ul>
+        <ul class="command">
+          <li>===, !==</li>
+        </ul>
+        <ul class="desribe">
+          <li>는 겉모습 뿐만 아니라 자료형까지 종합적으로 판단한다</li>
+        </ul>
+        <ul></ul>
+      </article>
+      <article class="code">
+        <h2>논리연산자</h2>
+        <ul class="command">
+          <li>||</li>
+          <li>&&</li>
+        </ul>
+        <ul class="describe">
+          <li>||는 OR연산을 나타낸다</li>
+          <li>&&는 AND연산을 나타낸다</li>
+        </ul>
+      </article>
+      <article class="code">
+        <h2>삼항연산자</h2>
+        <ul class="command">
+          <li>a = condition_ ? true_ : false_;</li>
+        </ul>
+        <ul class="describe">
+          <li>a값에는 condition_에 따라 참일때는 true_의 값이 들어가고 거짓일때는 false_의 값이 들어간다는 의미이다</li>
         </ul>
         <ul class="caution">
-          <li>else if 가 아니고 elif이다</li>
-          <li>: 이후에 줄바꿈 및 인덴테이션 꼭해야된다</li>
-        </ul>
-        <ul class="tip">
-          <li>해당조건에 암것도 안하고싶으면 pass 를 쓰면 된다</li>
-        </ul>
-      </article>
-      <article class="code">
-        <h2>조건부 표현식</h2>
-        <ul class="command">
-          <li>a = 3 if 조건 else 4</li>
-        </ul>
-        <ul class="describe">
-          <li>조건이 참이면 변수 a에 3을 넣고 거짓이면 4를 넣는다</li>
-        </ul>
-        <ul class="tip">
-          <li>=대신 +=, -=를 써도 된다</li>
-        </ul>
-      </article>
-      <article class="code">
-        <h2>for문</h2>
-        <ul class="command">
-          <li>for i in lst :</li>
-          <li>for a, b in tuplelist :</li>
-        </ul>
-        <ul class="describe">
-          <li>for문에서 in은 반복가능객체에서 요소를 하나씩 꺼내 앞의 변수에 넣어주는 연산이다</li>
-        </ul>
-        <ul class="tip">
-          <li>튜플 리스트의 경우 in앞을 튜플로 받아 여러개의 값을 하나의 for문으로 받아올 수 있다.</li>
-        </ul>
-      </article>
-      <article class="code">
-        <h2>연속된 자연수 for문으로 받아오기</h2>
-        <ul class="command">
-          <li>for i in range(1, 10) :</li>
-        </ul>
-        <ul class="describe">
-          <li>range함수는 입력한 범위의 연속된 정수를 반복가능객체로 반환하는 함수이다. range(1, 10)은 1~9를 제공한다</li>
-        </ul>
-      </article>
-      <article class="code">
-        <h2>인덱스와 값 같이 for문으로 받아오기</h2>
-        <ul class="command">
-          <li>for a, b in enumerate(lst) :</li>
-        </ul>
-        <ul class="describe">
-          <li>enumerte의 반환값을 튜플로 받아 리스트의 인덱스와 값을 같이 가져올 수도 있다</li>
-        </ul>
-      </article>
-      <article class="code">
-        <h2>리스트 컴프리헨션</h2>
-        <ul class="command">
-          <li>a = [i + 10 for i in lst]</li>
-        </ul>
-        <ul class="describe">
-          <li>리스트 내에 for문을 넣어서 한줄로 for문과 리스트 생성을 끝낼 수 있다</li>
-          <li>for 앞에 수식, for 뒤에 변수, in 반복가능객체</li>
-          <li>위의 코드 결과는 리스트의 모든 요소에 10을 더해서 리스트 a의 구성요소로 만들어준다</li>
+          <li>파이썬은 삼항연산자가 존재하지 않는다 - 파이썬은 if-else형태로 지원하기 때문 - 헷갈리지 말것</li>
         </ul>
       </article>
     </main>
