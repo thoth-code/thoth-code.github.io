@@ -8,7 +8,7 @@ body {
   margin: 10px;
   border: 2px solid black;
   display: grid;
-  grid-template-rows: 104px 50px minmax(calc(100vh - 180px), auto) 30px;
+  grid-template-rows: 104px minmax(calc(100vh - 159px), auto) 30px;
 }
 /* ------------------------------------------------------------------------------------------------ */
 .hov_box {
@@ -20,7 +20,6 @@ body {
 a {
   text-decoration: none;
   display: block;
-  text-align: center;
 }
 /* ------------------------------------------------------------------------------------------------ */
 header {
@@ -37,6 +36,7 @@ header {
   border: 2px solid black;
 }
 #logo .hov_box a {
+  text-align: center;
   color: white;
   font-size: 30px;
   height: 80px;
@@ -53,34 +53,6 @@ header {
   padding-left: 9px;
 }
 /* ------------------------------------------------------------------------------------------------ */
-nav {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-nav > div {
-  border-left: 2px dotted black;
-  border-bottom: 2px solid black;
-}
-nav > div:first-child {
-  border-left: none;
-}
-nav .hov_box {
-  border: 2px solid white;
-}
-#selected {
-  border-bottom: none;
-}
-#selected * {
-  color: red;
-}
-nav .hov_box:hover {
-  border: 2px solid black;
-}
-nav .hov_box a {
-  color: black;
-  font-size: 20px;
-}
-/* ------------------------------------------------------------------------------------------------ */
 main {
   display: flex;
   flex-flow: row wrap;
@@ -89,9 +61,9 @@ main {
 }
 /* ------------------------------------------------------------------------------------------------ */
 article {
-  border: 2px solid black;
   padding: 9px;
   margin: 9px;
+  flex: 0 0 300px;
 }
 article * {
   margin-top: 9px;
@@ -106,7 +78,7 @@ article ul {
   left: 20px;
 }
 .command {
-  background: #9FE2BF;
+  background: #89CFF0;
   left: 0px;
   list-style: none;
   padding: 9px;
@@ -114,7 +86,7 @@ article ul {
   font-size: 24px;
 }
 .code {
-  flex: 0 0 300px;
+  background: #FFFAA0;
 }
 .code .command li {
   border-top: 2px dotted white;
@@ -123,22 +95,38 @@ article ul {
   border: none;
 }
 .caution {
-  background: #FA5F55;
+  background: #FFA0D5;
 }
 .concept {
-  flex: 0 0 calc(100vw - 80px);
+  background: #FFD760;
 }
 .concept h2 {
   border-bottom: 2px dotted black;
 }
-.concept ul {
+.concept a {
+  border: 2px solid #FFD760;
+  color: black;
+  display: inline;
+}
+.concept a:hover {
+  border: 2px solid black;
+}
+.tip {background: #AFE1AF;}
+/* ------------------------------------------------------------------------------------------------ */
+.post {
+  flex: 0 0 calc(100vw - 80px);
+}
+.post h2 {
+  border-bottom: 2px dotted black;
+}
+.post ul {
   font-size: 24px;
 }
-.concept strong {
+.post strong {
   font-weight: normal;
   background: #DFFF00;
 }
-.concept ol {
+.post ol {
   font-size: 32px;
   position: relative;
   left: 45px;
@@ -148,7 +136,6 @@ article ul {
   list-style: none;
   background: #ECFFDC;
 }
-.tip {background: #FFFF8F;}
 /* ------------------------------------------------------------------------------------------------ */
 footer {
   text-align: center;

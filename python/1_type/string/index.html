@@ -11,13 +11,9 @@
         <div id="logo"><div class="hov_box"><a href="../index.html">Thoth</a></div></div>
         <div id="title">문자열</div>
     </header>
-    <nav>
-      <div id="selected"><div class="hov_box"><a href="./index.html">Code</a></div></div>
-      <div><div class="hov_box"><a href="./concept.html">Concept</a></div></div>
-    </nav>
     <main>
       <article class="code">
-        <h1>표현법</h1>
+        <h2>표현법</h2>
         <ul class="command">
           <li>'str'</li>
           <li>"str"</li>
@@ -26,7 +22,7 @@
         </ul>
       </article>
       <article class="code">
-        <h1>줄바꿈</h1>
+        <h2>줄바꿈</h2>
         <ul class="command">
           <li>'\n'</li>
           <li>'''엔터'''</li>
@@ -34,7 +30,7 @@
         </ul>
       </article>
       <article class="code">
-        <h1>인덱스참조</h1>
+        <h2>인덱스참조</h2>
         <ul class="command">
           <li>str[int]</li>
         </ul>
@@ -43,7 +39,7 @@
         </ul>
       </article>
       <article class="code">
-        <h1>슬라이싱</h1>
+        <h2>슬라이싱</h2>
         <ul class="command">
           <li>str[a:b:c]</li>
         </ul>
@@ -57,7 +53,7 @@
         </ul>
       </article>
       <article class="code">
-        <h1>퍼센트 포매팅</h1>
+        <h2>퍼센트 포매팅</h2>
         <ul class="command">
           <li>("%10s" % 123)</li>
           <li>("%0.2f" % 1.23456)</li>
@@ -71,7 +67,7 @@
         </ul>
       </article>
       <article class="code">
-        <h1>인덱스 포매팅</h1>
+        <h2>인덱스 포매팅</h2>
         <ul class="command">
           <li>"{0} {1} {2}".format(123, 456, 789)</li>
           <li>"{a} {b} {c}".format(a = 1, b = 2, c = 3)</li>
@@ -82,7 +78,7 @@
         </ul>
       </article>
       <article class="code">
-        <h1>변수 포매팅</h1>
+        <h2>변수 포매팅</h2>
         <ul class="command">
           <li>f."{변수1} {변수2}"</li>
         </ul>
@@ -91,7 +87,7 @@
         </ul>
       </article>
       <article class="code">
-        <h1>변형해서 포매팅하기</h1>
+        <h2>변형해서 포매팅하기</h2>
         <ul class="command">
           <li>"{a:#^10}".format(a = 123)</li>
           <li>f."{a:#^10}"</li>
@@ -108,7 +104,7 @@
         </ul>
       </article>
       <article class="code">
-        <h1>문자 개수 세기</h1>
+        <h2>문자 개수 세기</h2>
         <ul class="command">
           <li>a.count('b')</li>
         </ul>
@@ -117,7 +113,7 @@
         </ul>
       </article>
       <article class="code">
-        <h1>문자의 최소인덱스 찾기</h1>
+        <h2>문자의 최소인덱스 찾기</h2>
         <ul class="command">
           <li>a.find('b')</li>
           <li>a.index('b')</li>
@@ -128,7 +124,7 @@
         </ul>
       </article>
       <article class="code">
-        <h1>문자 사이사이에 원하는 문자 넣기</h1>
+        <h2>문자 사이사이에 원하는 문자 넣기</h2>
         <ul class="command">
           <li>'#'.join("abcd")</li>
         </ul>
@@ -137,7 +133,7 @@
         </ul>
       </article>
       <article class="code">
-        <h1>대문자화</h1>
+        <h2>대문자화</h2>
         <ul class="command">
           <li>a.upper()</li>
         </ul>
@@ -146,7 +142,7 @@
         </ul>
       </article>
       <article class="code">
-        <h1>소문자화</h1>
+        <h2>소문자화</h2>
         <ul class="command">
           <li>a.lower()</li>
         </ul>
@@ -155,7 +151,7 @@
         </ul>
       </article>
       <article class="code">
-        <h1>공백지우기</h1>
+        <h2>공백지우기</h2>
         <ul class="command">
           <li>a.lstrip()</li>
           <li>a.rstrip()</li>
@@ -168,7 +164,7 @@
         </ul>
       </article>
       <article class="code">
-        <h1>문자열 바꾸기</h1>
+        <h2>문자열 바꾸기</h2>
         <ul class="command">
           <li>a.replace("이걸로", "이것을")</li>
         </ul>
@@ -177,7 +173,7 @@
         </ul>
       </article>
       <article class="code">
-        <h1>문자열 리스트화</h1>
+        <h2>문자열 리스트화</h2>
         <ul class="command">
           <li>a.split("기준")</li>
         </ul>
@@ -185,6 +181,10 @@
           <li>문자열을 "기준"으로 나눠서 리스트로 반환한다</li>
           <li>"기준"을 안쓰면 스페이스바를 기준으로 나눈다</li>
         </ul>
+      </article>
+      <article class="concept">
+        <h2>문자열은 불변객체이다</h2>
+        <div><a href="str_01_aboutstr.html">뭔소리임??&gt;&gt;</a></div>
       </article>
     </main>
     <footer>
