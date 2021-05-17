@@ -26,7 +26,7 @@ function makeListItem(isRoute, root, path, content) {
         liTag.setAttribute("class", "link");
     }
     let aTag = document.createElement("a");
-    aTag.href = path;
+    aTag.href = root + path;
     aTag.innerText = content;
     liTag.appendChild(aTag);
     return liTag;

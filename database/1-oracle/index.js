@@ -1,7 +1,7 @@
-import App from "./App.js";
+import App from "../../App.js";
 import Window from "./Window.js";
 
-const root = "./";
+const root = "../../";
 const windows = Window();
 
 App(root, windows);
