@@ -52,14 +52,16 @@ function makeArticle(postit) {
     h2Tag.innerText = title;
     articleTag.appendChild(h2Tag);
 
-    let commandUlTag = document.createElement("ul");
-    commandUlTag.setAttribute("class", "command");
-    for(let i in command) {
-        let liTag = document.createElement("li");
-        liTag.innerText = command[i];
-        commandUlTag.appendChild(liTag);
+    if(command.length !== 0) {
+        let commandUlTag = document.createElement("ul");
+        commandUlTag.setAttribute("class", "command");
+        for(let i in command) {
+            let liTag = document.createElement("li");
+            liTag.innerText = command[i];
+            commandUlTag.appendChild(liTag);
+        }
+        articleTag.appendChild(commandUlTag);
     }
-    articleTag.appendChild(commandUlTag);
 
     if(describe.length !== 0) {
         let describeUlTag = document.createElement("ul");

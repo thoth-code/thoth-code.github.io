@@ -42,6 +42,21 @@ function Window() {
         path: "database/1-oracle/8-join/index.html",
         content: "JOIN"
     });
+    window.push({
+        isRoute: false,
+        path: "database/1-oracle/9-subquery/index.html",
+        content: "서브쿼리"
+    });
+    window.push({
+        isRoute: false,
+        path: "database/1-oracle/10-set-hirarchy/index.html",
+        content: "집합연산과 계층형질의"
+    });
+    window.push({
+        isRoute: false,
+        path: "database/1-oracle/11-view/index.html",
+        content: "뷰"
+    });
 
     let windows = upperWindow.default();
     windows.push(window);

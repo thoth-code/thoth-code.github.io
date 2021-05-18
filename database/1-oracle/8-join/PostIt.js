@@ -3,8 +3,8 @@ let PostIt = [
         type: "code",
         title: "여러 테이블에서 정보를 갖고와 하나로 출력",
         command: [
-            "SELECT 칼럼들\nFROM 테이블1, 테이블2\nWHERE 테이블1.기본키 = 테이블2.외래키;",
-            "SELECT 칼럼들\nFROM 테이블1 JOIN 테이블2\nON 테이블1.기본키 = 테이블2.외래키;"
+            "SELECT 칼럼들\nFROM 테이블1, 테이블2\nWHERE 테이블1.기본(외래)키 = 테이블2.기본(외래)키;",
+            "SELECT 칼럼들\nFROM 테이블1 JOIN 테이블2\nON 테이블1.기본(외래)키 = 테이블2.기본(외래)키;"
         ],
         describe: [
             "기본키-외래키의 관계를 이용해 두 테이블의 인스턴스를 하나의 인스턴스로 합쳐 출력함"
@@ -46,8 +46,8 @@ let PostIt = [
         type: "code",
         title: "LEFT OUTER JOIN",
         command: [
-            "SELECT 칼럼들\nFROM 테이블1, 테이블2\nWHERE 테이블1.기본키(+)=테이블2.외래키;",
-            "SELECT 칼럼들\nFROM 테이블1 LEFT OUTER JOIN 테이블2\nON 테이블1.기본키 = 테이블2.외래키;"
+            "SELECT 칼럼들\nFROM 테이블1, 테이블2\nWHERE 테이블1.기본(외래)키(+)=테이블2.기본(외래)키;",
+            "SELECT 칼럼들\nFROM 테이블1 LEFT OUTER JOIN 테이블2\nON 테이블1.기본(외래)키 = 테이블2.기본(외래)키;"
         ],
         describe: [
             "LEFT OUTER JOIN은 합쳐지지 않은 인스턴스 중 왼쪽테이블(위의 쿼리문에서는 테이블1)의 인스턴스도 같이 출력하는 쿼리문이다"
@@ -61,8 +61,8 @@ let PostIt = [
         type: "code",
         title: "RIGHT OUTER JOIN",
         command: [
-            "SELECT 칼럼들\nFROM 테이블1, 테이블2\nWHERE 테이블1.기본키=테이블2.외래키(+);",
-            "SELECT 칼럼들\nFROM 테이블1 RIGHT OUTER JOIN 테이블2\nON 테이블1.기본키 = 테이블2.외래키;"
+            "SELECT 칼럼들\nFROM 테이블1, 테이블2\nWHERE 테이블1.기본(외래)키=테이블2.기본(외래)키(+);",
+            "SELECT 칼럼들\nFROM 테이블1 RIGHT OUTER JOIN 테이블2\nON 테이블1.기본(외래)키 = 테이블2.기본(외래)키;"
         ],
         describe: [
             "RIGHT OUTER JOIN은 합쳐지지 않은 인스턴스 중 오른쪽테이블(위의 쿼리문에서는 테이블2)의 인스턴스도 같이 출력하는 쿼리문이다"
@@ -76,7 +76,7 @@ let PostIt = [
         type: "code",
         title: "FULL OUTER JOIN",
         command: [
-            "SELECT 칼럼들\nFROM 테이블1 FULL OUTER JOIN 테이블2\nON 테이블1.기본키 = 테이블2.외래키;"
+            "SELECT 칼럼들\nFROM 테이블1 FULL OUTER JOIN 테이블2\nON 테이블1.기본(외래)키 = 테이블2.기본(외래)키;"
         ],
         describe: [
             "FULL OUTER JOIN은 양쪽의 모든 합쳐지지 않은 인스턴스를 출력하는 쿼리문이다"
@@ -88,9 +88,14 @@ let PostIt = [
     },
     {
         type: "code",
-        title: "",
-        command: [],
-        describe: [],
+        title: "SELF JOIN",
+        command: [
+            "SELECT 닉네임1.칼럼1, 닉네임2.칼럼2\nFROM 테이블1 닉네임1, 테이블1 닉네임2\nWHERE 닉네임1.기본(외래)키 = 닉네임2.기본(외래)키;"
+        ],
+        describe: [
+            "SELF JOIN은 한 테이블의 두 인스턴스를 붙여서 사용하고싶을때 사용한다",
+            "대충 예를들면 사원의 정보를 갖고있는 테이블에 한 칼럼으로 상사에 대한 정보(뭐 사원 id랄지, 주민등록번호랄지)가 들어있으면 어떤 한 사원과 그의 상사를 나란히 보고싶을때 사용하면 된다"
+        ],
         caution: [],
         tip: []
     },
