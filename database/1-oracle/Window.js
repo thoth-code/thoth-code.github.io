@@ -19,13 +19,8 @@ function Window() {
     });
     window.push({
         isRoute: false,
-        path: "database/1-oracle/4-from/index.html",
-        content: "FROM"
-    });
-    window.push({
-        isRoute: false,
         path: "database/1-oracle/5-where/index.html",
-        content: "WHERE"
+        content: "FROM, WHERE"
     });
     window.push({
         isRoute: false,
@@ -35,16 +30,21 @@ function Window() {
     window.push({
         isRoute: false,
         path: "database/1-oracle/7-groupby/index.html",
-        content: "GROUP BY, Aggregation Function"
+        content: "GROUP BY, Group Function"
     });
     window.push({
         isRoute: false,
-        path: "database/1-oracle/8-join/index.html",
+        path: "database/1-oracle/8-aggfunc/index.html",
+        content: "Aggregation Function"
+    });
+    window.push({
+        isRoute: false,
+        path: "database/1-oracle/9-join/index.html",
         content: "JOIN"
     });
     window.push({
         isRoute: false,
-        path: "database/1-oracle/9-subquery/index.html",
+        path: "database/1-oracle/11-subquery/index.html",
         content: "서브쿼리"
     });
     window.push({
@@ -54,8 +54,13 @@ function Window() {
     });
     window.push({
         isRoute: false,
-        path: "database/1-oracle/11-view/index.html",
+        path: "database/1-oracle/12-view/index.html",
         content: "뷰"
+    });
+    window.push({
+        isRoute: false,
+        path: "database/1-oracle/13-windowfunc/index.html",
+        content: "Window Function"
     });
 
     let windows = upperWindow.default();

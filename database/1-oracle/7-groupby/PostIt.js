@@ -17,33 +17,55 @@ let PostIt = [
     },
     {
         type: "code",
-        title: "그룹에 속하는 인스턴스 갯수 구하기",
+        title: "ROLLUP",
         command: [
-            "COUNT(*)"
+            "SELECT 칼럼1, 칼럼2, 집계함수(칼럼3)\nFROM 테이블들\nGROUP BY ROLLUP(칼럼1, 칼럼2);",
         ],
         describe: [
-            "그룹이나 검색결과 전체에 대해 속하는 인스턴스의 갯수를 구한다"
+            "위와 같은 ROLLUP은 다음과 같다",
+            "GROUP BY 칼럼1, 칼럼2\nUNION ALL\nGROUP BY 칼럼1\nUNION ALL\nGROUP BY를 사용하지 않았을때의 집계함수 결과"
         ],
         caution: [],
-        tip: [
-            "괄호 안에는 칼럼이 들어가나 어차피 인스턴스의 갯수를 구하는 것이므로 모든 칼럼을 나타내는 *를 주로 쓴다"
-        ]
+        tip: []
     },
     {
         type: "code",
-        title: "최대, 최소, 평균, 총합 구하기",
+        title: "CUBE",
         command: [
-            "MAX(칼럼)",
-            "MIN(칼럼)",
-            "AVG(칼럼)",
-            "SUM(칼럼)"
+            "SELECT 칼럼1, 칼럼2, 집계함수(칼럼3)\nFROM 테이블들\nGROUP BY CUBE(칼럼1, 칼럼2);",
         ],
         describe: [
-            "그룹이나 검색결과 전체에 대해",
-            "MAX : 최댓값을 구함",
-            "MIN : 최솟값을 구함",
-            "AVG : 평균값을 구함",
-            "SUM : 총합을 구함"
+            "위와 같은 CUBE는 다음과 같다",
+            "GROUP BY 칼럼1, 칼럼2\nUNION ALL\nGROUP BY 칼럼1\nUNION ALL\nGROUP BY 칼럼2\nUNION ALL\nGROUP BY를 사용하지 않았을때의 집계함수 결과"
+        ],
+        caution: [],
+        tip: []
+    },
+    {
+        type: "code",
+        title: "GROUPING SETS",
+        command: [
+            "SELECT 칼럼1, 칼럼2, 집계함수(칼럼3)\nFROM 테이블들\nGROUP BY GROUPING SETS(칼럼1, 칼럼2);",
+        ],
+        describe: [
+            "위와 같은 CUBE는 다음과 같다",
+            "GROUP BY 칼럼1\nUNION ALL\nGROUP BY 칼럼2"
+        ],
+        caution: [],
+        tip: []
+    },
+    {
+        type: "code",
+        title: "GROUPING 함수",
+        command: [
+            "SELECT 칼럼1, 칼럼2, 집계함수(칼럼3), GROUPING(칼럼1), GROUPING(칼럼2)\nFROM 테이블들\nGROUP BY ROLLUP(칼럼1, 칼럼2);",
+        ],
+        describe: [
+            "GROUPNG함수는 해당 ROW가 집계함수의 결과를 나타내는 결과를 나타내기 위한 ROW일 경우에 1을 출력하고 아니면 0을 출력한다",
+            "GROUPING(특정킬럼)의 경우에는 그 칼럼의 모든 칼럼값을 집계한 결과를 나타내는 ROW에 1을 출력한다",
+            "예를들어 ROLLUP(칼럼1, 칼럼2)에 대해서는",
+            "GROUP BY 칼럼1의 집계결과를 보여주는 ROW의 경우에 칼럼2의 모든 칼럼값을 집계했으므로 GROUPING(칼럼2)이 1이 된다",
+            "GROUP BY를 사용하지 않았을때의 집계 결과를 나타내는 ROW의 경우 칼럼1와 칼럼2의 모든 칼럼값을 집계한 것이므로 GROUPING(칼럼1)과 GROUPING(칼럼2)이 모두 1이 된다"
         ],
         caution: [],
         tip: []

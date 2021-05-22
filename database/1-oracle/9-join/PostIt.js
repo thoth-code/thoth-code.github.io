@@ -1,7 +1,7 @@
 let PostIt = [
     {
         type: "code",
-        title: "여러 테이블에서 정보를 갖고와 하나로 출력",
+        title: "INNER JOIN",
         command: [
             "SELECT 칼럼들\nFROM 테이블1, 테이블2\nWHERE 테이블1.기본(외래)키 = 테이블2.기본(외래)키;",
             "SELECT 칼럼들\nFROM 테이블1 JOIN 테이블2\nON 테이블1.기본(외래)키 = 테이블2.기본(외래)키;"
@@ -12,7 +12,7 @@ let PostIt = [
         caution: [],
         tip: [
             "여러 테이블에 흩어져 존재하는 정보들을 모아서 사용하고자 할 때 사용한다",
-            "해당 JOIN은 INNER JOIN이라고도 하며 쿼리문을 INNER JOIN로 적어도 동일한 결과를 갖고온다"
+            "쿼리문을 INNER JOIN로 적어도 동일한 결과를 갖고온다"
         ]
     },
     {
@@ -98,6 +98,19 @@ let PostIt = [
         ],
         caution: [],
         tip: []
+    },
+    {
+        type: "concept",
+        title: "EQUI vs NON EQUI",
+        command: [],
+        describe: [
+            "EQUI JOIN : WHERE절의 조건에 =을 이용하여 두 칼럼값이 일치하는것만 가져오는 경우",
+            "NON EQUI JOIN : =이 아닌 >, <같은 대소비교를 이용하거나 <>같은 같지 않음 조건을 이용하는 경우"
+        ],
+        caution: [],
+        tip: [
+            "NON EQUI JOIN의 경우 CROSS JOIN 후 조건에 맞는놈들을 선별하는것이 생각하기 편하다"
+        ]
     },
 ];
 
