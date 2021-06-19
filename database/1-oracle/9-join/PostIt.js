@@ -24,7 +24,8 @@ let PostIt = [
         ],
         describe: [
             "NATURAL JOIN은 기본키-외래키 뿐 아니라 두 테이블의 같은 이름을 갖는 칼럼들의 칼럼값이 같은 인스턴스만을 합친다",
-            "다만 NATURAL JOIN의 경우에는 같은 이름을 갖는 모든 칼럼을 기준으로 합치기 때문에 특정 칼럼을 명시해주고 싶을 때 USING을 이용하면 되는 것"
+            "다만 NATURAL JOIN의 경우에는 같은 이름을 갖는 모든 칼럼을 기준으로 합치기 때문에 특정 칼럼을 명시해주고 싶을 때 USING을 이용하면 되는 것",
+            "따라서 얘의 경우에는 JOIN KEY가 칼럼명을 이용해 결정된다고 할 수 있는 것"
         ],
         caution: [],
         tip: [],
@@ -37,7 +38,8 @@ let PostIt = [
         ],
         describe: [
             "CROSS JOIN은 Cartesian Product, 즉, 두 테이블의 인스턴스를 합칠 수 있는 모든 경우의 수를 모두 나열한 것이다",
-            "따라서 크기가 n인 테이블과 m인 테이블을 CROSS JOIN하면 그의 크기는 n곱하기m 인 것"
+            "따라서 크기가 n인 테이블과 m인 테이블을 CROSS JOIN하면 그의 크기는 n곱하기m 인 것",
+            "CROSS JOIN은 JOIN에 참여하는 테이블들의 JOIN KEY가 없을때 발생한다 - 어떤 기준으로 JOIN할지 알 수 없기 때문에 모든 조합을 다 만드는 것이라고 생각하면 된다"
         ],
         caution: [],
         tip: []

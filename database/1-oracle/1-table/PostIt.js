@@ -15,9 +15,11 @@ let PostIt = [
         command: ["CREATE TABLE 이름 {\n칼럼1 NUMBER(자릿수) NOT NULL,\n칼럼2 NUMBER(자릿수) NOT NULL DEFAULT 기본값\n};"],
         describe: [
             "NOT NULL은 해당 칼럼에 들어올 값이 반드시 존재해야된다는것(말그래도 NULL이면 안된다는거임 - INSERT할때 비워두지마라)",
-            "DEFAULT는 NOT NULL일때 입력하지않으면 기본값이 입력되게 해 NULL이 입력되지 않게하는 옵션"
+            "DEFAULT는 값을 입력하지 않으면 기본값을 넣어주는 옵션이다 - NOT NULL일때는 NULL을 입력하면 안되므로 입력하지 않아 디폴트값을 넣어주는 용도로 사용 가능"
         ],
-        caution: [],
+        caution: [
+            "DEFAULT는 NULL값을 대체해주는놈이 아니다 - NOT NULL이 아닐때 NULL을 입력하면 NULL이 들어가지만 입력하지 않으면 디폴트값이 들어감"
+        ],
         tip: []
     },
     {
@@ -85,15 +87,19 @@ let PostIt = [
         title: "테이블 수정",
         command: [
             "ALTER TABLE 이름 ADD 칼럼1 VARCHAR2(자릿수);",
+            "ALTER TABLE 이름 MODIFY 칼럼1 VARCHAR2(자릿수);",
             "ALTER TABLE 이름 DROP 칼럼1 CASCADE;",
             "ALTER TABLE 이름 ADD CONSTRAINT 기본키이름 PRIMARY KEY(칼럼2);"
         ],
         describe: [
             "ADD를 통해 칼럼을 추가하거나",
+            "MODIFY로 칼럼을 수정할 수 있고",
             "DROP을 통해 칼럼을 삭제하거나(CASCADE말고 RESTRICT도 쓸 수 있으며 마찬가지로 연쇄적 삭제, 연결고리가 없을때만 삭제의 의미이다.)",
-            "ADD CONSTRAINT를 통해 제약조건을 추가할 수도 있다.(예시에서는 기본키 제약조건을 넣은 것)"
+            "ADD CONSTRAINT를 통해 제약조건을 추가할 수도 있다.(예시에서는 기본키 제약조건을 넣은 것)",
         ],
-        caution: [],
+        caution: [
+            "칼럼을 수정하는 것은 부분적으로 수정하는 것이 아니라 덮어쓰기이다 - 만약 기존의 칼럼 조건들도 같이 적어주지 않으면 기존의 조건들이 삭제되는셈"
+        ],
         tip: []
     }
 ];

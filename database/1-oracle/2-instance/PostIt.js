@@ -26,7 +26,9 @@ let PostIt = [
         command: ["DROP FROM 테이블이름 WHERE 조건;"],
         describe: [],
         caution: ["인스턴스를 선택하는 것은 WHERE절을 이용하므로 조건을 걸어주지 않으면 모든 인스턴스가 삭제된다."],
-        tip: []
+        tip: [
+            "FROM은 생략 가능하다"
+        ]
     },
     {
         type: "code",

@@ -52,13 +52,14 @@ let PostIt = [
         type: "code",
         title: "계층형 질의",
         command: [
-            "SELECT LEVEL, 칼럼들, CONNECT_BY_ISLEAF\nFROM 테이블들\nSTART WITH 조건\nCONNECT BY PRIOR 하위계층 = 상위계층\nORDER BY LEVEL;"
+            "SELECT LEVEL, 칼럼들, CONNECT_BY_ISLEAF\nFROM 테이블들\nSTART WITH 조건\nCONNECT BY PRIOR 자식의 칼럼 = 부모의 칼럼\nORDER BY LEVEL;"
         ],
         describe: [
             "LEVEL : 계층 순번을 나타내는 숫자",
-            "START WITH 조건 : 최상위 계층에 들어갈 놈 하나를 조건을 통해 골라낸다",
-            "CONNECT BY PRIOR 하위계층 = 상위계층 : 계층형 질의를 쓰기 위해서는 한 인스턴스의 상위계층(혹은 하위계층)에 대한 기본키값이 외래키로 들어가있는데 이것을 상->하로 정렬할건지 하->상으로 정렬할건지에 따라 넣어주면 된다",
-            "무슨소리인고 하니 예를들어 한 사원의 상사의 사원id가 외래키로 들어있고 직급이 높은순으로 계층구조를 보고싶으면 조건으로 상사가 없는놈을 고르고 CONNECT BY PRIOR에는 사원id = 상사의 사원id 를 넣어주면 된다",
+            "START WITH 조건 : 루트를 조건을 통해 골라낸다",
+            "CONNECT BY PRIOR 자식의 칼럼값 = 부모의 칼럼값 : PRIOR가 불은쪽이 자식이고 안붙은 쪽이 부모이다",
+            "이렇게 생각을 하고 자식의 칼럼값이랑 부모의 칼럼값을 비교해 둘이 일치하면 자식으로 간택되는거고 아니면 자식으로 들어오지 않는 것",
+            "활용 사례를 보면 한 사원의 상사의 사원id가 외래키로 들어있고 직급이 높은순으로 계층구조를 보고싶으면 조건으로 상사가 없는놈을 고르고 CONNECT BY PRIOR에는 사원id = 상사의 사원id 를 넣어주면 된다",
             "CONNECT_BY_ISLEAF는 해당 인스턴스가 마지막 노드인가(리프노드인가)를 0과 1로 보고싶을때 쓰면 된다"
         ],
         caution: [],

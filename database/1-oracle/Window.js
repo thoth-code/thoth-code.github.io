@@ -62,6 +62,11 @@ function Window() {
         path: "database/1-oracle/13-windowfunc/index.html",
         content: "Window Function"
     });
+    window.push({
+        isRoute: false,
+        path: "database/1-oracle/14-index/index.html",
+        content: "Index"
+    });
 
     let windows = upperWindow.default();
     windows.push(window);
