@@ -1,4 +1,5 @@
-import './style/App.css';
+import './style/App';
+import './style/fonts';
 
 function component() {
     const element = document.createElement("div");
