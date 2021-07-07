@@ -1,4 +1,4 @@
-const { resolve } = require('path');
+const { resolve, join } = require('path')
 
 const config = {
     entry: './src/index.ts',
@@ -24,6 +24,13 @@ const config = {
                 loader: 'file-loader',
             },
         ]
+    },
+    devServer: {
+        contentBase: join(__dirname, 'public'),
+        port: 9000,
+        hot: true,
+        open: true,
+        overlay: true,
     },
     resolve: {
         extensions: ['.js', '.json', '.ts', '.tsx', '.css']

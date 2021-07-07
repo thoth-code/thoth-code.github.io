@@ -16,7 +16,7 @@
   \*****************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);\n// Imports\n\nvar ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});\n// Module\n___CSS_LOADER_EXPORT___.push([module.id, \".claaas {\\n  font-size: 30px;\\n  font-family: \\\"AS\\\";\\n}\", \"\"]);\n// Exports\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);\n\n\n//# sourceURL=webpack://fe/./src/style/App.css?./node_modules/css-loader/dist/cjs.js");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);\n// Imports\n\nvar ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});\n// Module\n___CSS_LOADER_EXPORT___.push([module.id, \"* {\\n    padding: 0;\\n    margin: 0;\\n    font-family: \\\"AS\\\";\\n}\\n\\nhtml {\\n    height: 100%;\\n}\\n\\nbody {\\n    position: relative;\\n    height: 100%;\\n    margin: 0 20px 0 20px;\\n}\\n\\n/* --------------------------------------- HEADER ------------------------------------------ */\\nheader {\\n    height: 220px;\\n    background-color: black;\\n}\\n\\n/* ---------------------------------------- MAIN ------------------------------------------- */\\n\\n/* --------------------------------------- FOOTER ------------------------------------------ */\\nfooter {\\n    position: absolute;\\n    top: calc(100% - 22px);\\n    width: 100%;\\n    height: 20px;\\n    border-top: 2px solid black;\\n    text-align: center;\\n}\", \"\"]);\n// Exports\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);\n\n\n//# sourceURL=webpack://fe/./src/style/App.css?./node_modules/css-loader/dist/cjs.js");
 
 /***/ }),
 
@@ -140,13 +140,23 @@ eval("\n\n/* istanbul ignore next  */\nfunction apply(style, options, obj) {\n  
 
 /***/ }),
 
+/***/ "./src/App.ts":
+/*!********************!*\
+  !*** ./src/App.ts ***!
+  \********************/
+/***/ ((__unused_webpack_module, exports) => {
+
+eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nfunction App() {\n    return (\"\\n        <header>\\n            Thoth : Pyramid of open knowledges\\n        </header>\\n        <main>\\n            <div id=\\\"whiteboard\\\">\\n                holymoly\\n            </div>\\n        </main>\\n        <footer>copyright \\u00A9 saltwalks 2021</footer>\\n    \");\n}\nexports.default = App;\n\n\n//# sourceURL=webpack://fe/./src/App.ts?");
+
+/***/ }),
+
 /***/ "./src/index.ts":
 /*!**********************!*\
   !*** ./src/index.ts ***!
   \**********************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
-eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\n__webpack_require__(/*! ./style/App */ \"./src/style/App.css\");\n__webpack_require__(/*! ./style/fonts */ \"./src/style/fonts.css\");\nfunction component() {\n    var element = document.createElement(\"div\");\n    element.innerHTML = \"fuck ya\";\n    element.classList.add(\"claaas\");\n    return element;\n}\ndocument.body.appendChild(component());\n\n\n//# sourceURL=webpack://fe/./src/index.ts?");
+eval("\nvar __importDefault = (this && this.__importDefault) || function (mod) {\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\n};\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nvar App_1 = __importDefault(__webpack_require__(/*! ./App */ \"./src/App.ts\"));\n__webpack_require__(/*! ./style/App */ \"./src/style/App.css\");\n__webpack_require__(/*! ./style/fonts */ \"./src/style/fonts.css\");\ndocument.body.innerHTML = App_1.default();\n\n\n//# sourceURL=webpack://fe/./src/index.ts?");
 
 /***/ })
 
@@ -170,7 +180,7 @@ eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\n__we
 /******/ 		};
 /******/ 	
 /******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
 /******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
@@ -253,7 +263,7 @@ eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\n__we
 /******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
-/******/ 	// This entry module can't be inlined because the eval devtool is used.
+/******/ 	// This entry module is referenced by other modules so it can't be inlined
 /******/ 	var __webpack_exports__ = __webpack_require__("./src/index.ts");
 /******/ 	
 /******/ })()
