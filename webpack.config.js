@@ -27,7 +27,6 @@ const config = {
     },
     devServer: {
         contentBase: join(__dirname, 'public'),
-        port: 9000,
         hot: true,
         open: true,
         overlay: true,

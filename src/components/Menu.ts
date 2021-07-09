@@ -1,4 +1,4 @@
-function Menu() {
+function Menu(props: {title: string, code: string}[]) {
     return `
         <ul>
             <li>something</li>

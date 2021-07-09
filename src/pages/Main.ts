@@ -1,6 +1,8 @@
+import Notes from "../components/Notes";
+
 function Main() {
     return `
-        <main></main>
+        <main>${Notes()}</main>
         <aside>something</aside>
     `;
 }
