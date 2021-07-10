@@ -23,7 +23,7 @@ export default class Store implements st.StoreInterface {
                 state[key.toString()] = value;
                 console.log(`[${new Date()} State changed : ${state}[${String(key)}] = ${value}]`);
                 self.events.publish('stateChange');
-                self.status = 'mutations'
+                self.status = 'mutations';
                 return true;
             },
         });

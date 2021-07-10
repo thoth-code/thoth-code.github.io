@@ -8,7 +8,7 @@ class Note extends Component {
     };
 
     render() {
-        let self = this.element
+        let self = this.element;
         if(self instanceof HTMLElement) {
             self.innerHTML = this.store.state.notes.map(note => `
                 <article>

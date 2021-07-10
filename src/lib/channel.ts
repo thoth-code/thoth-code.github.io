@@ -1,7 +1,7 @@
 import { st } from "state-types";
 
 export default class Channel implements st.ChannelInterface {
-    components: st.components
+    components: st.components;
 
     constructor() {
         this.components = {};

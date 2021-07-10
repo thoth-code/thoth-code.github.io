@@ -22,14 +22,14 @@ declare module 'state-types' {
             render: () => void;
         }
 
-        type note = {title: string, code: string, tag: string}
+        type note = {title: string, code: string, tag: string};
 
         type action = (context: Store) => void;
         type state = {[index: string]: note[]};
         type mutation = (state: state, payload: any) => void;
 
-        type components = {[index: string]: ComponentInterface[]}
-        type actions = {[index: string]: action}
-        type mutations = {[index: string]: mutation}
+        type components = {[index: string]: ComponentInterface[]};
+        type actions = {[index: string]: action};
+        type mutations = {[index: string]: mutation};
     }
 }

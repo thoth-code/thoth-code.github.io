@@ -6,7 +6,7 @@ const actions: st.actions = {
         fetchAllNotes().then(response => {
             if(response.body !== null) {
                 response.json().then(data => {
-                    context.commit('addNotes', data)
+                    context.commit('addNotes', data);
                 });
             }
         }).catch(err => {

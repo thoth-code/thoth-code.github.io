@@ -3,5 +3,5 @@ const config = {
 }
 
 export async function fetchAllNotes() {
-    return fetch(`${config.baseUrl}/`);
+    return fetch(`${config.baseUrl}/all`);
 }
