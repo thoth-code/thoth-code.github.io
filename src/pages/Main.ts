@@ -1,10 +1,7 @@
-import Notes from "../components/Notes";
+import Note from "../components/Note";
 
 function Main() {
-    return `
-        <main>${Notes()}</main>
-        <aside>something</aside>
-    `;
+    Note.store.dispatch("getAllNotes");
 }
 
 export default Main

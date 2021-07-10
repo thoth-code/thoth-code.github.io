@@ -1,7 +1,7 @@
-import axios from 'axios';
+const config = {
+    baseUrl: 'http://localhost:3000'
+}
 
-export async function getAllNote() {
-    return axios.get('http://localhost:3000/post-it')
-        .then(res => res.data)
-        .catch(err => console.log(err));
+export async function fetchAllNotes() {
+    return fetch(`${config.baseUrl}/`);
 }
