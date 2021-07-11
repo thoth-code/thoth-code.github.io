@@ -12,7 +12,7 @@ declare module 'state-types' {
             mutations: mutations;
             state: state;
             status: string;
-            dispatch: (actionKey: string) => boolean;
+            dispatch: (actionKey: string, data?: note) => boolean;
             commit: (mutationKey: string, payLoad: note) => boolean;
         }
 
@@ -24,7 +24,7 @@ declare module 'state-types' {
 
         type note = {title: string, code: string, tag: string};
 
-        type action = (context: Store) => void;
+        type action = (context: Store, data?: note) => void;
         type state = {[index: string]: note[]};
         type mutation = (state: state, payload: any) => void;
 

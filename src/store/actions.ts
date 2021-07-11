@@ -1,9 +1,9 @@
 import { st } from "state-types";
-import { fetchAllNotes } from "../api";
+import * as api from "../api";
 
 const actions: st.actions = {
     getAllNotes(context) {
-        fetchAllNotes().then(response => {
+        api.getAllNotes().then(response => {
             if(response.body !== null) {
                 response.json().then(data => {
                     context.commit('addNotes', data);
@@ -12,6 +12,10 @@ const actions: st.actions = {
         }).catch(err => {
             console.error(err);
         })
+    },
+    postNote(context, data) {
+        console.log(data);
+        
     }
 }
 

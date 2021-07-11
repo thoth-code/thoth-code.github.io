@@ -9,7 +9,15 @@
 </head>
 <body>
     <header>
-        <a href="/">Thoth</a>
+        <div id="logo">
+            <a href="/">Thoth</a>
+        </div>
+        <div id="top-box">
+            <span>Search</span>
+            <input type="text">
+            <button id="create-new-note">New Note</button>
+            <hr>
+        </div>
     </header>
     <main id="whiteboard"></main>
     <aside id="label">
@@ -19,6 +27,15 @@
         </ul>
     </aside>
     <footer>copyright © saltwalks2021</footer>
+
+    <!-- Modal -->
+    <div class="overlay" id="new-note-overlay">
+        <article id="new-note">
+            <h1><input type="text" id="newNoteTitle"></h1>
+            <p><textarea name="" id="newNoteCode" cols="30" rows="10"></textarea></p>
+            <span><input type="text" id="newNoteTag"></span>
+        </article>
+    </div>
     <script src="./bundle.js"></script>
 </body>
 </html>

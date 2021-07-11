@@ -29,13 +29,13 @@ export default class Store implements st.StoreInterface {
         });
     };
 
-    dispatch(actionKey: string) {
+    dispatch(actionKey: string, data?: st.note) {
         if(typeof this.actions[actionKey] !== 'function') {
             console.error(`Action ${actionKey} doesn't exists`);
             return false;
         }
         this.status = 'action';
-        this.actions[actionKey](this);
+        this.actions[actionKey](this, data);
         return true;
     };
 

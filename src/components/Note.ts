@@ -8,16 +8,24 @@ class Note extends Component {
     };
 
     render() {
-        let self = this.element;
-        if(self instanceof HTMLElement) {
-            self.innerHTML = this.store.state.notes.map(note => `
-                <article>
-                    <h1>${note.title}</h1>
-                    <p>${note.code}</p>
-                    <span>${note.title}</span>
-                </article>
-            `).join();
-        }
+        const self = this.element as HTMLElement;
+        this.store.state.notes.map(note => {
+            const article = document.createElement('article');
+
+            const title = document.createElement('h1');
+            title.innerText = '    ' + note.title;
+            article.appendChild(title);
+
+            const code = document.createElement('p');
+            code.innerText = note.code;
+            article.appendChild(code);
+
+            const tag = document.createElement('span');
+            tag.innerText = note.tag;
+            article.appendChild(tag);
+
+            self.appendChild(article)
+        });
     };
 }
 
