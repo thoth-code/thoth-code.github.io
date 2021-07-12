@@ -1,7 +1,7 @@
 * {
     padding: 0;
     margin: 0;
-    font-family: "AS";
+    font-family: "AS", "SP";
 }
 
 html {
@@ -11,7 +11,7 @@ html {
 body {
     position: relative;
     display: grid;
-    grid-template-columns: 20px 120px 1fr 40px 20px;
+    grid-template-columns: 20px 120px minmax(478px, auto) 40px 20px;
     grid-template-rows: 140px 1fr 20px;
     grid-template-areas: 
         "   .   header  header  aside   .   "
@@ -54,10 +54,43 @@ header {
 }
 
 /* ---------------------------------------- MAIN ------------------------------------------- */
-main {
+#whiteboard {
     grid-area: main;
     border: 2px solid black;
     border-top: none;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+
+.note {
+    padding: 9px;
+    margin: 20px;
+    flex: 0 0 500px;
+    background: #FFFAA0;
+}
+
+.note>* {
+    margin-top: 9px;
+}
+
+.note h1 {
+    text-align: center;
+    font-size: 40px;
+}
+
+.note-code {
+    background: #89CFF0;
+    padding: 10px;
+}
+
+.note-code pre {
+    white-space: pre-wrap;
+}
+
+.note-code * {
+    font-family: "CODE";
 }
 
 /* ---------------------------------------- ASIDE ------------------------------------------- */

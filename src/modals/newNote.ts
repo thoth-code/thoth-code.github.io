@@ -1,4 +1,5 @@
 import store from "../store";
+import * as strconv from "../modules/parseCode";
 
 function NewNote() {
     const createBtn = document.getElementById('create-new-note') as HTMLElement;
@@ -13,6 +14,22 @@ function NewNote() {
             //드래그하지 않고 커서 하나만 깜빡거리면 start === end이다
             code.value = code.value.substring(0, start) + '\t' + code.value.substring(end); //str[:start] + "\t" + str[end:]
             code.selectionStart = code.selectionEnd = start + 1; //move curser next to tab
+        }
+    });
+
+    code.addEventListener('keydown', event => {
+        if(event.key === 'Enter') {
+            event.preventDefault();
+            let start = code.selectionStart as number;
+            let end = code.selectionEnd as number;
+            let cnt = strconv.maintainIndent(code.value);
+            let res = code.value.substring(0, start) + '\n';
+            for(let i = 0; i < cnt; i ++) {
+                res += '\t';
+            }
+            res += code.value.substring(end);
+            code.value = res;
+            code.selectionStart = code.selectionEnd = start + 1 + cnt;
         }
     });
 
