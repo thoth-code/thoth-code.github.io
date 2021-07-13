@@ -17,17 +17,34 @@ class NewNote extends Component {
         const span = document.createElement('span');
         const tag = document.createElement('input');
 
+        //Guidelines
+        const guide1 = document.createElement('span');
+        guide1.classList.add('save-note-guide');
+        guide1.innerText = 'Click Outside to Save';
+        const guide2 = guide1.cloneNode(true);
+
+
+        //Properties
+        article.id = 'new-note';
+        h1.id = 'new-note-title';
+        parag.id = 'new-note-code';
+        span.id = 'new-note-tag';
+        title.placeholder = 'Title';
+        code.autocomplete = 'off';
+        code.spellcheck = false;
+        code.placeholder = 'Write Code...';
+        tag.placeholder = '@Language';
+
         //DOM Tree
+        this.element.appendChild(guide1);
         this.element.appendChild(article);
+        this.element.appendChild(guide2);
         article.appendChild(h1);
         article.appendChild(parag);
         article.appendChild(span);
         h1.appendChild(title);
         parag.appendChild(code);
         span.appendChild(tag);
-
-        //ID
-        article.id = 'new-note'
 
         //Save note
         let self = this;

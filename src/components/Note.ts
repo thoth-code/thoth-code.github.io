@@ -30,7 +30,6 @@ class Note extends Component {
             article.appendChild(code);
 
             const tag = document.createElement('span');
-            tag.classList.add('note-tag');
             tag.innerText = note.tag;
             article.appendChild(tag);
 
