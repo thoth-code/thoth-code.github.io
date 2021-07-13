@@ -1,31 +1,44 @@
 import Component from "../lib/component";
-import note from "./Note";
 import * as strconv from "../modules/parseCode";
 
 class NewNote extends Component {
     constructor() {
-        //Select existing elements
+        /*
+         * Select Existing Elements
+         */
         super({ element: document.getElementById('new-note-overlay') as HTMLElement });
         const createBtn = document.getElementById('create-new-note') as HTMLElement;
 
-        //Creating new element
+        /*
+         * Creating New Elements
+         */
         const article = document.createElement('article');
+        //Guidelines
+        const guide1 = document.createElement('span');
+        const guide2 = document.createElement('span');
+        //Inputs
+        const inputContainer = document.createElement('div');
         const h1 = document.createElement('h1');
         const title = document.createElement('input');
         const parag = document.createElement('p');
         const code = document.createElement('textarea');
         const span = document.createElement('span');
         const tag = document.createElement('input');
+        //Save, Cancel, Maintain
+        const saveContainer = document.createElement('div');
+        const save = document.createElement('button');
+        const cancel = document.createElement('button');
+        const maintain = document.createElement('button');
 
-        //Guidelines
-        const guide1 = document.createElement('span');
+        /*
+         * Set Properties
+         */
+        article.id = 'new-note';
         guide1.classList.add('save-note-guide');
         guide1.innerText = 'Click Outside to Save';
-        const guide2 = guide1.cloneNode(true);
-
-
-        //Properties
-        article.id = 'new-note';
+        guide2.classList.add('save-note-guide');
+        guide2.innerText = 'Click Outside to Save';
+        inputContainer.id = 'input-container';
         h1.id = 'new-note-title';
         parag.id = 'new-note-code';
         span.id = 'new-note-tag';
@@ -34,52 +47,113 @@ class NewNote extends Component {
         code.spellcheck = false;
         code.placeholder = 'Write Code...';
         tag.placeholder = '@Language';
+        saveContainer.id = 'save-container';
+        saveContainer.innerText = 'Do you want to save note?';
+        save.id = 'save-btn';
+        save.innerText = 'Yes I want to save it';
+        maintain.innerText = 'No I want to write more';
+        maintain.id = 'maintain-btn';
+        cancel.innerText = 'Just put it into trash bin';
+        cancel.id = 'cancel-btn'
 
-        //DOM Tree
+        /*
+         * Connect DOM Tree
+         */
         this.element.appendChild(guide1);
         this.element.appendChild(article);
         this.element.appendChild(guide2);
-        article.appendChild(h1);
-        article.appendChild(parag);
-        article.appendChild(span);
+        article.appendChild(inputContainer);
+        article.appendChild(saveContainer);
+        inputContainer.appendChild(h1);
+        inputContainer.appendChild(parag);
+        inputContainer.appendChild(span);
         h1.appendChild(title);
         parag.appendChild(code);
         span.appendChild(tag);
+        saveContainer.appendChild(save);
+        saveContainer.appendChild(maintain);
+        saveContainer.appendChild(cancel);
 
-        //Save note
+        /*
+         * Create note
+         */
         let self = this;
         createBtn.addEventListener('click', () => {
-            title.value = "",
-            code.value = "",
-            tag.value = "",
             self.element.style.display = 'flex';
         });
-    
-        //Create new note
+
+        /*
+         * Save note
+         */
+        //Reset guide, display
+        function resetCreation() {
+            guide1.innerText = 'Click Outside to Save';
+            guide2.innerText = 'Click Outside to Save';
+            inputContainer.style.display = 'block';
+            saveContainer.style.display = 'none';
+        }
+
+        //Clear values
+        function clear() {
+            title.value = "";
+            code.value = "";
+            tag.value = "";
+        }
+
+        //Overlay click event
         self.element.addEventListener('click', event => {
             if(event.target === self.element) {
-                self.store.dispatch('postNote', {
-                    title: title.value,
-                    code: code.value,
-                    tag: tag.value,
-                });
-                self.element.style.display = 'none';
+                if(inputContainer.style.display !== 'none') {
+                    guide1.innerText = 'Click Outside to Write More';
+                    guide2.innerText = 'Click Outside to Write More';
+                    inputContainer.style.display = 'none';
+                    saveContainer.style.display = 'flex';
+                } else {
+                    resetCreation();
+                }
             }
         });
-    
-        //Allowing Tab
+
+        //Do save
+        save.addEventListener('click', () => {
+            self.store.dispatch('postNote', {
+                title: title.value,
+                code: code.value,
+                tag: tag.value,
+            });
+            resetCreation();
+            clear();
+            self.element.style.display = 'none';
+        });
+
+        //Maintain note
+        maintain.addEventListener('click', () => {
+            resetCreation();
+        });
+
+        //Cancel note
+        cancel.addEventListener('click', () => {
+            resetCreation();
+            clear();
+            self.element.style.display = 'none';
+        });
+
+        /*
+         * Allowing Tab in Code
+         */
         code.addEventListener('keydown', event => {
             if(event.key === 'Tab') {
-                event.preventDefault(); //입력 멈춤
-                let start = code.selectionStart as number; //드래그한 범위 맨처음 인덱스
-                let end = code.selectionEnd as number; //드래그한 범위 맨 뒤 인덱스
-                //드래그하지 않고 커서 하나만 깜빡거리면 start === end이다
-                code.value = code.value.substring(0, start) + '\t' + code.value.substring(end); //str[:start] + "\t" + str[end:]
-                code.selectionStart = code.selectionEnd = start + 1; //move curser next to tab
+                event.preventDefault();
+                let start = code.selectionStart as number;
+                let end = code.selectionEnd as number;
+                code.value = code.value.substring(0, start) + '\t' + code.value.substring(end);
+                code.selectionStart = code.selectionEnd = start + 1;
             }
         });
     
-        //Maintain tab when enter
+        /*
+         * Maintain Tab When Enter
+         */
         code.addEventListener('keydown', event => {
             if(event.key === 'Enter') {
                 event.preventDefault();
@@ -97,9 +171,7 @@ class NewNote extends Component {
         });
     };
 
-    render() {
-        note.render();
-    }
+    render() {}
 }
 
 export default NewNote;

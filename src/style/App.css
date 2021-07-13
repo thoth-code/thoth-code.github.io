@@ -19,7 +19,7 @@ body {
         "   .   footer  footer  footer  .   ";
 }
 
-input, textarea {
+input, textarea, button {
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;
@@ -33,10 +33,10 @@ input, textarea {
 /* --------------------------------------- HEADER ------------------------------------------ */
 header {
     grid-area: header;
-    background-color: white;
     position: fixed;
     width: calc(100% - 80px);
     left: 20px;
+    background-color: white;
 }
 
 #logo {
@@ -48,7 +48,7 @@ header {
 #logo>a {
     display: inline-block;
     margin: 2px 22px 2px 22px;
-    color: white;
+    color: aliceblue;
     font-size: 30px;
     text-decoration: none;
 }
@@ -87,7 +87,7 @@ header {
     border-radius: 2px;
 }
 
-#new-note>*, .note>* {
+#input-container>*, .note>* {
     margin-top: 9px;
 }
 
@@ -149,6 +149,7 @@ footer {
 #new-note {
     padding: 9px;
     margin: 20px;
+    height: 613px;
     flex: 0 0 500px;
     background: #FFFAA0;
     border-radius: 2px;
@@ -168,6 +169,7 @@ footer {
 #new-note-code {
     height: 500px;
 }
+
 #new-note-code>textarea {
     background: #89CFF0;
     border-radius: 2px;
@@ -191,5 +193,34 @@ footer {
 .save-note-guide {
     font-size: 30px;
     font-weight: bold;
-    color: aliceblue;
+    color: white;
+}
+
+#save-container {
+    height: 100%;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+}
+
+#save-container>button {
+    width: 50%;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 2px;
+    margin-top: 10px;
+}
+
+#save-btn {
+    background-color: #93C572;
+}
+
+#maintain-btn {
+    background-color: #FFBF00;
+}
+
+#cancel-btn {
+    background-color: #FFA0D5;
 }
