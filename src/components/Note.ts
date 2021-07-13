@@ -4,7 +4,7 @@ import * as strconv from '../modules/parseCode'
 class Note extends Component {
     constructor() {
         super({
-            element: document.getElementById('whiteboard')
+            element: document.getElementById('whiteboard') as HTMLElement,
         });
     };
 

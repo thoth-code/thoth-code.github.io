@@ -17,7 +17,7 @@ declare module 'state-types' {
         }
 
         interface ComponentInterface {
-            element: HTMLElement | null;
+            element: HTMLElement;
             store: Store;
             render: () => void;
         }

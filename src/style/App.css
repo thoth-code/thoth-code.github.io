@@ -64,7 +64,7 @@ header {
     align-items: flex-start;
 }
 
-.note {
+#new-note, .note {
     padding: 9px;
     margin: 20px;
     flex: 0 0 500px;
@@ -123,8 +123,4 @@ footer {
     display: none;
     justify-content: center;
     align-items: center;
-}
-
-#new-note {
-    background-color: #FFFAA0;
 }
