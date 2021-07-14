@@ -23,6 +23,11 @@ const config = {
                 test: /\.(woff|woff2|eot|ttf|otf)$/,
                 loader: 'file-loader',
             },
+            /* ------------------------------------- Image ---------------------------------- */
+            {
+                test: /\.(png|jpe?g)$/,
+                loader: 'file-loader',
+            },
         ]
     },
     devServer: {

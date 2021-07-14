@@ -24,3 +24,11 @@
       url("fonts/SourceCodePro.woff") format("woff"),
       url("fonts/SourceCodePro.ttf") format("truetype");
 }
+
+@font-face{
+  font-family:"PM";
+  src:url("fonts/PermanentMarker/PermanentMarker.eot");
+  src:url("fonts/PermanentMarker/PermanentMarker.eot?#iefix") format("embedded-opentype"),
+      url("fonts/PermanentMarker/PermanentMarker.woff") format("woff"),
+      url("fonts/PermanentMarker/PermanentMarker.ttf") format("truetype");
+}

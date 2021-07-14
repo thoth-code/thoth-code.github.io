@@ -1,3 +1,27 @@
+commit 56dc6cbb6ff1743c85ba005889f5a17235e383d6
+Author: saltwalks <ewqdsacxz2345@gmail.com>
+Date:   Wed Jul 14 00:29:06 2021 +0900
+
+    Done : POST request / TODO : main page css + routing to sign-in, sign-up
+
+commit 513f18e91e4cab69c345579bb1389ad2fbf706fa
+Author: saltwalks <ewqdsacxz2345@gmail.com>
+Date:   Tue Jul 13 23:57:20 2021 +0900
+
+    Done : save, maintain, cancel note
+
+commit a6ad6d203b1df71d266bed431d2c698a268cf24f
+Author: saltwalks <ewqdsacxz2345@gmail.com>
+Date:   Tue Jul 13 22:35:40 2021 +0900
+
+    Done : new note css
+
+commit 51f0cc4a6fc81e32aa717f46851702256bf26eb2
+Author: saltwalks <ewqdsacxz2345@gmail.com>
+Date:   Tue Jul 13 20:58:22 2021 +0900
+
+    Done : migrate new note modal to component
+
 commit 272971c3d92c13d37d9ee9c4e3f5cc6c9ef8b064
 Author: saltwalks <ewqdsacxz2345@gmail.com>
 Date:   Tue Jul 13 00:20:41 2021 +0900

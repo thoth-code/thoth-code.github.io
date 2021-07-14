@@ -10,13 +10,6 @@ html {
 
 body {
     position: relative;
-    display: grid;
-    grid-template-columns: 20px 120px minmax(478px, auto) 40px 20px;
-    grid-template-rows: 140px 1fr 20px;
-    grid-template-areas: 
-        "   .   header  header  aside   .   "
-        "   .   main    main    aside   .   "
-        "   .   footer  footer  footer  .   ";
 }
 
 input, textarea, button {
@@ -28,14 +21,30 @@ input, textarea, button {
     border-radius: 0px;
     height: 100%;
     width: 100%;
+    background: none
+}
+
+/* ------------------------------------ GLOBAL CLASSES ------------------------------------- */
+.row {
+    display: flex;
+}
+
+.row>* {
+    height: 100%;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.m26 {
+    margin: 0px 60px 0px 20px;
 }
 
 /* --------------------------------------- HEADER ------------------------------------------ */
 header {
-    grid-area: header;
     position: fixed;
     width: calc(100% - 80px);
-    left: 20px;
     background-color: white;
 }
 
@@ -53,25 +62,61 @@ header {
     text-decoration: none;
 }
 
+#create-new-note {
+    flex: 0 0 192px;
+    height: 40px;
+    font-family: "PM";
+    font-size: 24px;
+    background: url(./images/newNote.png) no-repeat;
+    background-size: cover;
+    cursor: pointer;
+}
+
 #logo>a:hover {
     text-decoration: underline;
 }
 
-#top-box {
-    width: calc(100% - 4px);
-    height: 100px;
+/* ---------------------------------- NAVIGATION -------------------------------------- */
+nav {
+    position: fixed;
+    top: 40px;
+    width: calc(100% - 84px);
+    height: 98px;
     border: 2px solid black;
     border-bottom: none;
+    background-color: white;
 }
 
-#top-box>input {
-    height: auto;
+nav>hr {
+    border: 3px solid black;
+    border-radius: 2px;
+    margin: 0px 14px 14px 14px;
+}
+
+#search-box {
+    margin: 14px 14px 0px 14px;
+    height: 64px;
+}
+
+#search-label {
+    flex: 0 0 186px;
+    font-size: 60px;
+}
+
+#search-input {
+    margin-left: 14px;
+    font-size: 60px;
+}
+
+#search-submit {
+    flex: 0 0 64px;
+    font-size: 45px;
 }
 
 /* ---------------------------------------- MAIN ------------------------------------------- */
 #whiteboard {
-    grid-area: main;
     border: 2px solid black;
+    padding-top: 140px;
     border-top: none;
     display: flex;
     flex-flow: row wrap;
@@ -110,26 +155,30 @@ header {
     font-family: "CODE";
 }
 
-/* ----- New Note Style ----- */
-
-
 /* ---------------------------------------- ASIDE ------------------------------------------- */
 aside {
-    grid-area: aside;
-}
-
-aside>ul {
     position: fixed;
+    width: 40px;
+    left: calc(100% - 60px);
+    top: 40px;
 }
 
 aside>ul>li {
     list-style: none;
-    transform: rotate(90deg);
+    background-color: aqua;
+    transform: translateX(-70px) rotate(90deg);
+    text-align: center;
+    margin-top: 140px;
+    width: 180px;
+    height: 40px;
+}
+
+aside>ul>li:first-child {
+    margin-top: 70px;
 }
 
 /* --------------------------------------- FOOTER ------------------------------------------ */
 footer {
-    grid-area: footer;
     text-align: center;
 }
 
