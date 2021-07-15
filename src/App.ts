@@ -4,7 +4,7 @@ import Style from './style/style';
 
 function App() {
     Style();
-    Main();
+    new Main();
     new NewNote();
 }
 
