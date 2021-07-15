@@ -57,7 +57,7 @@ header {
 #logo>a {
     display: inline-block;
     margin: 2px 22px 2px 22px;
-    color: aliceblue;
+    color: white;
     font-size: 30px;
     text-decoration: none;
 }
@@ -163,18 +163,28 @@ aside {
     top: 40px;
 }
 
-aside>ul>li {
+#aside-items>li {
     list-style: none;
-    background-color: aqua;
-    transform: translateX(-70px) rotate(90deg);
-    text-align: center;
-    margin-top: 140px;
-    width: 180px;
+    transform: translateX(-60px) rotate(90deg);
+    margin-top: 80px;
+    width: 160px;
     height: 40px;
+    clip-path: polygon(12.5% 0%, 87.5% 0%, 100% 100%, 0% 100%);
 }
 
-aside>ul>li:first-child {
-    margin-top: 70px;
+#aside-items>li:first-child {
+    margin-top: 60px;
+}
+
+#aside-items>li>a {
+    display: inline-block;
+    width: 120px;
+    text-align: center;
+    font-size: 20px;
+    color: black;
+    text-decoration: none;
+    margin: 0px 20px 0px 20px;
+    padding: 8px 0px 8px 0px;
 }
 
 /* --------------------------------------- FOOTER ------------------------------------------ */
