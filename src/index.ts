@@ -4,4 +4,3 @@ import './style/App';
 import './style/fonts';
 
 App();
-//NewNote();

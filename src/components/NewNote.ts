@@ -1,12 +1,14 @@
 import Component from "../lib/component";
 import * as strconv from "../modules/parseCode";
 
-class NewNote extends Component {
+export default class NewNote extends Component {
     constructor() {
         /*
          * Select Existing Elements
          */
-        super({ element: document.getElementById('new-note-overlay') as HTMLElement });
+        super({
+            element: document.getElementById('new-note-overlay') as HTMLElement,
+        });
         const createBtn = document.getElementById('create-new-note') as HTMLElement;
 
         /*
@@ -173,5 +175,3 @@ class NewNote extends Component {
 
     render() {}
 }
-
-export default NewNote;

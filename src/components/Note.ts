@@ -1,35 +1,33 @@
+import { st } from "state-types";
 import Component from "../lib/component";
 import * as strconv from '../modules/parseCode';
-import { st } from 'state-types';
 
-class Note extends Component {
+export default class Note extends Component {
+    props: st.note;
+
     constructor(props: st.note) {
         super({
             element: document.createElement('article') as HTMLElement,
-            props: props,
         });
-        this.element.classList.add('note');
+        this.element.classList.add('note')
+        this.props = props;
     };
 
     render() {
-        const target = this.element;
-        const note = this.props as st.note;
-        const title = document.createElement('h1');
-        title.classList.add('note-title');
-        title.innerText = note.title;
-        target.appendChild(title);
+        const titleBox = document.createElement('h1');
+        titleBox.classList.add('note-title');
+        titleBox.innerText = this.props.title;
+        this.element.appendChild(titleBox);
 
-        const code = document.createElement('p');
-        code.classList.add('note-code');
-        code.innerHTML = `<pre><code>${strconv.noHTML(note.code)}</code></pre>`;
-        target.appendChild(code);
+        const codeBox = document.createElement('p');
+        codeBox.classList.add('note-code');
+        codeBox.innerHTML = `<pre><code>${strconv.noHTML(this.props.code)}</code></pre>`;
+        this.element.appendChild(codeBox);
 
-        const tag = document.createElement('span');
-        tag.innerText = note.tag;
-        target.appendChild(tag);
+        const tagBox = document.createElement('span');
+        tagBox.innerText = this.props.tag;
+        this.element.appendChild(tagBox);
 
-        return target;
+        return this.element;
     };
 }
-
-export default Note;
