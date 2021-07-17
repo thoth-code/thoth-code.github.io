@@ -3,146 +3,111 @@ import * as strconv from "../modules/parseCode";
 
 export default class NewNote extends Component {
     constructor() {
-        /*
-         * Select Existing Elements
-         */
-        super({
-            element: document.getElementById('new-note-overlay') as HTMLElement,
-        });
-        const createBtn = document.getElementById('create-new-note') as HTMLElement;
+        super();
+    };
+
+    get template() {
+        return `
+            <div id="new-note-overlay">
+                <span class="save-note-guide">Click Outside to Save</span>
+                <article id="new-note">
+                    <div id="input-container">
+                        <h1 id="new-note-title">
+                            <input placeholder="Title" id="input-title" />
+                        </h1>
+                        <p id="new-note-code">
+                            <textarea autocomplete="off" spellcheck="false" placeholder="Write Code..." id="input-code"></textarea>
+                        </p>
+                        <span id="new-note-tag">
+                            <input placeholder="@language" id="input-tag" />
+                        </span>
+                    </div>
+                    <div id="save-container">
+                        Do you want to save note?
+                        <button id="save-btn">Yes I want to save it</button>
+                        <button id="maintain-btn">No I want to write more</button>
+                        <button id="cancel-btn">Just put it into trash bin</button>
+                    </div>
+                </article>
+                <span class="save-note-guide">Click Outside to Save</span>
+            </div>`;
+    }
+
+    addEvents() {
+        const guides = this.querySelectorAll('.save-note-guide');
+        const overlay = this.querySelector('#new-note-overlay') as HTMLElement;
+        const inputContainer = this.querySelector('#input-container') as HTMLElement;
+        const saveContainer = this.querySelector('#save-container') as HTMLElement;
+
+        const title = this.querySelector('#input-title') as HTMLInputElement;
+        const code = this.querySelector('#input-code') as HTMLInputElement;
+        const tag = this.querySelector('#input-tag') as HTMLInputElement;
+
+        const save = this.querySelector('#save-btn') as HTMLElement;
+        const maintain = this.querySelector('#maintain-btn') as HTMLElement;
+        const cancel = this.querySelector('#cancel-btn') as HTMLElement;
 
         /*
-         * Creating New Elements
-         */
-        const article = document.createElement('article');
-        //Guidelines
-        const guide1 = document.createElement('span');
-        const guide2 = document.createElement('span');
-        //Inputs
-        const inputContainer = document.createElement('div');
-        const h1 = document.createElement('h1');
-        const title = document.createElement('input');
-        const parag = document.createElement('p');
-        const code = document.createElement('textarea');
-        const span = document.createElement('span');
-        const tag = document.createElement('input');
-        //Save, Cancel, Maintain
-        const saveContainer = document.createElement('div');
-        const save = document.createElement('button');
-        const cancel = document.createElement('button');
-        const maintain = document.createElement('button');
-
-        /*
-         * Set Properties
-         */
-        article.id = 'new-note';
-        guide1.classList.add('save-note-guide');
-        guide1.innerText = 'Click Outside to Save';
-        guide2.classList.add('save-note-guide');
-        guide2.innerText = 'Click Outside to Save';
-        inputContainer.id = 'input-container';
-        h1.id = 'new-note-title';
-        parag.id = 'new-note-code';
-        span.id = 'new-note-tag';
-        title.placeholder = 'Title';
-        code.autocomplete = 'off';
-        code.spellcheck = false;
-        code.placeholder = 'Write Code...';
-        tag.placeholder = '@Language';
-        saveContainer.id = 'save-container';
-        saveContainer.innerText = 'Do you want to save note?';
-        save.id = 'save-btn';
-        save.innerText = 'Yes I want to save it';
-        maintain.innerText = 'No I want to write more';
-        maintain.id = 'maintain-btn';
-        cancel.innerText = 'Just put it into trash bin';
-        cancel.id = 'cancel-btn'
-
-        /*
-         * Connect DOM Tree
-         */
-        this.element.appendChild(guide1);
-        this.element.appendChild(article);
-        this.element.appendChild(guide2);
-        article.appendChild(inputContainer);
-        article.appendChild(saveContainer);
-        inputContainer.appendChild(h1);
-        inputContainer.appendChild(parag);
-        inputContainer.appendChild(span);
-        h1.appendChild(title);
-        parag.appendChild(code);
-        span.appendChild(tag);
-        saveContainer.appendChild(save);
-        saveContainer.appendChild(maintain);
-        saveContainer.appendChild(cancel);
-
-        /*
-         * Create note
-         */
-        let self = this;
-        createBtn.addEventListener('click', () => {
-            self.element.style.display = 'flex';
-        });
-
-        /*
-         * Save note
-         */
-        //Reset guide, display
-        function resetCreation() {
-            guide1.innerText = 'Click Outside to Save';
-            guide2.innerText = 'Click Outside to Save';
+        * Save note
+        */
+        function insertMode() {
+            guides.item(0).innerHTML = 'Click Outside to Save';
+            guides.item(1).innerHTML = 'Click Outside to Save';
             inputContainer.style.display = 'block';
             saveContainer.style.display = 'none';
         }
 
-        //Clear values
-        function clear() {
+        function exitMode() {
+            guides.item(0).innerHTML = 'Click Outside to Write More';
+            guides.item(1).innerHTML = 'Click Outside to Write More';
+            inputContainer.style.display = 'none';
+            saveContainer.style.display = 'flex';
+        }
+
+        function clearInputs() {
             title.value = "";
             code.value = "";
             tag.value = "";
         }
 
         //Overlay click event
-        self.element.addEventListener('click', event => {
-            if(event.target === self.element) {
+        overlay.addEventListener('click', event => {
+            if(event.target === overlay) {
                 if(inputContainer.style.display !== 'none') {
-                    guide1.innerText = 'Click Outside to Write More';
-                    guide2.innerText = 'Click Outside to Write More';
-                    inputContainer.style.display = 'none';
-                    saveContainer.style.display = 'flex';
+                    exitMode();
                 } else {
-                    resetCreation();
+                    insertMode();
                 }
             }
         });
 
         //Do save
         save.addEventListener('click', () => {
-            self.store.dispatch('postNote', {
+            this.store.dispatch('postNote', {
                 title: title.value,
                 code: code.value,
                 tag: tag.value,
             });
-            resetCreation();
-            clear();
-            self.element.style.display = 'none';
+            insertMode();
+            clearInputs();
+            this.setAttribute('show', 'false');
         });
 
         //Maintain note
         maintain.addEventListener('click', () => {
-            resetCreation();
+            insertMode();
         });
 
         //Cancel note
         cancel.addEventListener('click', () => {
-            resetCreation();
-            clear();
-            self.element.style.display = 'none';
+            insertMode();
+            clearInputs();
+            this.setAttribute('show', 'false');
         });
 
         /*
-         * Allowing Tab in Code
-         */
+        * Allowing Tab in Code
+        */
         code.addEventListener('keydown', event => {
             if(event.key === 'Tab') {
                 event.preventDefault();
@@ -154,8 +119,8 @@ export default class NewNote extends Component {
         });
     
         /*
-         * Maintain Tab When Enter
-         */
+        * Maintain Tab When Enter
+        */
         code.addEventListener('keydown', event => {
             if(event.key === 'Enter') {
                 event.preventDefault();
@@ -171,7 +136,20 @@ export default class NewNote extends Component {
                 code.selectionStart = code.selectionEnd = start + 1 + cnt;
             }
         });
-    };
+    }
 
-    render() {}
+    static get observedAttributes() {
+        return ['show'];
+    }
+
+    attributeChangedCallback(name: string, oldValue: string, newValue: string) {
+        if(name === 'show') {
+            const overlay = this.children.item(0) as HTMLElement;
+            if(oldValue === 'true' && newValue === 'false') {
+                overlay.style.display = 'none';
+            } else if(oldValue === 'false' && newValue === 'true') {
+                overlay.style.display = 'flex';
+            }
+        }
+    }
 }

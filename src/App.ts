@@ -1,11 +1,7 @@
-import Style from './style/style';
-import Main from './pages/Main';
-import NewNote from './components/NewNote';
-
 function App() {
-    Style();
-    new Main();
-    new NewNote();
+    const app = document.getElementById('app') as HTMLElement;
+    const home = document.createElement('home-page') as HTMLElement;
+    app.appendChild(home);
 }
 
 export default App;

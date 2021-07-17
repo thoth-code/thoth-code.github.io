@@ -17,9 +17,11 @@ declare module 'state-types' {
         }
 
         interface ComponentInterface {
-            element: HTMLElement;
+            el: ShadowRoot;
             store: Store;
             render: () => void;
+            addEvents: () => void;
+            addStyles: () => void;
         }
 
         type note = {title: string, code: string, tag: string};

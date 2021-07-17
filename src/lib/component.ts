@@ -1,15 +1,33 @@
 import {st} from 'state-types';
 import store from "../store";
 
-export default class Component implements st.ComponentInterface{
-    element: HTMLElement;
-    store: st.StoreInterface;
+export default abstract class Component extends HTMLElement {
+    readonly store: st.StoreInterface;
 
-    constructor(arg: {element: HTMLElement}) {
-        this.element = arg.element;
+    constructor(option?: {
+        subscribe: string
+    }) {
+        super();
         this.store = store;
-        this.store.events.subscribe('stateChange', this);
-    };
+        if(typeof option !== 'undefined') {
+            this.store.events.subscribe(option.subscribe, this);
+        }
+    }
 
-    render() {};
+    connectedCallback() {
+        const props = this.innerHTML;
+        this.innerHTML = this.template;
+        this.addEvents();
+        this.addStyles();
+        this.propsHandler(props);
+        this.dispather();
+    }
+
+    abstract get template(): string;
+
+    render() {}
+    addEvents() {}
+    addStyles() {}
+    dispather() {}
+    propsHandler(props: string) {}
 }

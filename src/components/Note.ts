@@ -1,33 +1,25 @@
-import { st } from "state-types";
 import Component from "../lib/component";
 import * as strconv from '../modules/parseCode';
 
 export default class Note extends Component {
-    props: st.note;
-
-    constructor(props: st.note) {
-        super({
-            element: document.createElement('article') as HTMLElement,
-        });
-        this.element.classList.add('note')
-        this.props = props;
+    constructor() {
+        super();
     };
 
-    render() {
-        const titleBox = document.createElement('h1');
-        titleBox.classList.add('note-title');
-        titleBox.innerText = this.props.title;
-        this.element.appendChild(titleBox);
+    get template() {
+        return `<h1></h1>
+                <pre><code></code></pre>
+                <span></span>`;
+    }
 
-        const codeBox = document.createElement('p');
-        codeBox.classList.add('note-code');
-        codeBox.innerHTML = `<pre><code>${strconv.noHTML(this.props.code)}</code></pre>`;
-        this.element.appendChild(codeBox);
+    propsHandler(props: string) {
+        const title = this.children.item(0) as HTMLElement;
+        title.innerText = this.getAttribute('title') as string;
 
-        const tagBox = document.createElement('span');
-        tagBox.innerText = this.props.tag;
-        this.element.appendChild(tagBox);
+        const code = this.children.item(1)?.children.item(0) as HTMLElement;
+        code.innerHTML = strconv.noHTML(props);
 
-        return this.element;
-    };
+        const tag = this.children.item(2) as HTMLElement;
+        tag.innerText = this.getAttribute('tag') as string;
+    }
 }
