@@ -1,3 +1,27 @@
+commit d1acf661eb7af3fa99ec41caab7a7df55ec790bf
+Author: saltwalks <ewqdsacxz2345@gmail.com>
+Date:   Sat Jul 17 02:44:09 2021 +0900
+
+    RESOLVE : es5 class extention problem / TODO : migrate all component to custom HTMLElement + routing system
+
+commit 0d5e2745ecc1df87909292103ba567105abb5f27
+Author: saltwalks <ewqdsacxz2345@gmail.com>
+Date:   Sat Jul 17 00:42:59 2021 +0900
+
+    start migrating components to custom HTMLElement
+
+commit 4edfec5f87c06b044b9c3a5b061b1f2782a9982f
+Author: saltwalks <ewqdsacxz2345@gmail.com>
+Date:   Fri Jul 16 00:41:19 2021 +0900
+
+    ONGOING : home component, routing system
+
+commit 00de92605ab1c41d3a4f0c93d254e33da9170e76
+Author: saltwalks <ewqdsacxz2345@gmail.com>
+Date:   Thu Jul 15 21:08:02 2021 +0900
+
+    DONE : aside css
+
 commit c394074439eada2ca79762bc2eaeca565635c521
 Author: saltwalks <ewqdsacxz2345@gmail.com>
 Date:   Thu Jul 15 00:29:14 2021 +0900

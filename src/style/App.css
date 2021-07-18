@@ -25,23 +25,27 @@ input, textarea, button {
 }
 
 /* ------------------------------------ GLOBAL CLASSES ------------------------------------- */
-.row {
+ .row {
     display: flex;
 }
 
-.row>* {
+body row>* {
     height: 100%;
 }
 
-.space-between {
+body .space-between {
     justify-content: space-between;
 }
 
-.m26 {
+body .m26 {
     margin: 0px 60px 0px 20px;
 }
 
 /* --------------------------------------- HEADER ------------------------------------------ */
+:host {
+    margin: 0px 60px 0px 20px;
+}
+
 header {
     position: fixed;
     width: calc(100% - 80px);
@@ -132,7 +136,7 @@ nav>hr {
     border-radius: 2px;
 }
 
-#input-container>*, .note>* {
+.note * {
     margin-top: 9px;
 }
 
@@ -141,17 +145,14 @@ nav>hr {
     font-size: 40px;
 }
 
-.note-code {
+.note pre {
     background: #89CFF0;
     border-radius: 2px;
     padding: 10px;
-}
-
-.note-code pre {
     white-space: pre-wrap;
 }
 
-.note-code code {
+.note code {
     font-family: "CODE";
 }
 
@@ -192,17 +193,27 @@ footer {
     text-align: center;
 }
 
-/* --------------------------------------- MODAL ------------------------------------------ */
-.overlay {
-    width: 100%;
-    height: 100%;
+#input-container {
+    display: block;
+}
+
+#input-container>* {
+    margin-top: 9px;
+}
+
+#save-container {
+    display: none;
+}
+
+#new-note-overlay {
+    top: -150px;
+    width: 100vw;
+    height: 100vh;
     position: fixed;
-    z-index: 2;
     background-color: rgba(0, 0, 0, 0.25);
     display: none;
     justify-content: space-evenly;
     align-items: center;
-
 }
 
 #new-note {
