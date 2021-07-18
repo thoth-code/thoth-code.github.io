@@ -193,6 +193,7 @@ footer {
     text-align: center;
 }
 
+/* --------------------------------------- MODAL ------------------------------------------ */
 #input-container {
     display: block;
 }
@@ -206,7 +207,6 @@ footer {
 }
 
 #new-note-overlay {
-    top: -150px;
     width: 100vw;
     height: 100vh;
     position: fixed;
