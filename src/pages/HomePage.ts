@@ -1,8 +1,9 @@
-import Component from '../lib/component';
+import Component from '../domain/component';
+//import router from '../router';
 
-export default class Home extends Component {
+export default class HomePage extends Component {
     constructor() {
-        super({subscribe: 'stateChange'});
+        super();
     };
 
     get template() {
@@ -23,8 +24,8 @@ export default class Home extends Component {
                 </nav>
                 <aside>
                     <ul id="aside-items">
-                        <li><a href="/">Sign In</a></li>
-                        <li><a href="/">Sign Up</a></li>
+                        <li><a href="/signin" class="router-link">Sign In</a></li>
+                        <li><a href="/signup" class="router-link">Sign Up</a></li>
                     </ul>
                 </aside>
                 <!-- Modal -->
@@ -37,6 +38,16 @@ export default class Home extends Component {
     addEvents() {
         this.querySelector('#create-new-note')?.addEventListener('click', () => {
             this.querySelector('new-note')?.setAttribute('show', 'true');
+        });
+
+        const routerLinks = this.querySelectorAll('.router-link');
+        routerLinks.forEach(routerLink => {
+            routerLink.addEventListener('click', event => {
+                event.preventDefault();
+                const eventTarget = event.target as HTMLElement
+                const path = eventTarget.getAttribute('href') as string;
+                window.$router.push(path);
+            });
         });
     }
 
@@ -55,26 +66,5 @@ export default class Home extends Component {
             let item = items.item(i) as HTMLElement;
             item.style.backgroundColor = config.color[i%config.color.length];
         }
-    }
-
-    render() {
-        const whiteboard = this.querySelector('#whiteboard') as HTMLElement;
-        const before = whiteboard.children;
-        while(before.length !== 0) {
-            before.item(0)?.remove();
-        }
-        
-        this.store.state.notes.map(noteContent => {
-            const note = document.createElement('code-note');
-            note.classList.add('note');
-            note.setAttribute('title', noteContent.title);
-            note.innerHTML = noteContent.code;
-            note.setAttribute('tag', noteContent.tag);
-            whiteboard.appendChild(note);
-        });
-    };
-
-    dispather() {
-        this.store.dispatch('getAllNotes');
     }
 }

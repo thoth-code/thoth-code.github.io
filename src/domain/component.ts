@@ -1,16 +1,16 @@
 import {st} from 'state-types';
 import store from "../store";
 
-export default abstract class Component extends HTMLElement {
-    readonly store: st.StoreInterface;
+export default class Component extends HTMLElement {
+    readonly $store: st.StoreInterface;
 
     constructor(option?: {
         subscribe: string
     }) {
         super();
-        this.store = store;
+        this.$store = store;
         if(typeof option !== 'undefined') {
-            this.store.events.subscribe(option.subscribe, this);
+            this.$store.events.subscribe(option.subscribe, this);
         }
     }
 
@@ -20,14 +20,16 @@ export default abstract class Component extends HTMLElement {
         this.addEvents();
         this.addStyles();
         this.propsHandler(props);
-        this.dispather();
+        if(this.dispatch !== '') {
+            this.$store.dispatch(this.dispatch);
+        }
     }
 
-    abstract get template(): string;
+    get template() { return ''; }
+    get dispatch() { return ''; }
 
     render() {}
     addEvents() {}
     addStyles() {}
-    dispather() {}
     propsHandler(props: string) {}
 }

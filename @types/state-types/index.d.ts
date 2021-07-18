@@ -33,6 +33,8 @@ declare module 'state-types' {
         type components = {[index: string]: ComponentInterface[]};
         type actions = {[index: string]: action};
         type mutations = {[index: string]: mutation};
-        type routes = {[index: string]: ComponentInterface.render}
+
+        type elementForm = {component: string, attributes: {name: string, value: string}[]}
+        type routes = {[index: string]: elementForm}
     }
 }

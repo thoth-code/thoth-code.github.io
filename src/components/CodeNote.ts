@@ -1,7 +1,7 @@
-import Component from "../lib/component";
-import * as codeUtils from '../modules/codeUtils';
+import Component from "../domain/component";
+import * as codeUtils from '../tools/codeUtils';
 
-export default class Note extends Component {
+export default class CodeNote extends Component {
     constructor() {
         super();
     };
@@ -13,13 +13,13 @@ export default class Note extends Component {
     }
 
     propsHandler(props: string) {
-        const title = this.children.item(0) as HTMLElement;
+        const title = this.querySelector('h1') as HTMLElement;
         title.innerText = this.getAttribute('title') as string;
 
-        const code = this.children.item(1)?.children.item(0) as HTMLElement;
+        const code = this.querySelector('code') as HTMLElement;
         code.innerHTML = codeUtils.noHTML(props);
 
-        const tag = this.children.item(2) as HTMLElement;
+        const tag = this.querySelector('span') as HTMLElement;
         tag.innerText = this.getAttribute('tag') as string;
     }
 }

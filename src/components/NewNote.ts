@@ -1,5 +1,5 @@
-import Component from "../lib/component";
-import * as codeUtils from "../modules/codeUtils";
+import Component from "../domain/component";
+import * as codeUtils from "../tools/codeUtils";
 
 export default class NewNote extends Component {
     constructor() {
@@ -87,7 +87,7 @@ export default class NewNote extends Component {
 
         //Do save
         save.addEventListener('click', () => {
-            this.store.dispatch('postNote', {
+            this.$store.dispatch('postNote', {
                 title: title.value,
                 code: code.value,
                 tag: tag.value,

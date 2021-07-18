@@ -1,4 +1,4 @@
-import Channel from "../lib/channel";
+import Channel from "../domain/channel";
 import {st} from 'state-types';
 
 export default class Store implements st.StoreInterface {
