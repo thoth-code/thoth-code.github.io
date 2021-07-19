@@ -87,7 +87,7 @@ export default class NewNote extends Component {
 
         //Do save
         save.addEventListener('click', () => {
-            this.$store.dispatch('postNote', {
+            window.$store.dispatch('postNote', {
                 title: title.value,
                 code: code.value,
                 tag: tag.value,

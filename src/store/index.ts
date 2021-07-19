@@ -3,8 +3,16 @@ import state from "./state";
 import mutations from "./mutations";
 import Store from "./store";
 
-export default new Store({
-    actions,
-    state,
-    mutations,
-});
+declare global {
+    interface Window {
+        $store: Store;
+    }
+}
+
+export default function InstallStore() {
+    window.$store = new Store({
+        actions,
+        state,
+        mutations,
+    });
+}

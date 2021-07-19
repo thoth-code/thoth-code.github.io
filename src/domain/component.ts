@@ -1,16 +1,12 @@
-import {st} from 'state-types';
-import store from "../store";
+import { st } from "state-types";
 
-export default class Component extends HTMLElement {
-    readonly $store: st.StoreInterface;
-
+export default class Component extends HTMLElement implements st.ComponentInterface{
     constructor(option?: {
         subscribe: string
     }) {
         super();
-        this.$store = store;
         if(typeof option !== 'undefined') {
-            this.$store.events.subscribe(option.subscribe, this);
+            window.$store.events.subscribe(option.subscribe, this);
         }
     }
 
@@ -21,7 +17,7 @@ export default class Component extends HTMLElement {
         this.addStyles();
         this.propsHandler(props);
         if(this.dispatch !== '') {
-            this.$store.dispatch(this.dispatch);
+            window.$store.dispatch(this.dispatch);
         }
     }
 

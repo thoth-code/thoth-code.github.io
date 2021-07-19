@@ -14,3 +14,10 @@ export async function postNote(note: st.note) {
         body: JSON.stringify(note),
     });
 }
+
+export async function postUserInfo(userInfo: st.userInfo) {
+    return fetch(`${config.baseUrl}/signin`, {
+        method: 'POST',
+        body: JSON.stringify(userInfo),
+    })
+}

@@ -6,8 +6,8 @@ const actions: st.actions = {
         api.getAllNotes()
         .then(response => {
             if(response.body !== null) {
-                response.json().then(data => {
-                    context.commit('addNotes', data);
+                response.json().then(json => {
+                    context.commit('addNotes', json as st.note[]);
                 });
             }
         }).catch(err => {
@@ -21,8 +21,8 @@ const actions: st.actions = {
                 api.getAllNotes()
                 .then(getRes => {
                     if(getRes.body !== null) {
-                        getRes.json().then(data => {
-                            context.commit('addNotes', data);
+                        getRes.json().then(json => {
+                            context.commit('addNotes', json as st.note[]);
                         });
                     }
                 });
@@ -30,6 +30,18 @@ const actions: st.actions = {
         }).catch(err => {
             console.error(err);
         });
+    },
+    getAuth(context, data) {
+        api.postUserInfo(data as st.userInfo)
+        .then(postRes => {
+            if(postRes.body !== null) {
+                postRes.json().then(json => {
+                    context.commit('addAuth', json as st.authToken);
+                });
+            }
+        }).catch(err => {
+            console.error(err);
+        })
     }
 }
 

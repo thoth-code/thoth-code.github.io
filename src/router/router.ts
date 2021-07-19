@@ -14,6 +14,10 @@ export default class Router {
         for(let attr of el.attributes) {
             source.setAttribute(attr.name, attr.value)
         }
+        const childrens = this.target.children;
+        while(childrens.length !== 0) {
+            childrens.item(0)?.remove();
+        }
         this.target.appendChild(source);
     }
 

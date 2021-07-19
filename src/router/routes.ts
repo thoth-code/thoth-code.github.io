@@ -7,17 +7,12 @@ const routes: st.routes = {
             {
                 name: 'dispatch',
                 value: 'getAllNotes',
-            }
-        ]
+            },
+        ],
     },
     '/signin': {
-        component: 'searched-notes',
-        attributes: [
-            {
-                name: 'dispatch',
-                value: 'getAllNotes',
-            }
-        ]
+        component: 'sign-in',
+        attributes: [],
     }
 };
 

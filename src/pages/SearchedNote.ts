@@ -18,7 +18,7 @@ export default class SearchedNotes extends Component{
             before.item(0)?.remove();
         }
         
-        this.$store.state.notes.map(noteContent => {
+        window.$store.state.notes.map(noteContent => {
             const note = document.createElement('code-note');
             note.classList.add('note');
             note.setAttribute('title', noteContent.title);

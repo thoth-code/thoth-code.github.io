@@ -52,13 +52,13 @@ header {
     background-color: white;
 }
 
-#logo {
+#logo-box {
     background-color: black;
     width: 120px;
     height: 40px;
 }
 
-#logo>a {
+#logo {
     display: inline-block;
     margin: 2px 22px 2px 22px;
     color: white;
@@ -76,7 +76,7 @@ header {
     cursor: pointer;
 }
 
-#logo>a:hover {
+#logo:hover {
     text-decoration: underline;
 }
 
@@ -119,12 +119,13 @@ nav>hr {
 
 /* ---------------------------------------- MAIN ------------------------------------------- */
 #whiteboard {
+    min-height: calc(100vh - 162px);
     border: 2px solid black;
     padding-top: 140px;
     border-top: none;
 }
 
-searched-notes {
+#whiteboard>* {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-evenly;
@@ -296,4 +297,43 @@ footer {
 
 #cancel-btn {
     background-color: #FFA0D5;
+}
+
+/* --------------------------------------- SIGN IN ------------------------------------------ */
+.signin-label {
+    display: block;
+    background: #89CFF0;
+    padding: 10px;
+    border-radius: 2px;
+    margin-top: 20px;
+}
+
+.signin-input {
+    font-size: 20px;
+    border-radius: 2px;
+    border: 2px solid #89CFF0;
+    border-bottom: 2px solid #6495ED;
+}
+
+.signin-input:focus {
+    border: 2px solid #6495ED;
+}
+
+#signin-submit {
+    margin-top: 20px;
+    font-size: 25px;
+    border-radius: 2px;
+    background-color: #FFA0D5;
+}
+
+#signup-link {
+    font-size: 15px;
+    color: black;
+    text-decoration: none;
+    border-bottom: 2px solid #FFFAA0;
+    margin-left: 400px;
+}
+
+#signup-link:hover {
+    border-bottom: 2px solid black;
 }

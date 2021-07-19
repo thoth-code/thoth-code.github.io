@@ -8,9 +8,10 @@ import InstallPages from './pages';
 InstallComponents();
 InstallPages();
 
+// Install Router
 import InstallRouter from './router';
 InstallRouter();
 
-//Run App
-import App from './App';
-App();
+// Install Store
+import InstallStore from './store';
+InstallStore();
