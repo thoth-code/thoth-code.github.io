@@ -1,3 +1,4 @@
 # Thoth
-The pyramid of open knowledges
-PROJECT RENEWAL : Split FE Server
+The pyramid of open knowledge. 
+
+Front-end server repository
