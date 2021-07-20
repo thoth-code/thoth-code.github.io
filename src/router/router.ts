@@ -6,7 +6,13 @@ export default class Router {
 
     constructor(targetName: string) {
         this.target = document.querySelector(targetName) as HTMLElement;
-        window.onpopstate = () => this.render(routes[window.location.pathname]);
+        window.onpopstate = event => {
+            if(event.state) {
+                this.render(routes[window.location.pathname])
+            } else {
+                alert('fuck!');
+            }
+        };
     }
 
     private render(el: st.elementForm) {
@@ -22,6 +28,8 @@ export default class Router {
     }
 
     public push(path: string) {
+        console.log(window.history);
+        
         window.history.pushState({}, path, window.location.origin + path);
         this.render(routes[path]);
     }

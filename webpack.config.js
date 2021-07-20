@@ -1,10 +1,9 @@
-const { resolve, join } = require('path')
-
 const config = {
     entry: './src/index.ts',
     output: {
         filename: 'bundle.js',
-        path: resolve(__dirname, 'public')
+        path: __dirname + '/public',
+        publicPath: '/',
     },
     module: {
         rules: [
@@ -31,7 +30,8 @@ const config = {
         ]
     },
     devServer: {
-        contentBase: join(__dirname, 'public'),
+        contentBase: __dirname + '/public',
+        historyApiFallback: true,
         hot: true,
         open: true,
         overlay: true,

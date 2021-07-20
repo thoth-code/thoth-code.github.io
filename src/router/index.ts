@@ -9,7 +9,7 @@ declare global {
 function InstallRouter() {
     window.onload = () => {
         window.$router = new Router('#whiteboard');
-        window.$router.push('/');
+        window.$router.push(window.location.pathname);
     }
 }
 
