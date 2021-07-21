@@ -13,6 +13,10 @@ const routes: st.routes = {
     '/signin': {
         component: 'sign-in',
         attributes: [],
+    },
+    '/signup': {
+        component: 'sign-up',
+        attributes: [],
     }
 };
 

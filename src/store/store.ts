@@ -39,7 +39,7 @@ export default class Store implements st.StoreInterface {
         return true;
     };
 
-    commit(mutationKey: string, payLoad: st.note[] | st.authToken) {
+    commit(mutationKey: string, payLoad: st.mutationPayload) {
         if(typeof this.mutations[mutationKey] !== 'function') {
             console.error(`Mutation ${mutationKey} doesn't exists`);
             return false;

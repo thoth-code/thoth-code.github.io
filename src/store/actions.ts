@@ -31,8 +31,8 @@ const actions: st.actions = {
             console.error(err);
         });
     },
-    getAuth(context, data) {
-        api.postUserInfo(data as st.userInfo)
+    postAuth(context, data) {
+        api.postAuth(data as st.userInfo)
         .then(postRes => {
             if(postRes.body !== null) {
                 postRes.json().then(json => {
@@ -42,6 +42,16 @@ const actions: st.actions = {
         }).catch(err => {
             console.error(err);
         })
+    },
+    postUserInfo(context, data) {
+        api.postUserInfo(data as st.userInfo)
+        .then(postRes => {
+            if(postRes.body !== null) {
+                postRes.json().then(json => {
+                    context.commit('signUp', json as st.signUpResult);
+                });
+            }
+        });
     }
 }
 

@@ -300,7 +300,7 @@ footer {
 }
 
 /* --------------------------------------- SIGN IN ------------------------------------------ */
-.signin-label {
+.sign-label {
     display: block;
     background: #89CFF0;
     padding: 10px;
@@ -308,22 +308,23 @@ footer {
     margin-top: 20px;
 }
 
-.signin-input {
+.sign-input {
     font-size: 20px;
     border-radius: 2px;
     border: 2px solid #89CFF0;
     border-bottom: 2px solid #6495ED;
 }
 
-.signin-input:focus {
+.sign-input:focus {
     border: 2px solid #6495ED;
 }
 
-#signin-submit {
+.sign-submit {
     margin-top: 20px;
     font-size: 25px;
     border-radius: 2px;
     background-color: #FFA0D5;
+    cursor: pointer;
 }
 
 #signup-link {

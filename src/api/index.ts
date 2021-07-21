@@ -15,9 +15,16 @@ export async function postNote(note: st.note) {
     });
 }
 
-export async function postUserInfo(userInfo: st.userInfo) {
+export async function postAuth(userInfo: st.userInfo) {
     return fetch(`${config.baseUrl}/signin`, {
         method: 'POST',
         body: JSON.stringify(userInfo),
-    })
+    });
+}
+
+export async function postUserInfo(userInfo: st.userInfo) {
+    return fetch(`${config.baseUrl}/signup`, {
+        method: 'POST',
+        body: JSON.stringify(userInfo),
+    });
 }
