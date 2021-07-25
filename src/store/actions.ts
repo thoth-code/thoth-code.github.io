@@ -62,7 +62,7 @@ const actions: st.actions = {
             alert(err);
             console.error(err);
         }).finally(() => {
-            window.$router.push('/');
+            window.location.pathname = '/';
         });
     },
     postUserInfo(context, data) {

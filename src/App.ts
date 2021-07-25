@@ -1,4 +1,5 @@
 import Component from './domain/component';
+import * as cu from './tools/cookieUtils';
 
 export default class MainApp extends Component {
     constructor() {
@@ -23,8 +24,11 @@ export default class MainApp extends Component {
                 </nav>
                 <aside>
                     <ul id="aside-items">
-                        <li><a href="/signin">Sign In</a></li>
-                        <li><a href="/signup">Sign Up</a></li>
+                        <li class="no-auth"><a href="/signin">Sign In</a></li>
+                        <li class="no-auth"><a href="/signup">Sign Up</a></li>
+                        <li class="auth"><a href="/">Whiteboard</a></li>
+                        <li class="auth"><a href="/">@Python</a></li>
+                        <li class="auth"><a href="/">@Go</a></li>
                     </ul>
                 </aside>
                 <!-- Modal -->
@@ -36,7 +40,12 @@ export default class MainApp extends Component {
 
     addEvents() {
         this.querySelector('#create-new-note')?.addEventListener('click', () => {
-            this.querySelector('new-note')?.setAttribute('show', 'true');
+            if(cu.isAcceptTokenAvailable()) {
+                this.querySelector('new-note')?.setAttribute('show', 'true');
+            } else {
+                alert('Sign In First');
+                window.$router.push('/signin');
+            }
         });
 
         const routerLinks = this.querySelectorAll('a');
@@ -65,5 +74,16 @@ export default class MainApp extends Component {
             let item = items.item(i) as HTMLElement;
             item.style.backgroundColor = config.color[i%config.color.length];
         }
+
+        const noAuth = this.querySelectorAll('.no-auth');
+        noAuth.forEach(el => {
+            const refined = el as HTMLElement;
+            refined.hidden = cu.isAcceptTokenAvailable();
+        });
+        const auth = this.querySelectorAll('.auth');
+        auth.forEach(el => {
+            const refined = el as HTMLElement;
+            refined.hidden = !cu.isAcceptTokenAvailable();
+        });
     }
 }
