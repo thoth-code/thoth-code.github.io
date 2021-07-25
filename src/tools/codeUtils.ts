@@ -16,9 +16,5 @@ export function maintainIndent(str: string) {
 
 export function isOpen(str: string) {
     const last = str.charAt(str.length - 1)
-    if(last === '(' || last === '{' || last === '[') {
-        return true;
-    } else {
-        return false;
-    }
+    return (last === '(' || last === '{' || last === '[');
 }

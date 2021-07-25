@@ -1,3 +1,9 @@
+commit 55a3b75f7a0f199ad95ba0984d979a142bbb9222
+Author: saltwalks <ewqdsacxz2345@gmail.com>
+Date:   Wed Jul 21 23:05:53 2021 +0900
+
+    DONE : signup component, routes / MODIFY : store related types
+
 commit 4d1e84bedfc7ed7b84145073f2df7cec3c8e2c5f
 Author: saltwalks <ewqdsacxz2345@gmail.com>
 Date:   Wed Jul 21 00:04:57 2021 +0900

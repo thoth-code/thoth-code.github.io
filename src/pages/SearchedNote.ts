@@ -7,9 +7,8 @@ export default class SearchedNotes extends Component{
         });
     }
 
-    get dispatch() {
-        const dispathName = this.getAttribute('dispatch') as string;
-        return dispathName;
+    dispatch() {
+        window.$store.dispatch('getAllNotes', window.location.pathname)
     }
 
     render() {

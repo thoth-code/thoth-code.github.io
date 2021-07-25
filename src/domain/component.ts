@@ -16,14 +16,12 @@ export default class Component extends HTMLElement implements st.ComponentInterf
         this.addEvents();
         this.addStyles();
         this.propsHandler(props);
-        if(this.dispatch !== '') {
-            window.$store.dispatch(this.dispatch);
-        }
+        this.dispatch();
     }
 
     get template() { return ''; }
-    get dispatch() { return ''; }
 
+    dispatch() {}
     render() {}
     addEvents() {}
     addStyles() {}

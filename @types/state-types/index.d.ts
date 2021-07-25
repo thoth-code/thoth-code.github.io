@@ -12,28 +12,28 @@ declare module 'state-types' {
             mutations: mutations;
             state: state;
             status: string;
-            dispatch: (actionKey: string, data?: note | userInfo) => boolean;
+            dispatch: (actionKey: string, data: actionData) => boolean;
             commit: (mutationKey: string, payLoad: mutationPayload) => boolean;
         }
 
         interface ComponentInterface {
             get template(): string
-            get dispatch(): string
             render: () => void
+            dispatch: () => void
             addEvents: () => void
             addStyles: () => void
             propsHandler: (props: string) => void
         }
 
-        type signUpResult = {error: string};
-        type authToken = {accessToken: string, refreshToken: string};
+        type error = {error: string};
         type userInfo = {uname?: string, email: string, password: string};
         type note = {title: string, code: string, tag: string};
+        type reqParam = string;
 
-        type actionData = note | userInfo;
-        type mutationPayload = note[] | authToken | signUpResult;
+        type actionData = note | userInfo | reqParam;
+        type mutationPayload = note[] | error;
 
-        type action = (context: StoreInterface, data?: actionData) => void;
+        type action = (context: StoreInterface, data: actionData) => void;
         type state = {[index: string]: note[]};
         type mutation = (state: state, payload: mutationPayload) => void;
 

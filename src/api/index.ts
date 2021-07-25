@@ -4,12 +4,12 @@ const config = {
     baseUrl: 'http://localhost:3000'
 }
 
-export async function getAllNotes() {
-    return fetch(`${config.baseUrl}/all`);
+export async function getAllNotes(param: st.reqParam) {
+    return fetch(`${config.baseUrl}${param}`);
 }
 
 export async function postNote(note: st.note) {
-    return fetch(`${config.baseUrl}/new`, {
+    return fetch(`${config.baseUrl}/note`, {
         method: 'POST',
         body: JSON.stringify(note),
     });
@@ -19,6 +19,7 @@ export async function postAuth(userInfo: st.userInfo) {
     return fetch(`${config.baseUrl}/signin`, {
         method: 'POST',
         body: JSON.stringify(userInfo),
+        credentials: 'include',
     });
 }
 
