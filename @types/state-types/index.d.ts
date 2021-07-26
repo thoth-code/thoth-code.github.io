@@ -21,7 +21,6 @@ declare module 'state-types' {
             render: () => void
             dispatch: () => void
             addEvents: () => void
-            addStyles: () => void
             propsHandler: (props: string) => void
         }
 

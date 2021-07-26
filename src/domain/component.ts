@@ -13,10 +13,9 @@ export default class Component extends HTMLElement implements st.ComponentInterf
     connectedCallback() {
         const props = this.innerHTML;
         this.innerHTML = this.template;
-        this.addEvents();
-        this.addStyles();
         this.propsHandler(props);
         this.dispatch();
+        this.addEvents();
     }
 
     get template() { return ''; }
@@ -24,6 +23,5 @@ export default class Component extends HTMLElement implements st.ComponentInterf
     dispatch() {}
     render() {}
     addEvents() {}
-    addStyles() {}
     propsHandler(props: string) {}
 }
