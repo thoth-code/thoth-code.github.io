@@ -1,4 +1,4 @@
-import Channel from "../lib/channel";
+import Channel from "../domain/channel";
 import {st} from 'state-types';
 
 export default class Store implements st.StoreInterface {
@@ -29,7 +29,7 @@ export default class Store implements st.StoreInterface {
         });
     };
 
-    dispatch(actionKey: string, data?: st.note) {
+    dispatch(actionKey: string, data: st.actionData) {
         if(typeof this.actions[actionKey] !== 'function') {
             console.error(`Action ${actionKey} doesn't exists`);
             return false;
@@ -39,7 +39,7 @@ export default class Store implements st.StoreInterface {
         return true;
     };
 
-    commit(mutationKey: string, payLoad: object) {
+    commit(mutationKey: string, payLoad: st.mutationPayload) {
         if(typeof this.mutations[mutationKey] !== 'function') {
             console.error(`Mutation ${mutationKey} doesn't exists`);
             return false;

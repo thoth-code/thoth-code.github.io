@@ -1,5 +1,5 @@
-import Component from "../lib/component";
-import * as strconv from "../modules/parseCode";
+import Component from "../domain/component";
+import * as codeUtils from "../tools/codeUtils";
 
 export default class NewNote extends Component {
     constructor() {
@@ -7,33 +7,37 @@ export default class NewNote extends Component {
     };
 
     get template() {
-        return `
-            <div id="new-note-overlay">
-                <span class="save-note-guide">Click Outside to Save</span>
-                <article id="new-note">
-                    <div id="input-container">
-                        <h1 id="new-note-title">
-                            <input placeholder="Title" id="input-title" />
-                        </h1>
-                        <p id="new-note-code">
-                            <textarea autocomplete="off" spellcheck="false" placeholder="Write Code..." id="input-code"></textarea>
-                        </p>
-                        <span id="new-note-tag">
-                            <input placeholder="@language" id="input-tag" />
-                        </span>
-                    </div>
-                    <div id="save-container">
-                        Do you want to save note?
-                        <button id="save-btn">Yes I want to save it</button>
-                        <button id="maintain-btn">No I want to write more</button>
-                        <button id="cancel-btn">Just put it into trash bin</button>
-                    </div>
-                </article>
-                <span class="save-note-guide">Click Outside to Save</span>
-            </div>`;
+        return `<div id="new-note-overlay">
+                    <span class="save-note-guide">Click Outside to Save</span>
+                    <article id="new-note">
+                        <div id="input-container">
+                            <h1 id="new-note-title">
+                                <input placeholder="Title" id="input-title" />
+                            </h1>
+                            <p id="new-note-code">
+                                <textarea autocomplete="off" spellcheck="false" placeholder="Write Code..." id="input-code"></textarea>
+                            </p>
+                            <span id="new-note-tag">
+                                <input placeholder="@language" id="input-tag" />
+                            </span>
+                        </div>
+                        <div id="save-container">
+                            Do you want to save note?
+                            <button id="save-btn">Yes I want to save it</button>
+                            <button id="maintain-btn">No I want to write more</button>
+                            <button id="cancel-btn">Just put it into trash bin</button>
+                        </div>
+                    </article>
+                    <span class="save-note-guide">Click Outside to Save</span>
+                </div>`;
     }
 
     addEvents() {
+        this.addButtonEvents();
+        this.addCodeBoxEvents();
+    }
+
+    addButtonEvents() {
         const guides = this.querySelectorAll('.save-note-guide');
         const overlay = this.querySelector('#new-note-overlay') as HTMLElement;
         const inputContainer = this.querySelector('#input-container') as HTMLElement;
@@ -83,7 +87,7 @@ export default class NewNote extends Component {
 
         //Do save
         save.addEventListener('click', () => {
-            this.store.dispatch('postNote', {
+            window.$store.dispatch('postNote', {
                 title: title.value,
                 code: code.value,
                 tag: tag.value,
@@ -104,36 +108,51 @@ export default class NewNote extends Component {
             clearInputs();
             this.setAttribute('show', 'false');
         });
+    }
 
-        /*
-        * Allowing Tab in Code
-        */
+    addCodeBoxEvents() {
+        const code = this.querySelector('#input-code') as HTMLInputElement;
         code.addEventListener('keydown', event => {
+            // Allowing Tab in Code
             if(event.key === 'Tab') {
                 event.preventDefault();
                 let start = code.selectionStart as number;
                 let end = code.selectionEnd as number;
                 code.value = code.value.substring(0, start) + '\t' + code.value.substring(end);
                 code.selectionStart = code.selectionEnd = start + 1;
-            }
-        });
-    
-        /*
-        * Maintain Tab When Enter
-        */
-        code.addEventListener('keydown', event => {
-            if(event.key === 'Enter') {
+            // Auto Indentation
+            } else if(event.key === 'Enter') {
                 event.preventDefault();
-                let start = code.selectionStart as number;
-                let end = code.selectionEnd as number;
-                let cnt = strconv.maintainIndent(code.value);
+                const start = code.selectionStart as number;
+                const end = code.selectionEnd as number;
+                const front = code.value.substring(0, start);
+                let {cnt, indents} = codeUtils.maintainIndent(front);
+                const isOpen = codeUtils.isOpen(front);
+
                 let res = code.value.substring(0, start) + '\n';
-                for(let i = 0; i < cnt; i ++) {
-                    res += '\t';
+                if(isOpen) {
+                    res += indents + '\t' + '\n' + indents;
+                    cnt++;
+                } else {                    
+                    res += indents;
                 }
                 res += code.value.substring(end);
                 code.value = res;
                 code.selectionStart = code.selectionEnd = start + 1 + cnt;
+            // Auto Brackets
+            } else if(event.key === '[' || event.key === '{' || event.key === '(' || event.key === '\"' || event.key === '\'') {
+                event.preventDefault();
+                let start = code.selectionStart as number;
+                let end = code.selectionEnd as number;
+                let nextKey = '';
+                switch(event.key) {
+                    case '[' : nextKey = ']'; break;
+                    case '{' : nextKey = '}'; break;
+                    case '(' : nextKey = ')'; break;
+                    default : nextKey = event.key;
+                }
+                code.value = code.value.substring(0, start) + event.key + nextKey + code.value.substring(end);
+                code.selectionStart = code.selectionEnd = start + 1;
             }
         });
     }

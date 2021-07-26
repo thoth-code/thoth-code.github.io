@@ -3,13 +3,20 @@ import './style/App';
 import './style/fonts';
 
 // Install Custom Components
-import Home from './pages/Home';
-import Note from './components/Note';
-import NewNote from './components/NewNote';
-customElements.define('home-page', Home);
-customElements.define('code-note', Note);
-customElements.define('new-note', NewNote);
+import InstallComponents from './components';
+import InstallPages from './pages';
+InstallComponents();
+InstallPages();
 
-//Run App
-import App from './App';
-App();
+// Install Router
+import InstallRouter from './router';
+InstallRouter();
+
+// Install Store
+import InstallStore from './store';
+InstallStore();
+
+//Start App
+document.getElementById('app')?.appendChild(
+    document.createElement('main-app')
+)
