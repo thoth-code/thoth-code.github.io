@@ -8,7 +8,7 @@ export default class SearchedNotes extends Component{
     }
 
     dispatch() {
-        window.$store.dispatch('getAllNotes', window.location.pathname)
+        window.$store.dispatch('getAllNotes', window.location.search)
     }
 
     render() {

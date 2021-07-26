@@ -3,7 +3,6 @@ import * as api from "../api";
 
 const actions: st.actions = {
     getAllNotes(context, data) {
-        data = data === '/' ? '/note' : data;
         api.getAllNotes(data as st.reqParam)
         .then(response => {
             if(response.body !== null) {

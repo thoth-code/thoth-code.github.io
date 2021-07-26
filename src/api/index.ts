@@ -5,7 +5,7 @@ const config = {
 }
 
 export async function getAllNotes(param: st.reqParam) {
-    return fetch(`${config.baseUrl}${param}`);
+    return fetch(`${config.baseUrl}/notes${param}`);
 }
 
 export async function postNote(note: st.note) {

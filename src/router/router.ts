@@ -6,8 +6,8 @@ export default class Router {
 
     constructor(targetName: string) {
         this.target = document.querySelector(targetName) as HTMLElement;
-        window.onpopstate = event => {
-            this.render(routes[window.location.pathname]);
+        window.onpopstate = () => {
+            this.render(routes(window.location.pathname));
         };
     }
 
@@ -25,6 +25,6 @@ export default class Router {
 
     public push(path: string) {
         window.history.pushState({}, path, window.location.origin + path);
-        this.render(routes[path]);
+        this.render(routes(path));
     }
 }

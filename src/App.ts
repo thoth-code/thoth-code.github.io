@@ -46,5 +46,10 @@ export default class MainApp extends Component {
             const path = eventTarget.getAttribute('href') as string;
             window.$router.push(path);
         });
+
+        this.querySelector('#search-submit')?.addEventListener('click', event => {
+            event.preventDefault();
+            window.$router.push('/notes?tag=go');
+        });
     }
 }
