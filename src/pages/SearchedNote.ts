@@ -11,7 +11,7 @@ export default class SearchedNotes extends Component{
         window.$store.dispatch('getAllNotes', window.location.search)
     }
 
-    render() {
+    onStateChange() {
         const before = this.children;
         while(before.length !== 0) {
             before.item(0)?.remove();

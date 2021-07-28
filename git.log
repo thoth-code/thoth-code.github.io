@@ -1,3 +1,22 @@
+commit f8a7f93b37ae4400b0d07c50647576ae958166d0
+Merge: 99d7f1c 93864ec
+Author: saltwalks <ewqdsacxz2345@gmail.com>
+Date:   Mon Jul 26 23:27:31 2021 +0900
+
+    Merge branch 'routing-system' into VanillaJS
+
+commit 93864ecab899be71273c750ed80d8a446b2273fd
+Author: saltwalks <ewqdsacxz2345@gmail.com>
+Date:   Mon Jul 26 23:23:19 2021 +0900
+
+    DONE : enabling request param / TODO : finish search note by request param, add user flag, fetch user flag
+
+commit 352d373b9ab90f8ec3f43e4ea957b92ceb7f8a90
+Author: saltwalks <ewqdsacxz2345@gmail.com>
+Date:   Mon Jul 26 22:29:21 2021 +0900
+
+    DONE : aside css, component
+
 commit 6877c301d4bde43058ccf48bf5b721689c75976f
 Author: saltwalks <ewqdsacxz2345@gmail.com>
 Date:   Sun Jul 25 23:53:09 2021 +0900
@@ -33,6 +52,15 @@ Author: saltwalks <ewqdsacxz2345@gmail.com>
 Date:   Mon Jul 19 02:44:29 2021 +0900
 
     DONE : basic routing system
+
+commit 99d7f1c16cc953c7cdc64664da5c62c4ddfe8b50
+Merge: 4edfec5 73e9dae
+Author: Yongwoo Nam <71217787+oponeuser7@users.noreply.github.com>
+Date:   Sun Jul 18 21:00:26 2021 +0900
+
+    Merge pull request #3 from saltwalks/custom-elements
+    
+    Migrate components to HTMLElement instances - merge to VanillaJS branch
 
 commit ca5ac37d2dfc592a663eb7d223c08da9e22c989c
 Author: saltwalks <ewqdsacxz2345@gmail.com>
