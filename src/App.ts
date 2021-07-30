@@ -1,5 +1,6 @@
 import Component from './domain/component';
 import * as cu from './tools/cookieUtils';
+import * as su from './tools/searchUtils';
 
 export default class MainApp extends Component {
     constructor() {
@@ -16,8 +17,7 @@ export default class MainApp extends Component {
                 </header>
                 <nav class="m26">
                     <div class="row" id="search-box">
-                        <span id="search-label">Search</span>
-                        <input type="text" id="search-input">
+                        <input type="text" id="search-input" placeholder="@lang Search Notes!">
                         <button id="search-submit"><i class="bi bi-search"></i></button>
                     </div>
                     <hr>
@@ -47,9 +47,22 @@ export default class MainApp extends Component {
             window.$router.push(path);
         });
 
+        this.querySelector('#search-input')?.addEventListener('keydown', event => {
+            const keyEvent = event as KeyboardEvent;
+            if(keyEvent.key === 'Enter') {
+                event.preventDefault();
+                this.submitEvent();
+            }
+        });
+
         this.querySelector('#search-submit')?.addEventListener('click', event => {
             event.preventDefault();
-            window.$router.push('/notes?tag=go');
+            this.submitEvent();
         });
     }
+
+    submitEvent() {
+        const input = this.querySelector('#search-input') as HTMLInputElement;
+        window.$router.push(su.urlify(input.value));
+    } 
 }

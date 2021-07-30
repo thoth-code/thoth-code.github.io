@@ -102,13 +102,8 @@ nav>hr {
     height: 64px;
 }
 
-#search-label {
-    flex: 0 0 186px;
-    font-size: 60px;
-}
-
 #search-input {
-    margin-left: 14px;
+    margin-left: 5px;
     font-size: 60px;
 }
 
