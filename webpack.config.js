@@ -1,10 +1,9 @@
-const { resolve, join } = require('path')
-
 const config = {
     entry: './src/index.ts',
     output: {
         filename: 'bundle.js',
-        path: resolve(__dirname, 'public')
+        path: __dirname + '/public',
+        publicPath: '/',
     },
     module: {
         rules: [
@@ -23,10 +22,16 @@ const config = {
                 test: /\.(woff|woff2|eot|ttf|otf)$/,
                 loader: 'file-loader',
             },
+            /* ------------------------------------- Image ---------------------------------- */
+            {
+                test: /\.(png|jpe?g)$/,
+                loader: 'file-loader',
+            },
         ]
     },
     devServer: {
-        contentBase: join(__dirname, 'public'),
+        contentBase: __dirname + '/public',
+        historyApiFallback: true,
         hot: true,
         open: true,
         overlay: true,

@@ -5,4 +5,30 @@
   src:url("fonts/AnticSlab.eot?#iefix") format("embedded-opentype"),
       url("fonts/AnticSlab.woff") format("woff"),
       url("fonts/AnticSlab.ttf") format("truetype");
+  unicode-range:U+0041-005A, U+0061-007A, U+0030-0039;
+}
+
+@font-face{
+  font-family:"SP";
+  src:url("fonts/PoorStory.eot");
+  src:url("fonts/PoorStory.eot?#iefix") format("embedded-opentype"),
+      url("fonts/PoorStory.woff") format("woff"),
+      url("fonts/PoorStory.ttf") format("truetype");
+  unicode-range:U+AC00-U+D7A3;
+}
+
+@font-face{
+  font-family:"CODE";
+  src:url("fonts/SourceCodePro.eot");
+  src:url("fonts/SourceCodePro.eot?#iefix") format("embedded-opentype"),
+      url("fonts/SourceCodePro.woff") format("woff"),
+      url("fonts/SourceCodePro.ttf") format("truetype");
+}
+
+@font-face{
+  font-family:"PM";
+  src:url("fonts/PermanentMarker/PermanentMarker.eot");
+  src:url("fonts/PermanentMarker/PermanentMarker.eot?#iefix") format("embedded-opentype"),
+      url("fonts/PermanentMarker/PermanentMarker.woff") format("woff"),
+      url("fonts/PermanentMarker/PermanentMarker.ttf") format("truetype");
 }

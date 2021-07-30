@@ -1,7 +1,7 @@
 * {
     padding: 0;
     margin: 0;
-    font-family: "AS";
+    font-family: "AS", "SP";
 }
 
 html {
@@ -10,24 +10,55 @@ html {
 
 body {
     position: relative;
+}
+
+input, textarea, button {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    outline-style: none;
+    border-radius: 0px;
     height: 100%;
-    margin: 0 20px 0 20px;
-    display: grid;
-    grid-template-columns: 120px 1fr 40px;
-    grid-template-rows: 40px 1fr 20px;
-    grid-template-areas: 
-        "   header  .       .       "
-        "   main    main    aside   "
-        "   footer  footer  footer  ";
+    width: 100%;
+    background: none
+}
+
+/* ------------------------------------ GLOBAL CLASSES ------------------------------------- */
+ .row {
+    display: flex;
+}
+
+body row>* {
+    height: 100%;
+}
+
+body .space-between {
+    justify-content: space-between;
+}
+
+body .m26 {
+    margin: 0px 60px 0px 20px;
 }
 
 /* --------------------------------------- HEADER ------------------------------------------ */
-header {
-    grid-area: header;
-    background-color: black;
+:host {
+    margin: 0px 60px 0px 20px;
 }
 
-header>a {
+header {
+    position: fixed;
+    width: calc(100% - 80px);
+    background-color: white;
+}
+
+#logo-box {
+    background-color: black;
+    width: 120px;
+    height: 40px;
+}
+
+#logo {
     display: inline-block;
     margin: 2px 22px 2px 22px;
     color: white;
@@ -35,28 +66,274 @@ header>a {
     text-decoration: none;
 }
 
-header>a:hover {
+#create-new-note {
+    flex: 0 0 192px;
+    height: 40px;
+    font-family: "PM";
+    font-size: 24px;
+    background: url(./images/newNote.png) no-repeat;
+    background-size: cover;
+    cursor: pointer;
+}
+
+#logo:hover {
     text-decoration: underline;
 }
 
-/* ---------------------------------------- MAIN ------------------------------------------- */
-main {
-    grid-area: main;
+/* ---------------------------------- NAVIGATION -------------------------------------- */
+nav {
+    position: fixed;
+    top: 40px;
+    width: calc(100% - 84px);
+    height: 98px;
     border: 2px solid black;
+    border-bottom: none;
+    background-color: white;
+}
+
+nav>hr {
+    border: 3px solid black;
+    border-radius: 2px;
+    margin: 0px 14px 14px 14px;
+}
+
+#search-box {
+    margin: 14px 14px 0px 14px;
+    height: 64px;
+}
+
+#search-input {
+    margin-left: 5px;
+    font-size: 60px;
+}
+
+#search-submit {
+    flex: 0 0 64px;
+    font-size: 45px;
+}
+
+/* ---------------------------------------- MAIN ------------------------------------------- */
+#whiteboard {
+    min-height: calc(100vh - 162px);
+    border: 2px solid black;
+    padding-top: 140px;
+    border-top: none;
+}
+
+#whiteboard>* {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+
+ .note {
+    padding: 9px;
+    margin: 20px;
+    flex: 0 0 500px;
+    background: #FFFAA0;
+    border-radius: 2px;
+}
+
+ .note * {
+    margin-top: 9px;
+}
+
+ .note h1 {
+    text-align: center;
+    font-size: 40px;
+}
+
+ .note pre {
+    background: #89CFF0;
+    border-radius: 2px;
+    padding: 10px;
+    white-space: pre-wrap;
+}
+
+ .note code {
+    font-family: "CODE";
 }
 
 /* ---------------------------------------- ASIDE ------------------------------------------- */
-aside {
-    grid-area: aside;
+aside-flags {
+    position: fixed;
+    width: 40px;
+    left: calc(100% - 60px);
+    top: 40px;
 }
 
-aside>ul>li {
+#aside-items>li {
     list-style: none;
-    transform: rotate(90deg);
+    transform: translateX(-60px) rotate(90deg);
+    margin-top: 80px;
+    width: 160px;
+    height: 40px;
+    clip-path: polygon(12.5% 0%, 87.5% 0%, 100% 100%, 0% 100%);
+}
+
+#aside-items>li:first-child {
+    margin-top: 60px;
+}
+
+#aside-items>li>a {
+    display: inline-block;
+    width: 120px;
+    text-align: center;
+    font-size: 20px;
+    color: black;
+    text-decoration: none;
+    margin: 0px 20px 0px 20px;
+    padding: 8px 0px 8px 0px;
 }
 
 /* --------------------------------------- FOOTER ------------------------------------------ */
 footer {
-    grid-area: footer;
     text-align: center;
+}
+
+/* --------------------------------------- MODAL ------------------------------------------ */
+#input-container {
+    display: block;
+}
+
+#input-container>* {
+    margin-top: 9px;
+}
+
+#save-container {
+    display: none;
+}
+
+#new-note-overlay {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.25);
+    display: none;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#new-note {
+    padding: 9px;
+    margin: 20px;
+    height: 613px;
+    flex: 0 0 500px;
+    background: #FFFAA0;
+    border-radius: 2px;
+}
+
+#new-note-title {
+    border-bottom: 1px dotted black;
+    font-size: 15px;
+}
+
+#new-note-title>input {
+    background: #FFFAA0;
+    border: 0px;
+    font-size: 40px;
+}
+
+#new-note-code {
+    height: 500px;
+}
+
+#new-note-code>textarea {
+    background: #89CFF0;
+    border-radius: 2px;
+    font-family: "CODE";
+    font-size: 15px;
+    height: calc(100% - 20px);
+    width: calc(100% - 20px);
+    border: 0px;
+    padding: 10px;
+}
+
+#new-note-tag {
+    display: block;
+}
+
+#new-note-tag>input {
+    background: #F5F5DC;
+    font-size: 15px;
+}
+
+.save-note-guide {
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+}
+
+#save-container {
+    height: 100%;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+}
+
+#save-container>button {
+    width: 50%;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 2px;
+    margin-top: 10px;
+}
+
+#save-btn {
+    background-color: #93C572;
+}
+
+#maintain-btn {
+    background-color: #FFBF00;
+}
+
+#cancel-btn {
+    background-color: #FFA0D5;
+}
+
+/* --------------------------------------- SIGN IN ------------------------------------------ */
+.sign-label {
+    display: block;
+    background: #89CFF0;
+    padding: 10px;
+    border-radius: 2px;
+    margin-top: 20px;
+}
+
+.sign-input {
+    font-size: 20px;
+    border-radius: 2px;
+    border: 2px solid #89CFF0;
+    border-bottom: 2px solid #6495ED;
+}
+
+.sign-input:focus {
+    border: 2px solid #6495ED;
+}
+
+.sign-submit {
+    margin-top: 20px;
+    font-size: 25px;
+    border-radius: 2px;
+    background-color: #FFA0D5;
+    cursor: pointer;
+}
+
+#signup-link {
+    font-size: 15px;
+    color: black;
+    text-decoration: none;
+    border-bottom: 2px solid #FFFAA0;
+    margin-left: 400px;
+}
+
+#signup-link:hover {
+    border-bottom: 2px solid black;
+}
+
+#sign-out {
+    cursor: pointer;
 }
