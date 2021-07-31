@@ -16,14 +16,14 @@ export default class AsideFlags extends Component{
         const aside = this.querySelector('#aside-items') as HTMLElement;
         if(cu.isAcceptTokenAvailable()) {
             aside.innerHTML = `
-                <li><a id="sign-out">Sign Out</a></li>
-                <li><a href="/signin">MyBoard</a></li>
-                <li><a href="/signup">@Python</a></li>
-                <li><a href="/">@Go</a></li>`;
+                <li id="l0"><a id="sign-out">Sign Out</a></li>
+                <li id="l1"><a href="/signin">MyBoard</a></li>
+                <li id="l2"><a href="/signup">@Python</a></li>
+                <li id="l3"><a href="/">@Go</a></li>`;
         } else {
             aside.innerHTML = `
-                <li><a href="/signin">Sign In</a></li>
-                <li><a href="/signup">Sign Up</a></li>`;
+                <li id="l0"><a href="/signin">Sign In</a></li>
+                <li id="l1"><a href="/signup">Sign Up</a></li>`;
         }
     }
 
@@ -45,12 +45,11 @@ export default class AsideFlags extends Component{
         }
 
         let i = 0;
-        this.querySelectorAll('li').forEach(lItem => {
-            lItem.style.backgroundColor = config.color[i%config.color.length];
-            lItem.style.zIndex = `${i}`;
-            i--;
+        this.querySelectorAll('li').forEach(item => {
+            item.style.backgroundColor = config.color[i++ % config.color.length];
         });
 
+        this.setZIndex("l0");
     }
 
     addEvents() {
@@ -60,18 +59,8 @@ export default class AsideFlags extends Component{
             if(typeof path === 'string') {
                 link.addEventListener('click', event => {
                     event.preventDefault();
-                    let i = 0;
-                    let found = false;
-                    this.querySelectorAll('li').forEach(item => {
-                        if(item.firstChild as HTMLElement === event.target as HTMLElement) {
-                            item.style.zIndex = `${i}`;
-                            i--;
-                            found = true
-                        } else {
-                            item.style.zIndex = `${i}`;
-                            i = found ? i - 1 : i + 1
-                        }
-                    })
+                    let pid = link.parentElement?.id as string
+                    this.setZIndex(pid);
                     window.$router.push(path);
                 });
             }
@@ -82,6 +71,16 @@ export default class AsideFlags extends Component{
             cu.deleteAccessToken();
             alert('Sign Out Success')
             window.$router.pushWithRefresh('/');
+        });
+    }
+
+    setZIndex(selectedId: string) {
+        let i = 0;
+        let found = false;
+        this.querySelectorAll('li').forEach(item => {
+            item.style.zIndex = `${i}`;
+            found = item.id === selectedId ? true : found;
+            i = found ? i - 1 : i + 1;
         });
     }
 }
