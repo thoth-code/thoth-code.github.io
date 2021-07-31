@@ -27,4 +27,8 @@ export default class Router {
         window.history.pushState({}, path, window.location.origin + path);
         this.render(routes(path));
     }
+
+    public pushWithRefresh(path: string) {
+        window.location.pathname = path;
+    }
 }

@@ -163,7 +163,13 @@ aside-flags {
     top: 40px;
 }
 
+#aside-items {
+    position: relative;
+    z-index: -99999;
+}
+
 #aside-items>li {
+    position: relative;
     list-style: none;
     transform: translateX(-60px) rotate(90deg);
     margin-top: 80px;

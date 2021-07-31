@@ -17,8 +17,8 @@ export default class AsideFlags extends Component{
         if(cu.isAcceptTokenAvailable()) {
             aside.innerHTML = `
                 <li><a id="sign-out">Sign Out</a></li>
-                <li><a href="/">MyBoard</a></li>
-                <li><a href="/">@Python</a></li>
+                <li><a href="/signin">MyBoard</a></li>
+                <li><a href="/signup">@Python</a></li>
                 <li><a href="/">@Go</a></li>`;
         } else {
             aside.innerHTML = `
@@ -41,7 +41,16 @@ export default class AsideFlags extends Component{
         for(let i = 0; i < items.length; i++) {
             let item = items.item(i) as HTMLElement;
             item.style.backgroundColor = config.color[i%config.color.length];
+            item.style.zIndex = `${items.length - i - 1}`;
         }
+
+        let i = 0;
+        this.querySelectorAll('li').forEach(lItem => {
+            lItem.style.backgroundColor = config.color[i%config.color.length];
+            lItem.style.zIndex = `${i}`;
+            i--;
+        });
+
     }
 
     addEvents() {
@@ -51,6 +60,18 @@ export default class AsideFlags extends Component{
             if(typeof path === 'string') {
                 link.addEventListener('click', event => {
                     event.preventDefault();
+                    let i = 0;
+                    let found = false;
+                    this.querySelectorAll('li').forEach(item => {
+                        if(item.firstChild as HTMLElement === event.target as HTMLElement) {
+                            item.style.zIndex = `${i}`;
+                            i--;
+                            found = true
+                        } else {
+                            item.style.zIndex = `${i}`;
+                            i = found ? i - 1 : i + 1
+                        }
+                    })
                     window.$router.push(path);
                 });
             }
@@ -60,7 +81,7 @@ export default class AsideFlags extends Component{
             event.preventDefault();
             cu.deleteAccessToken();
             alert('Sign Out Success')
-            window.location.pathname = '/';
+            window.$router.pushWithRefresh('/');
         });
     }
 }

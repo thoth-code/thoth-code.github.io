@@ -15,3 +15,7 @@ npm run dev
 ```
 npm run todo
 ```
+
+## Travel plans
+1. VanillaJS
+2. Angular
