@@ -29,3 +29,7 @@ export async function postUserInfo(userInfo: st.userInfo) {
         body: JSON.stringify(userInfo),
     });
 }
+
+export async function getUserFlags() {
+    return fetch(`${config.baseUrl}/flags`)
+}

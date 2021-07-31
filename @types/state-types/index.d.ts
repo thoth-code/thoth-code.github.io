@@ -13,7 +13,7 @@ declare module 'state-types' {
             state: state;
             status: string;
             dispatch: (actionKey: string, data: actionData) => boolean;
-            commit: (mutationKey: string, payLoad: mutationPayload) => boolean;
+            commit: (stateKey: string, mutationKey: string, payLoad: mutationPayload) => boolean;
         }
 
         interface ComponentInterface {
@@ -27,14 +27,16 @@ declare module 'state-types' {
         type error = {error: string};
         type userInfo = {uname?: string, email: string, password: string};
         type note = {title: string, code: string, tag: string};
+        type flag = {title: string, path: string};
         type reqParam = string;
 
+        type stateType = note | flag
         type actionData = note | userInfo | reqParam;
-        type mutationPayload = note[] | error;
+        type mutationPayload = note[] | flag[];
 
-        type action = (context: StoreInterface, data: actionData) => void;
-        type state = {[index: string]: note[]};
-        type mutation = (state: state, payload: mutationPayload) => void;
+        type action = (context: StoreInterface, data?: actionData) => void;
+        type state = {[index: string]: stateType[]};
+        type mutation = (state: stateType[], payload: mutationPayload) => void;
 
         type components = {[index: string]: ComponentInterface[]};
         type actions = {[index: string]: action};

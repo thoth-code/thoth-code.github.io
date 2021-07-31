@@ -7,7 +7,7 @@ const actions: st.actions = {
         .then(response => {
             if(response.body !== null) {
                 response.json().then(json => {
-                    context.commit('addNotes', json as st.note[]);
+                    context.commit("notes", 'addNotes', json as st.note[]);
                 });
             }
         }).catch(err => {
@@ -86,6 +86,16 @@ const actions: st.actions = {
             window.$router.push('/signup');
         });
     },
+    getFlags(context) {
+        api.getUserFlags()
+        .then(res => {
+            if(res.body !== null) {
+                res.json().then(json => {
+                    context.commit("flags", 'addFlags', json as st.flag[]);
+                })
+            }
+        })
+    }
 }
 
 export default actions;

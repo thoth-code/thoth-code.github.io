@@ -1,10 +1,14 @@
 import {st} from 'state-types';
 
 let mutations: st.mutations = {
-    addNotes(state, payload) {
-        state.notes = <st.note[]>payload;
-        return state;
+    addNotes(notes, payload) {
+        notes = <st.note[]>payload;
+        return notes;
     },
+    addFlags(flags, payload) {
+        flags = <st.flag[]>payload;
+        return flags
+    }
 }
 
 export default mutations;
