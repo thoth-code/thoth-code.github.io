@@ -1,10 +1,11 @@
+import { st } from "state-types";
 import Component from "../domain/component";
 import * as cu from '../tools/cookieUtils';
 
 export default class AsideFlags extends Component{
     constructor() {
         super({
-            subscribe: 'stateChange'
+            subscribe: 'flagsChange'
         });
     }
 
@@ -12,14 +13,24 @@ export default class AsideFlags extends Component{
         return '<ul id="aside-items"></ul>';
     }
 
+    dispatch() {
+        window.$store.dispatch('getFlags', window.location.search)
+    }
+
     onStateChange() {
         const aside = this.querySelector('#aside-items') as HTMLElement;
         if(cu.isAcceptTokenAvailable()) {
             aside.innerHTML = `
                 <li id="l0"><a id="sign-out">Sign Out</a></li>
-                <li id="l1"><a href="/signin">MyBoard</a></li>
-                <li id="l2"><a href="/signup">@Python</a></li>
-                <li id="l3"><a href="/">@Go</a></li>`;
+                <li id="l1"><a href="/my-board">MyBoard</a></li>`;
+                let i = 2
+                window.$store.state["flags"].map(row => {
+                    const refined = row as st.flag;
+                    const li = document.createElement('li')
+                    li.id = `l${i++}`;
+                    li.innerHTML = `<a href="${refined.path}">${refined.title}</a>`;
+                    aside.appendChild(li);
+                })
         } else {
             aside.innerHTML = `
                 <li id="l0"><a href="/signin">Sign In</a></li>

@@ -31,7 +31,7 @@ export default function routes(path: string): st.elementForm {
                 };
             } else {
                 return {
-                    component: '',
+                    component: path,
                     attributes: [],
                 };
             }
