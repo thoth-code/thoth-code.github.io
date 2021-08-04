@@ -4,7 +4,7 @@ import * as codeUtils from '../tools/codeUtils';
 export default class CodeNote extends Component {
     constructor() {
         super();
-    };
+    }
 
     get template() {
         return `<h1></h1>

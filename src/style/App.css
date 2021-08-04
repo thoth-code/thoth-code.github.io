@@ -127,32 +127,36 @@ nav>hr {
     align-items: flex-start;
 }
 
- .note {
+.note {
     padding: 9px;
     margin: 20px;
-    flex: 0 0 500px;
+    flex: 0 0 550px;
     background: #FFFAA0;
     border-radius: 2px;
 }
 
- .note * {
+.note * {
     margin-top: 9px;
 }
 
- .note h1 {
+.note h1 {
     text-align: center;
     font-size: 40px;
 }
 
- .note pre {
+.note pre {
     background: #89CFF0;
     border-radius: 2px;
     padding: 10px;
     white-space: pre-wrap;
 }
 
- .note code {
+.note code {
     font-family: "CODE";
+}
+
+guide-note.note {
+    background: #9FE2BF;
 }
 
 /* ---------------------------------------- ASIDE ------------------------------------------- */

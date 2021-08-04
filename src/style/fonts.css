@@ -19,10 +19,10 @@
 
 @font-face{
   font-family:"CODE";
-  src:url("fonts/SourceCodePro.eot");
-  src:url("fonts/SourceCodePro.eot?#iefix") format("embedded-opentype"),
-      url("fonts/SourceCodePro.woff") format("woff"),
-      url("fonts/SourceCodePro.ttf") format("truetype");
+  src:url("fonts/Fira_Code/FiraCode.eot");
+  src:url("fonts/Fira_Code/FiraCode.eot?#iefix") format("embedded-opentype"),
+      url("fonts/Fira_Code/FiraCode.woff") format("woff"),
+      url("fonts/Fira_Code/FiraCode.ttf") format("truetype");
 }
 
 @font-face{

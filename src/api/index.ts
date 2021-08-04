@@ -5,18 +5,18 @@ const config = {
 }
 
 export async function getAllNotes(param: st.reqParam) {
-    return fetch(`${config.baseUrl}/notes${param}`);
+    return fetch(`${config.baseUrl}/api/notes${param}`);
 }
 
 export async function postNote(note: st.note) {
-    return fetch(`${config.baseUrl}/note`, {
+    return fetch(`${config.baseUrl}/api/note`, {
         method: 'POST',
         body: JSON.stringify(note),
     });
 }
 
 export async function postAuth(userInfo: st.userInfo) {
-    return fetch(`${config.baseUrl}/signin`, {
+    return fetch(`${config.baseUrl}/api/signin`, {
         method: 'POST',
         body: JSON.stringify(userInfo),
         credentials: 'include',
@@ -24,12 +24,12 @@ export async function postAuth(userInfo: st.userInfo) {
 }
 
 export async function postUserInfo(userInfo: st.userInfo) {
-    return fetch(`${config.baseUrl}/signup`, {
+    return fetch(`${config.baseUrl}/api/signup`, {
         method: 'POST',
         body: JSON.stringify(userInfo),
     });
 }
 
 export async function getUserFlags() {
-    return fetch(`${config.baseUrl}/flags`)
+    return fetch(`${config.baseUrl}/api/flags`)
 }

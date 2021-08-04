@@ -17,6 +17,18 @@ export default class SearchedNotes extends Component{
         while(before.length !== 0) {
             before.item(0)?.remove();
         }
+
+        if(window.location.pathname === "/") {
+            const welcome = document.createElement("guide-note");
+            welcome.setAttribute("title", "welcome");
+            welcome.classList.add("note");
+            this.appendChild(welcome);
+
+            const howto = document.createElement("guide-note");
+            howto.setAttribute("title", "write-note");
+            howto.classList.add("note");
+            this.appendChild(howto);
+        }
         
         window.$store.state["notes"].map(noteContent => {
             const refined = noteContent as st.note;
