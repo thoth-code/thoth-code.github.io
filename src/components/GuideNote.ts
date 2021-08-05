@@ -38,9 +38,12 @@ GOOD LUCK!
 <pre><code>/* RULES to write notes
 
 Plz follow these rules!
-Write ONLY codes & comments so you can directly copy & paste this snippet to your editor.
-And tag @language of this snippet's programming language at the bottom.
-If you copy code from other website like stackoverflow, plz add link at the bottom too.
+
+1. Write ONLY codes & comments so you can directly copy & paste this snippet to your editor.
+
+2. And tag @language of this snippet's programming language at the bottom.
+
+3. If you copy code from other website like stackoverflow, plz add link at the bottom too.
 */
 
 package main

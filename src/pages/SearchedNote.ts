@@ -1,4 +1,3 @@
-import { st } from "state-types";
 import Component from "../domain/component";
 
 export default class SearchedNotes extends Component{
@@ -30,13 +29,10 @@ export default class SearchedNotes extends Component{
             this.appendChild(howto);
         }
         
-        window.$store.state["notes"].map(noteContent => {
-            const refined = noteContent as st.note;
+        window.$store.state["notes"].map((x, idx) => {
             const note = document.createElement('code-note');
-            note.classList.add('note');
-            note.setAttribute('title', refined.title);
-            note.innerHTML = refined.code;
-            note.setAttribute('tag', refined.tag);
+            note.setAttribute('note-idx', idx.toString());
+            note.classList.add("note")
             this.appendChild(note);
         });
     };

@@ -20,6 +20,9 @@ export default class NewNote extends Component {
                             <span id="new-note-tag">
                                 <input placeholder="@language" id="input-tag" />
                             </span>
+                            <div id="new-note-ref">
+                                <textarea autocomplete="off" spellcheck="false" placeholder="Source of this code! (separate with enters or spaces)" id="input-ref"></textarea>
+                            </div>
                         </div>
                         <div id="save-container">
                             Do you want to save note?
@@ -46,6 +49,7 @@ export default class NewNote extends Component {
         const title = this.querySelector('#input-title') as HTMLInputElement;
         const code = this.querySelector('#input-code') as HTMLInputElement;
         const tag = this.querySelector('#input-tag') as HTMLInputElement;
+        const ref = this.querySelector('#input-ref') as HTMLInputElement;
 
         const save = this.querySelector('#save-btn') as HTMLElement;
         const maintain = this.querySelector('#maintain-btn') as HTMLElement;
@@ -87,10 +91,14 @@ export default class NewNote extends Component {
 
         //Do save
         save.addEventListener('click', () => {
+            const tags = tag.value.split(" ");
+            const refs = ref.value.split(/\S*/g)
             window.$store.dispatch('postNote', {
+                oid: "",
                 title: title.value,
                 code: code.value,
-                tag: tag.value,
+                tag: tags,
+                ref: refs,
             });
             insertMode();
             clearInputs();
