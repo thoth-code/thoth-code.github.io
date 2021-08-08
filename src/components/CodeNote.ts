@@ -1,6 +1,7 @@
 import { st } from "state-types";
 import Component from "../domain/component";
 import * as codeUtils from '../tools/codeUtils';
+import * as clipboardUtils from '../tools/clipboardUtils';
 
 export default class CodeNote extends Component {
     constructor() {
@@ -8,7 +9,13 @@ export default class CodeNote extends Component {
     }
 
     get template() {
-        return `<h1 class="note-title"></h1>
+        return `<div class="note-controll">
+                    <button type="button" class="note-controll-btn copy-code"><i class="bi bi-clipboard"></i></button>
+                    <button type="button" class="note-controll-btn to-my-board"><i class="bi bi-box-arrow-in-up-right"></i></button>
+                    <button type="button" class="note-controll-btn edit-note"><i class="bi bi-eraser"></i></button>
+                    <button type="button" class="note-controll-btn delete-note"><i class="bi bi-trash"></i></button>
+                </div>
+                <h1 class="note-title"></h1>
                 <pre><code class="note-code"></code></pre>
                 <span class="note-tags"></span>
                 <div class="note-refs">
@@ -51,6 +58,12 @@ export default class CodeNote extends Component {
             } else {
                 content.style.maxHeight = content.scrollHeight + "px";
             } 
-          });
+        });
+
+        this.querySelector('.copy-code')?.addEventListener("click", event => {
+            event.preventDefault();
+            const code = this.querySelector(".note-code") as HTMLElement;
+            clipboardUtils.copy(code.innerText);
+        });
     }
 }
