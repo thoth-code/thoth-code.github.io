@@ -1,7 +1,7 @@
 import { st } from 'state-types';
 
 const config = {
-    baseUrl: 'http://localhost:3000'
+    baseUrl: 'http://saltwalks.ddns.net:3000',
 }
 
 export async function getAllNotes(param: st.reqParam) {
