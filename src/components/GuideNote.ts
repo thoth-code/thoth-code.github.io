@@ -11,7 +11,8 @@ export default class GuideNote extends Component {
         if(title === "welcome") {
             this.innerHTML = `
 <h1>Welcome!</h1>
-<pre><code>/* What is it? and how can i use it?
+<div class="note-code-box">
+<pre><code class="note-code">/* What is it? and how can i use it?
 
 It's just whiteboard you can write & share code snippet notes!
 
@@ -30,12 +31,13 @@ And you can see this board in "#hashtagName" flag at the right side -->
 That's it! write notes, take someone else's notes, organize them.
 This would be GREAT help when you forget something.
 GOOD LUCK!
-*/</code></pre>
+*/</code></pre></div>
 <span>@Guides</span>`;
         } else if(title === "write-note") {
             this.innerHTML = `
 <h1>How To Write Note?</h1>
-<pre><code>/* RULES to write notes
+<div class="note-code-box">
+<pre><code class="note-code">/* RULES to write notes
 
 Plz follow these rules!
 
@@ -52,7 +54,7 @@ import "fmt"
 
 func main() {
     fmt.Println("G'day mate!")
-}</code></pre>
+}</code></pre></div>
 <span>@Go @Golang @go @golang</span>`;
         }
     }

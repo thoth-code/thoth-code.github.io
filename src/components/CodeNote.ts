@@ -9,14 +9,16 @@ export default class CodeNote extends Component {
     }
 
     get template() {
-        return `<div class="note-controll">
-                    <button type="button" class="note-controll-btn copy-code"><i class="bi bi-clipboard"></i></button>
+        return `<div class="note-controll-box">
                     <button type="button" class="note-controll-btn to-my-board"><i class="bi bi-box-arrow-in-up-right"></i></button>
                     <button type="button" class="note-controll-btn edit-note"><i class="bi bi-eraser"></i></button>
                     <button type="button" class="note-controll-btn delete-note"><i class="bi bi-trash"></i></button>
                 </div>
                 <h1 class="note-title"></h1>
-                <pre><code class="note-code"></code></pre>
+                <div class="note-code-box">
+                    <button type="button" class="note-controll-btn copy-code-btn"><i class="bi bi-clipboard"></i></button>
+                    <pre><code class="note-code"></code></pre>
+                </div>
                 <span class="note-tags"></span>
                 <div class="note-refs">
                     <button type="button" class="collapse-btn"><i class="bi bi-caret-down-fill"></i> References</button>
@@ -60,10 +62,21 @@ export default class CodeNote extends Component {
             } 
         });
 
-        this.querySelector('.copy-code')?.addEventListener("click", event => {
+        const copyBtn = this.querySelector('.copy-code-btn') as HTMLElement;
+        copyBtn.addEventListener("click", event => {
             event.preventDefault();
             const code = this.querySelector(".note-code") as HTMLElement;
             clipboardUtils.copy(code.innerText);
+            copyBtn.innerHTML = `<i class="bi bi-clipboard-check"></i>`;
+        });
+
+        this.querySelector('.note-code-box')?.addEventListener('mouseover', () => {
+            copyBtn.style.display = "block";
+        });
+
+        this.querySelector('.note-code-box')?.addEventListener('mouseleave', () => {
+            copyBtn.style.display = "none";
+            copyBtn.innerHTML = `<i class="bi bi-clipboard"></i>`;
         });
     }
 }

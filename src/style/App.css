@@ -50,6 +50,7 @@ header {
     position: fixed;
     width: calc(100% - 80px);
     background-color: white;
+    z-index: 9999;
 }
 
 #logo-box {
@@ -89,6 +90,7 @@ nav {
     border: 2px solid black;
     border-bottom: none;
     background-color: white;
+    z-index: 9999;
 }
 
 nav>hr {
@@ -128,7 +130,6 @@ nav>hr {
 }
 
 .note {
-    padding: 9px;
     margin: 20px;
     flex: 0 0 500px;
     background: #FFFAA0;
@@ -138,23 +139,34 @@ nav>hr {
 .note h1 {
     text-align: center;
     font-size: 40px;
-    margin-bottom: 9px;
+    margin: 0px 9px 9px 9px;
 }
-
-.note pre {
+.note-code-box {
     background: #89CFF0;
+    position: relative;
     border-radius: 2px;
     padding: 10px;
+    margin: 0px 9px 0px 9px;
+}
+.note-code-box pre {
     white-space: pre-wrap;
 }
 
-.note code {
+.note-code {
     font-size: 14px;
     font-family: "CODE";
 }
 
+.note span {
+    margin-left: 9px;
+}
+
 guide-note.note {
     background: #9FE2BF;
+}
+
+.note-refs {
+    margin: 0px 9px 9px 9px;
 }
 
 .collapse-btn {
@@ -187,14 +199,28 @@ guide-note.note {
     text-decoration: underline;
 }
 
-.note-controll {
+.note-controll-box {
     cursor: default;
+    height: 22px;
+    padding: 9px 9px 0px 9px;
 }
 
 .note-controll-btn {
     cursor: pointer;
     display: inline-block;
-    width: 13px;
+    width: 22px;
+    height: 22px;
+    font-size: 16px;
+    border: 1px solid black;
+    border-radius: 2px;
+}
+
+.copy-code-btn {
+    display: none;
+    z-index: 2;
+    position: absolute;
+    left: 451px;
+    background: #89CFF0;
 }
 
 /* ---------------------------------------- ASIDE ------------------------------------------- */
