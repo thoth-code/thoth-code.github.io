@@ -39,4 +39,8 @@ export default class Router {
             window.location.reload();
         }
     }
+
+    public refresh() {
+        window.location.reload();
+    }
 }

@@ -3,7 +3,7 @@ import * as api from "../api";
 
 const actions: st.actions = {
     getAllNotes(context, data) {
-        api.getAllNotes(data as st.reqParam)
+        api.getAllNotes(data as st.reqParamQuery)
         .then(response => {
             if(response.body !== null) {
                 response.json().then(json => {
@@ -18,8 +18,6 @@ const actions: st.actions = {
         api.postNote(data as st.note)
         .then(postRes => {
             if(postRes.body !== null) {
-                console.log(postRes.headers);
-                
                 postRes.json().then(json => {
                     const refined = json as st.error;
                     if(refined.error !== null) {
@@ -35,7 +33,7 @@ const actions: st.actions = {
             alert(err);
             console.error(err);
         }).finally(() => {
-            window.$router.push('/');
+            window.$router.pushWithRefresh('/');
         });
     },
     postAuth(context, data) {
@@ -61,7 +59,7 @@ const actions: st.actions = {
             alert(err);
             console.error(err);
         }).finally(() => {
-            window.location.pathname = '/';
+            window.$router.pushWithRefresh('/');
         });
     },
     postUserInfo(context, data) {
@@ -83,7 +81,7 @@ const actions: st.actions = {
             alert(err);
             console.error(err);
         }).finally(() => {
-            window.$router.push('/signup');
+            window.$router.push('/signin');
         });
     },
     getFlags(context) {
@@ -95,7 +93,71 @@ const actions: st.actions = {
                 })
             }
         })
-    }
+    },
+    putNote(context, data) {
+        api.putNote(data as st.note)
+        .then(res => {
+            if(res.body !== null) {
+                res.json().then(json => {
+                    const refined = json as st.error;
+                    if(refined.error !== null) {
+                        throw new Error(refined.error);
+                    } else {
+                        alert('Note Editted');
+                    }
+                });
+            } else {
+                throw new Error('Note Edit Failure');
+            }
+        }).catch(err => {
+            alert(err);
+            console.error(err);
+        }).finally(() => {
+            window.$router.refresh();
+        });
+    },
+    deleteNote(context, data) {
+        api.deleteNote(data as st.reqParamQuery)
+        .then(res => {
+            if(res.body !== null) {
+                res.json().then(json => {
+                    const refined = json as st.error;
+                    if(refined.error !== null) {
+                        throw new Error(refined.error);
+                    } else {
+                        alert('Note deleted');
+                    }
+                });
+            } else {
+                throw new Error('Note delete failure');
+            }
+        }).catch(err => {
+            alert(err);
+            console.error(err);
+        }).finally(() => {
+            window.$router.pushWithRefresh('/');
+        });
+    },
+    postMyBoard(context, data) {
+        api.postMyBoard(data as st.note)
+        .then(res => {
+            if(res.body !== null) {
+                res.json().then(json => {
+                    const refined = json as st.error;
+                    if(refined.error !== null) {
+                        throw new Error(refined.error);
+                    } else {
+                        alert('Note attached');
+                    }
+                });
+            } else {
+                throw new Error('Note attach failure');
+            }
+        }).catch(err => {
+            alert(err);
+            console.error(err);
+        });
+    },
 }
 
 export default actions;

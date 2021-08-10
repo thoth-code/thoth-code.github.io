@@ -81,5 +81,33 @@ export default class CodeNote extends Component {
             copyBtnBox.style.display = "none";
             copyBtn.innerHTML = `<i class="bi bi-clipboard"></i>`;
         });
+
+        const idx = parseInt(this.getAttribute('note-idx') as string);
+        const note = window.$store.state["notes"][idx] as st.note;
+
+        this.querySelector(".edit-note")?.addEventListener("click", event => {
+            event.preventDefault();
+            // TODO: move edit note page
+            console.warn("TODO: move edit note page");
+            window.$store.dispatch("putNote", {
+                oid: note.oid,
+                title: "modified-title",
+                code: "modified-code",
+                tag: ["modified-lang"],
+                ref: ["modified-ref"],
+            });
+        });
+
+        this.querySelector(".delete-note")?.addEventListener("click", event => {
+            event.preventDefault();
+            window.$store.dispatch("deleteNote", `/${note.oid}`);
+        });
+
+        this.querySelector(".to-my-board")?.addEventListener("click", event => {
+            event.preventDefault();
+            // TODO: to my board request body
+            console.warn("TODO: to my board request body");
+            window.$store.dispatch("postMyBoard", note);
+        });
     }
 }

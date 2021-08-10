@@ -4,8 +4,8 @@ const config = {
     baseUrl: 'http://saltwalks.ddns.net:3000',
 }
 
-export async function getAllNotes(param: st.reqParam) {
-    return fetch(`${config.baseUrl}/api/notes${param}`);
+export async function getAllNotes(query: st.reqParamQuery) {
+    return fetch(`${config.baseUrl}/api/notes${query}`);
 }
 
 export async function postNote(note: st.note) {
@@ -32,4 +32,24 @@ export async function postUserInfo(userInfo: st.userInfo) {
 
 export async function getUserFlags() {
     return fetch(`${config.baseUrl}/api/flags`)
+}
+
+export async function putNote(note: st.note) {
+    return fetch(`${config.baseUrl}/api/note`, {
+        method: 'PUT',
+        body: JSON.stringify(note),
+    });
+}
+
+export async function deleteNote(param: st.reqParamQuery) {
+    return fetch(`${config.baseUrl}/api/note${param}`, {
+        method: 'DELETE',
+    })
+}
+
+export async function postMyBoard(note: st.note) {
+    return fetch(`${config.baseUrl}/api/myboard`, {
+        method: 'POST',
+        body: JSON.stringify(note),
+    });
 }
