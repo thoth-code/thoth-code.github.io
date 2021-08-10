@@ -134,19 +134,18 @@ nav>hr {
     flex: 0 0 500px;
     background: #FFFAA0;
     border-radius: 2px;
+    padding: 9px;
 }
 
 .note h1 {
     text-align: center;
     font-size: 40px;
-    margin: 0px 9px 9px 9px;
 }
 .note-code-box {
     background: #89CFF0;
     position: relative;
     border-radius: 2px;
     padding: 10px;
-    margin: 0px 9px 0px 9px;
 }
 .note-code-box pre {
     white-space: pre-wrap;
@@ -157,16 +156,8 @@ nav>hr {
     font-family: "CODE";
 }
 
-.note span {
-    margin-left: 9px;
-}
-
 guide-note.note {
     background: #9FE2BF;
-}
-
-.note-refs {
-    margin: 0px 9px 9px 9px;
 }
 
 .collapse-btn {
@@ -202,7 +193,6 @@ guide-note.note {
 .note-controll-box {
     cursor: default;
     height: 22px;
-    padding: 9px 9px 0px 9px;
 }
 
 .note-controll-btn {
@@ -215,12 +205,13 @@ guide-note.note {
     border-radius: 2px;
 }
 
-.copy-code-btn {
+.copy-code-btn-box {
     display: none;
     z-index: 2;
     position: absolute;
-    left: 451px;
+    left: 464px;
     background: #89CFF0;
+    padding: 0px 0px 3px 3px;
 }
 
 /* ---------------------------------------- ASIDE ------------------------------------------- */

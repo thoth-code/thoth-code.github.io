@@ -16,7 +16,9 @@ export default class CodeNote extends Component {
                 </div>
                 <h1 class="note-title"></h1>
                 <div class="note-code-box">
-                    <button type="button" class="note-controll-btn copy-code-btn"><i class="bi bi-clipboard"></i></button>
+                    <div class="copy-code-btn-box">
+                        <button type="button" class="note-controll-btn copy-code-btn"><i class="bi bi-clipboard"></i></button>
+                    </div>
                     <pre><code class="note-code"></code></pre>
                 </div>
                 <span class="note-tags"></span>
@@ -63,6 +65,7 @@ export default class CodeNote extends Component {
         });
 
         const copyBtn = this.querySelector('.copy-code-btn') as HTMLElement;
+        const copyBtnBox = this.querySelector('.copy-code-btn-box') as HTMLElement;
         copyBtn.addEventListener("click", event => {
             event.preventDefault();
             const code = this.querySelector(".note-code") as HTMLElement;
@@ -71,11 +74,11 @@ export default class CodeNote extends Component {
         });
 
         this.querySelector('.note-code-box')?.addEventListener('mouseover', () => {
-            copyBtn.style.display = "block";
+            copyBtnBox.style.display = "block";
         });
 
         this.querySelector('.note-code-box')?.addEventListener('mouseleave', () => {
-            copyBtn.style.display = "none";
+            copyBtnBox.style.display = "none";
             copyBtn.innerHTML = `<i class="bi bi-clipboard"></i>`;
         });
     }
