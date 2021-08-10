@@ -50,7 +50,7 @@ header {
     position: fixed;
     width: calc(100% - 80px);
     background-color: white;
-    z-index: 9999;
+    z-index: 1111;
 }
 
 #logo-box {
@@ -90,7 +90,7 @@ nav {
     border: 2px solid black;
     border-bottom: none;
     background-color: white;
-    z-index: 9999;
+    z-index: 1111;
 }
 
 nav>hr {
@@ -278,6 +278,7 @@ footer {
     display: none;
     justify-content: space-evenly;
     align-items: center;
+    z-index: 2222;
 }
 
 #new-note {
