@@ -32,7 +32,6 @@ const config = {
         contentBase: resolve(__dirname, '/public'),
         historyApiFallback: true,
         hot: true,
-        open: true,
         overlay: true,
 	    host: '0.0.0.0',
 	    disableHostCheck: true,
