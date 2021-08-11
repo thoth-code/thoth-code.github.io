@@ -3,10 +3,11 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { resolve } = require('path');
 
 const config = {
-    entry: './src/index.ts',
+    entry: resolve(__dirname, 'src/index.ts'),
     output: {
         filename: 'bundle.js',
-        path: resolve(__dirname, './dist'),
+        path: resolve(__dirname, 'dist'),
+        publicPath: '/',
     },
     module: {
         rules: [
@@ -29,7 +30,7 @@ const config = {
         ]
     },
     devServer: {
-        contentBase: resolve(__dirname, '/public'),
+        contentBase: resolve(__dirname, 'public'),
         historyApiFallback: true,
         hot: true,
         overlay: true,
@@ -41,8 +42,8 @@ const config = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            favicon: './static/favicon.ico',
-            template: './static/index.html'
+            favicon: resolve(__dirname, 'static/favicon.ico'),
+            template: resolve(__dirname, 'static/index.html'),
         }),
         new CleanWebpackPlugin(),
     ]

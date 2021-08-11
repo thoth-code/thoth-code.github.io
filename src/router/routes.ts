@@ -20,6 +20,11 @@ export default function routes(path: string): st.elementForm {
                 component: 'sign-up',
                 attributes: [],
             };
+        case '/note/new' :
+            return {
+                component: 'new-note',
+                attributes: []
+            }
         default :
         /**
          * DYNAMIC ROUTES

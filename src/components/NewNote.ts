@@ -1,38 +1,41 @@
 import Component from "../domain/component";
 import * as codeUtils from "../tools/codeUtils";
+import * as cookieUtils from "../tools/cookieUtils";
 
 export default class NewNote extends Component {
     constructor() {
         super();
+        if(!cookieUtils.isAcceptTokenAvailable()) {
+            alert("Sign in first");
+            window.$router.pushWithRefresh('/signin');
+        }
     };
 
     get template() {
-        return `<div id="new-note-overlay">
-                    <span class="save-note-guide">Click Outside to Save</span>
-                    <article id="new-note">
-                        <div id="input-container">
-                            <h1 id="new-note-title">
-                                <input placeholder="Title" id="input-title" />
-                            </h1>
-                            <p id="new-note-code">
-                                <textarea autocomplete="off" spellcheck="false" placeholder="Write Code..." id="input-code"></textarea>
-                            </p>
-                            <span id="new-note-tag">
-                                <input placeholder="@language" id="input-tag" />
-                            </span>
-                            <div id="new-note-ref">
-                                <textarea autocomplete="off" spellcheck="false" placeholder="Source of this code! (separate with enters or spaces)" id="input-ref"></textarea>
-                            </div>
+        return `<span class="save-note-guide">Click Outside to Save</span>
+                <article id="new-note">
+                    <div id="input-container">
+                        <h1 id="new-note-title">
+                            <input placeholder="Title" id="input-title" />
+                        </h1>
+                        <p id="new-note-code">
+                            <textarea autocomplete="off" spellcheck="false" placeholder="Write Code..." id="input-code"></textarea>
+                        </p>
+                        <span id="new-note-tag">
+                            <input placeholder="@language" id="input-tag" />
+                        </span>
+                        <div id="new-note-ref">
+                            <textarea autocomplete="off" spellcheck="false" placeholder="Source of this code! (separate with enters or spaces)" id="input-ref"></textarea>
                         </div>
-                        <div id="save-container">
-                            Do you want to save note?
-                            <button id="save-btn">Yes I want to save it</button>
-                            <button id="maintain-btn">No I want to write more</button>
-                            <button id="cancel-btn">Just put it into trash bin</button>
-                        </div>
-                    </article>
-                    <span class="save-note-guide">Click Outside to Save</span>
-                </div>`;
+                    </div>
+                    <div id="save-container">
+                        Do you want to save note?
+                        <button id="save-btn">Yes I want to save it</button>
+                        <button id="maintain-btn">No I want to write more</button>
+                        <button id="cancel-btn">Just put it into trash bin</button>
+                    </div>
+                </article>
+                <span class="save-note-guide">Click Outside to Save</span>`;
     }
 
     addEvents() {
@@ -42,7 +45,6 @@ export default class NewNote extends Component {
 
     addButtonEvents() {
         const guides = this.querySelectorAll('.save-note-guide');
-        const overlay = this.querySelector('#new-note-overlay') as HTMLElement;
         const inputContainer = this.querySelector('#input-container') as HTMLElement;
         const saveContainer = this.querySelector('#save-container') as HTMLElement;
 
@@ -59,15 +61,17 @@ export default class NewNote extends Component {
         * Save note
         */
         function insertMode() {
-            guides.item(0).innerHTML = 'Click Outside to Save';
-            guides.item(1).innerHTML = 'Click Outside to Save';
+            guides.forEach(guide => {
+                guide.innerHTML = 'Click outside to save'
+            });
             inputContainer.style.display = 'block';
             saveContainer.style.display = 'none';
         }
 
         function exitMode() {
-            guides.item(0).innerHTML = 'Click Outside to Write More';
-            guides.item(1).innerHTML = 'Click Outside to Write More';
+            guides.forEach(guide => {
+                guide.innerHTML = 'Click outside to write more'
+            });
             inputContainer.style.display = 'none';
             saveContainer.style.display = 'flex';
         }
@@ -78,9 +82,9 @@ export default class NewNote extends Component {
             tag.value = "";
         }
 
-        //Overlay click event
-        overlay.addEventListener('click', event => {
-            if(event.target === overlay) {
+        //outside click event
+        this.addEventListener('click', event => {
+            if(event.target === this || guides.item(0) === event.target || guides.item(1) === event.target ) {
                 if(inputContainer.style.display !== 'none') {
                     exitMode();
                 } else {
@@ -102,7 +106,7 @@ export default class NewNote extends Component {
             });
             insertMode();
             clearInputs();
-            this.setAttribute('show', 'false');
+            window.$router.pushWithRefresh('/');
         });
 
         //Maintain note
@@ -114,7 +118,7 @@ export default class NewNote extends Component {
         cancel.addEventListener('click', () => {
             insertMode();
             clearInputs();
-            this.setAttribute('show', 'false');
+            window.$router.push('/');
         });
     }
 
@@ -163,20 +167,5 @@ export default class NewNote extends Component {
                 code.selectionStart = code.selectionEnd = start + 1;
             }
         });
-    }
-
-    static get observedAttributes() {
-        return ['show'];
-    }
-
-    attributeChangedCallback(name: string, oldValue: string, newValue: string) {
-        if(name === 'show') {
-            const overlay = this.children.item(0) as HTMLElement;
-            if(oldValue === 'true' && newValue === 'false') {
-                overlay.style.display = 'none';
-            } else if(oldValue === 'false' && newValue === 'true') {
-                overlay.style.display = 'flex';
-            }
-        }
     }
 }

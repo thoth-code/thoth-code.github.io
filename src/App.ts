@@ -1,5 +1,4 @@
 import Component from './domain/component';
-import * as cu from './tools/cookieUtils';
 import * as su from './tools/searchUtils';
 
 export default class MainApp extends Component {
@@ -23,45 +22,37 @@ export default class MainApp extends Component {
                     <hr>
                 </nav>
                 <aside-flags></aside-flags>
-                <!-- Modal -->
-                <new-note show="false"></new-note>
-                <!-- Main -->
+                <!-- Routed -->
                 <main id="whiteboard" class="m26"></main>
                 <footer>copyright © saltwalks2021</footer>`;
     }
 
     addEvents() {
-        this.querySelector('#create-new-note')?.addEventListener('click', () => {
-            if(cu.isAcceptTokenAvailable()) {
-                this.querySelector('new-note')?.setAttribute('show', 'true');
-            } else {
-                alert('Sign In First');
-                window.$router.push('/signin');
-            }
+        this.querySelector('#create-new-note')?.addEventListener('click', event => {
+            event.preventDefault();
+            window.$router.push('/note/new')
         });
 
         this.querySelector('#logo')?.addEventListener('click', event => {
             event.preventDefault();
-            const eventTarget = event.target as HTMLElement
-            const path = eventTarget.getAttribute('href') as string;
-            window.$router.push(path);
+            window.$router.push('/');
         });
 
         this.querySelector('#search-input')?.addEventListener('keydown', event => {
             const keyEvent = event as KeyboardEvent;
             if(keyEvent.key === 'Enter') {
                 event.preventDefault();
-                this.submitEvent();
+                this.searchSubmitEvent();
             }
         });
 
         this.querySelector('#search-submit')?.addEventListener('click', event => {
             event.preventDefault();
-            this.submitEvent();
+            this.searchSubmitEvent();
         });
     }
 
-    submitEvent() {
+    searchSubmitEvent() {
         const input = this.querySelector('#search-input') as HTMLInputElement;
         window.$router.push(su.urlify(input.value));
     } 

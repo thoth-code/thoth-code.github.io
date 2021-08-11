@@ -129,6 +129,10 @@ nav>hr {
     align-items: flex-start;
 }
 
+#whiteboard>new-note {
+    align-items: center;
+}
+
 .note {
     margin: 20px;
     flex: 0 0 500px;
@@ -270,17 +274,6 @@ footer {
     display: none;
 }
 
-#new-note-overlay {
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    background-color: rgba(0, 0, 0, 0.25);
-    display: none;
-    justify-content: space-evenly;
-    align-items: center;
-    z-index: 2222;
-}
-
 #new-note {
     padding: 9px;
     margin: 20px;
@@ -334,7 +327,9 @@ footer {
 .save-note-guide {
     font-size: 30px;
     font-weight: bold;
-    color: white;
+    color: black;
+    display: inline-block;
+    width: 250px;
 }
 
 #save-container {
