@@ -104,9 +104,6 @@ export default class NewNote extends Component {
                 tag: tags,
                 ref: refs,
             });
-            insertMode();
-            clearInputs();
-            window.$router.pushWithRefresh('/');
         });
 
         //Maintain note
