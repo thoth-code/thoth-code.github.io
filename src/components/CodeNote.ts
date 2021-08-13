@@ -2,6 +2,7 @@ import { st } from "state-types";
 import Component from "../domain/component";
 import * as codeUtils from '../tools/codeUtils';
 import * as clipboardUtils from '../tools/clipboardUtils';
+import { getUID } from "../tools/cookieUtils";
 
 export default class CodeNote extends Component {
     constructor() {
@@ -9,11 +10,7 @@ export default class CodeNote extends Component {
     }
 
     get template() {
-        return `<div class="note-controll-box">
-                    <button type="button" class="note-controll-btn to-my-board"><i class="bi bi-box-arrow-in-up-right"></i></button>
-                    <button type="button" class="note-controll-btn edit-note"><i class="bi bi-eraser"></i></button>
-                    <button type="button" class="note-controll-btn delete-note"><i class="bi bi-trash"></i></button>
-                </div>
+        return `<div class="note-controll-box"><div class="note-controll-btns" style="display: none;"></div></div>
                 <h1 class="note-title"></h1>
                 <div class="note-code-box">
                     <div class="copy-code-btn-box">
@@ -50,6 +47,14 @@ export default class CodeNote extends Component {
                 return `<a href="${row}" class="ref-link" target="_blank">${row}</a>`;
             }).join("<br/>");
         }
+
+        const controllBox = this.querySelector(".note-controll-btns") as HTMLElement;
+        const uid = getUID();
+        if(uid === note.uid) {
+            controllBox.innerHTML = '<button type="button" class="note-controll-btn edit-note"><i class="bi bi-eraser"></i></button> <button type="button" class="note-controll-btn delete-note"><i class="bi bi-trash"></i></button>'
+        } else if(uid !== "") {
+            controllBox.innerHTML = '<button type="button" class="note-controll-btn to-my-board"><i class="bi bi-box-arrow-in-up-right"></i></button>'
+        }
     }
 
     addEvents() {
@@ -62,6 +67,14 @@ export default class CodeNote extends Component {
             } else {
                 content.style.maxHeight = content.scrollHeight + "px";
             } 
+        });
+
+        const controllBox = this.querySelector(".note-controll-btns") as HTMLElement;
+        this.addEventListener("mouseover", () => {
+            controllBox.style.display = "block";
+        });
+        this.addEventListener("mouseleave", () => {
+            controllBox.style.display = "none";
         });
 
         const copyBtn = this.querySelector('.copy-code-btn') as HTMLElement;

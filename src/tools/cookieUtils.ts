@@ -6,6 +6,15 @@ export function deleteAccessToken() {
     deleteCookie('accessToken');
 }
 
+export function getUID(): string {
+    const accessToken = document.cookie.split(";").find(row => row.startsWith("accessToken"));
+    if(typeof accessToken !== "undefined") {
+        const payload = JSON.parse(window.atob(accessToken.split("=")[1].split(".")[1]))
+        return payload.uid
+    }
+    return "";
+}
+
 // Ref: https://stackoverflow.com/questions/2144386/how-to-delete-a-cookie
 function deleteCookie(name: string) {
     if( get_cookie( name ) ) {
