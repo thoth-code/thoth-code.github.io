@@ -90,7 +90,8 @@ export default class CodeNote extends Component {
             // TODO: move edit note page
             console.warn("TODO: move edit note page");
             window.$store.dispatch("putNote", {
-                oid: note.oid,
+                nid: note.nid,
+                uid: note.uid,
                 title: "modified-title",
                 code: "modified-code",
                 tag: ["modified-lang"],
@@ -100,7 +101,7 @@ export default class CodeNote extends Component {
 
         this.querySelector(".delete-note")?.addEventListener("click", event => {
             event.preventDefault();
-            window.$store.dispatch("deleteNote", `/${note.oid}`);
+            window.$store.dispatch("deleteNote", `/${note.nid}`);
         });
 
         this.querySelector(".to-my-board")?.addEventListener("click", event => {

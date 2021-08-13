@@ -26,7 +26,7 @@ declare module 'state-types' {
 
         type error = {error: string};
         type userInfo = {uname?: string, email: string, password: string};
-        type note = {oid: string, title: string, code: string, tag: string[], ref: string[]};
+        type note = {nid: string, uid: string, title: string, code: string, tag: string[], ref: string[]};
         type flag = {title: string, path: string};
         type reqParamQuery = string;
 
