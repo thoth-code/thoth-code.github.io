@@ -7,8 +7,7 @@ export default class MainApp extends Component {
     };
 
     get template() {
-        return `<!-- Presets -->
-                <header class="row space-between m26">
+        return `<header class="row space-between m26">
                     <div id="logo-box">
                         <a href="/" id="logo">Thoth</a>
                     </div>

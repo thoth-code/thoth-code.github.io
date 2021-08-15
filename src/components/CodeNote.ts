@@ -26,6 +26,7 @@ export default class CodeNote extends Component {
     }
 
     propsHandler(props: string) {
+        // Note contents
         const idx = parseInt(this.getAttribute('note-idx') as string);
         const note = window.$store.state["notes"][idx] as st.note;
 
@@ -38,6 +39,7 @@ export default class CodeNote extends Component {
         const tag = this.querySelector('.note-tags') as HTMLElement;
         tag.innerText = note.tag.join(" ");
 
+        // References
         if(note.ref.length === 0) {
             const ref = this.querySelector('.note-refs') as HTMLElement;
             ref.style.display = "none";
@@ -48,6 +50,7 @@ export default class CodeNote extends Component {
             }).join("<br/>");
         }
 
+        // Note controll buttons
         const controllBox = this.querySelector(".note-controll-btns") as HTMLElement;
         const uid = getUID();
         if(uid === note.uid) {
@@ -58,6 +61,10 @@ export default class CodeNote extends Component {
     }
 
     addEvents() {
+        /**
+         * Code references
+         */
+        // Show note references
         this.querySelector(".collapse-btn")?.addEventListener("click", event => {
             const self = event.target as HTMLElement;
             self.classList.toggle("active");
@@ -69,6 +76,32 @@ export default class CodeNote extends Component {
             } 
         });
 
+        /**
+         * Note copy
+         */
+        const copyBtn = this.querySelector('.copy-code-btn') as HTMLElement;
+        const copyBtnBox = this.querySelector('.copy-code-btn-box') as HTMLElement;
+        // When copy
+        copyBtn.addEventListener("click", event => {
+            event.preventDefault();
+            const code = this.querySelector(".note-code") as HTMLElement;
+            clipboardUtils.copy(code.innerText);
+            copyBtn.innerHTML = `<i class="bi bi-clipboard-check"></i>`;
+        });
+        // When hover
+        this.querySelector('.note-code-box')?.addEventListener('mouseover', () => {
+            copyBtnBox.style.display = "block";
+        });
+        // When not hover
+        this.querySelector('.note-code-box')?.addEventListener('mouseleave', () => {
+            copyBtnBox.style.display = "none";
+            copyBtn.innerHTML = `<i class="bi bi-clipboard"></i>`;
+        });
+
+        /**
+         * Note controlls
+         */
+        // Show note controlls
         const controllBox = this.querySelector(".note-controll-btns") as HTMLElement;
         this.addEventListener("mouseover", () => {
             controllBox.style.display = "block";
@@ -77,37 +110,19 @@ export default class CodeNote extends Component {
             controllBox.style.display = "none";
         });
 
-        const copyBtn = this.querySelector('.copy-code-btn') as HTMLElement;
-        const copyBtnBox = this.querySelector('.copy-code-btn-box') as HTMLElement;
-        copyBtn.addEventListener("click", event => {
-            event.preventDefault();
-            const code = this.querySelector(".note-code") as HTMLElement;
-            clipboardUtils.copy(code.innerText);
-            copyBtn.innerHTML = `<i class="bi bi-clipboard-check"></i>`;
-        });
-
-        this.querySelector('.note-code-box')?.addEventListener('mouseover', () => {
-            copyBtnBox.style.display = "block";
-        });
-
-        this.querySelector('.note-code-box')?.addEventListener('mouseleave', () => {
-            copyBtnBox.style.display = "none";
-            copyBtn.innerHTML = `<i class="bi bi-clipboard"></i>`;
-        });
-
         const idx = parseInt(this.getAttribute('note-idx') as string);
         const note = window.$store.state["notes"][idx] as st.note;
-
+        // Note edit
         this.querySelector(".edit-note")?.addEventListener("click", event => {
             event.preventDefault();
             window.$router.push('/note/edit/' + idx)
         });
-
+        // Note delete
         this.querySelector(".delete-note")?.addEventListener("click", event => {
             event.preventDefault();
             window.$store.dispatch("deleteNote", `/${note.nid}`);
         });
-
+        // Note attach
         this.querySelector(".to-my-board")?.addEventListener("click", event => {
             event.preventDefault();
             // TODO: to my board request body

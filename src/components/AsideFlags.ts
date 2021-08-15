@@ -70,8 +70,8 @@ export default class AsideFlags extends Component{
             if(typeof path === 'string') {
                 link.addEventListener('click', event => {
                     event.preventDefault();
-                    let pid = link.parentElement?.id as string
-                    this.setZIndex(pid);
+                    let lid = link.parentElement?.id as string
+                    this.setZIndex(lid);
                     window.$router.push(path);
                 });
             }
