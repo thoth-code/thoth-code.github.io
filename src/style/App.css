@@ -129,7 +129,7 @@ nav>hr {
     align-items: flex-start;
 }
 
-#whiteboard>new-note {
+#whiteboard>.editor {
     align-items: center;
 }
 
@@ -274,7 +274,7 @@ footer {
     display: none;
 }
 
-#new-note {
+.note-editor {
     padding: 9px;
     margin: 20px;
     height: 655px;
@@ -283,7 +283,7 @@ footer {
     border-radius: 2px;
 }
 
-#new-note-title {
+.title-editor {
     border-bottom: 1px dotted black;
     font-size: 15px;
 }
@@ -294,7 +294,7 @@ footer {
     font-size: 40px;
 }
 
-#new-note-code {
+.code-editor {
     height: 500px;
 }
 
@@ -309,16 +309,16 @@ footer {
     padding: 10px;
 }
 
-#new-note-tag {
+.tag-editor {
     display: block;
 }
 
-#input-tag {
+#input-tags {
     background: #F5F5DC;
     font-size: 15px;
 }
 
-#input-ref {
+#input-refs {
     background: #F5F5DC;
     font-size: 15px;
     height: 50px;

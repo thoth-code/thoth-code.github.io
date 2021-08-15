@@ -100,16 +100,7 @@ export default class CodeNote extends Component {
 
         this.querySelector(".edit-note")?.addEventListener("click", event => {
             event.preventDefault();
-            // TODO: move edit note page
-            console.warn("TODO: move edit note page");
-            window.$store.dispatch("putNote", {
-                nid: note.nid,
-                uid: note.uid,
-                title: "modified-title",
-                code: "modified-code",
-                tag: ["modified-lang"],
-                ref: ["modified-ref"],
-            });
+            window.$router.push('/note/edit/' + idx)
         });
 
         this.querySelector(".delete-note")?.addEventListener("click", event => {

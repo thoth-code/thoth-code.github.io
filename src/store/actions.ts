@@ -113,7 +113,7 @@ const actions: st.actions = {
             alert(err);
             console.error(err);
         }).finally(() => {
-            window.$router.refresh();
+            window.$router.pushWithRefresh('/');
         });
     },
     deleteNote(context, data) {

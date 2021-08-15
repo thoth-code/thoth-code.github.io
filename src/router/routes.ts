@@ -23,7 +23,12 @@ export default function routes(path: string): st.elementForm {
         case '/note/new' :
             return {
                 component: 'new-note',
-                attributes: []
+                attributes: [
+                    {
+                        name: "class",
+                        value: "editor",
+                    },
+                ]
             }
         default :
         /**
@@ -34,6 +39,16 @@ export default function routes(path: string): st.elementForm {
                     component: 'searched-notes',
                     attributes: [],
                 };
+            } else if(/\/note\/edit\/.*/.test(path)) {
+                return {
+                    component: 'edit-note',
+                    attributes: [
+                        {
+                            name: "class",
+                            value: "editor",
+                        },
+                    ],
+                }
             } else {
                 return {
                     component: path,
