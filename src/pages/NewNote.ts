@@ -13,19 +13,19 @@ export default class NewNote extends Component {
 
     get template() {
         return `<span class="save-note-guide">Click Outside to Save</span>
-                <article id="new-note">
+                <article class="note-editor">
                     <div id="input-container">
-                        <h1 id="new-note-title">
+                        <h1 class="title-editor">
                             <input placeholder="Title" id="input-title" />
                         </h1>
-                        <p id="new-note-code">
+                        <p class="code-editor">
                             <textarea autocomplete="off" spellcheck="false" placeholder="Write Code..." id="input-code"></textarea>
                         </p>
-                        <span id="new-note-tag">
-                            <input placeholder="@language" id="input-tag" />
+                        <span class="tag-editor">
+                            <input placeholder="@language" id="input-tags" />
                         </span>
-                        <div id="new-note-ref">
-                            <textarea autocomplete="off" spellcheck="false" placeholder="Source of this code! (separate with enters or spaces)" id="input-ref"></textarea>
+                        <div class="ref-editor">
+                            <textarea autocomplete="off" spellcheck="false" placeholder="Source of this code! (separate with enters or spaces)" id="input-refs"></textarea>
                         </div>
                     </div>
                     <div id="save-container">
@@ -40,7 +40,7 @@ export default class NewNote extends Component {
 
     addEvents() {
         this.addButtonEvents();
-        this.addCodeBoxEvents();
+        codeUtils.addCodeBoxEvents(this.querySelector('#input-code') as HTMLInputElement);
     }
 
     addButtonEvents() {
@@ -50,8 +50,8 @@ export default class NewNote extends Component {
 
         const title = this.querySelector('#input-title') as HTMLInputElement;
         const code = this.querySelector('#input-code') as HTMLInputElement;
-        const tag = this.querySelector('#input-tag') as HTMLInputElement;
-        const ref = this.querySelector('#input-ref') as HTMLInputElement;
+        const tag = this.querySelector('#input-tags') as HTMLInputElement;
+        const ref = this.querySelector('#input-refs') as HTMLInputElement;
 
         const save = this.querySelector('#save-btn') as HTMLElement;
         const maintain = this.querySelector('#maintain-btn') as HTMLElement;
@@ -117,53 +117,6 @@ export default class NewNote extends Component {
             insertMode();
             clearInputs();
             window.$router.push('/');
-        });
-    }
-
-    addCodeBoxEvents() {
-        const code = this.querySelector('#input-code') as HTMLInputElement;
-        code.addEventListener('keydown', event => {
-            // Allowing Tab in Code
-            if(event.key === 'Tab') {
-                event.preventDefault();
-                let start = code.selectionStart as number;
-                let end = code.selectionEnd as number;
-                code.value = code.value.substring(0, start) + '\t' + code.value.substring(end);
-                code.selectionStart = code.selectionEnd = start + 1;
-            // Auto Indentation
-            } else if(event.key === 'Enter') {
-                event.preventDefault();
-                const start = code.selectionStart as number;
-                const end = code.selectionEnd as number;
-                const front = code.value.substring(0, start);
-                let {cnt, indents} = codeUtils.maintainIndent(front);
-                const isOpen = codeUtils.isOpen(front);
-
-                let res = code.value.substring(0, start) + '\n';
-                if(isOpen) {
-                    res += indents + '\t' + '\n' + indents;
-                    cnt++;
-                } else {                    
-                    res += indents;
-                }
-                res += code.value.substring(end);
-                code.value = res;
-                code.selectionStart = code.selectionEnd = start + 1 + cnt;
-            // Auto Brackets
-            } else if(event.key === '[' || event.key === '{' || event.key === '(' || event.key === '\"' || event.key === '\'') {
-                event.preventDefault();
-                let start = code.selectionStart as number;
-                let end = code.selectionEnd as number;
-                let nextKey = '';
-                switch(event.key) {
-                    case '[' : nextKey = ']'; break;
-                    case '{' : nextKey = '}'; break;
-                    case '(' : nextKey = ')'; break;
-                    default : nextKey = event.key;
-                }
-                code.value = code.value.substring(0, start) + event.key + nextKey + code.value.substring(end);
-                code.selectionStart = code.selectionEnd = start + 1;
-            }
         });
     }
 }
