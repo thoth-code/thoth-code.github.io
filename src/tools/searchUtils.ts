@@ -19,8 +19,6 @@ export function urlify(query: string) {
     const reqParam = queryString.stringify({
         lang,
         search,
-    }, {
-        arrayFormat: 'index',
     });
     return `/notes?${reqParam}`;
 }
