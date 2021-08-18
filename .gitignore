@@ -5,6 +5,7 @@ node_modules/
 
 #Ignore builds
 public/
+dist/
 
 #Ignore TODO
 *.log
