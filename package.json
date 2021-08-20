@@ -6,7 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack serve --mode=development",
     "build": "webpack --mode=development",
-    "todo": "git log > git.log"
+    "release": "webpack --mode=production"
   },
   "keywords": [],
   "author": "",
