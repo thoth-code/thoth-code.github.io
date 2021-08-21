@@ -84,16 +84,6 @@ const actions: st.actions = {
             window.$router.push('/signin');
         });
     },
-    getFlags(context) {
-        api.getUserFlags()
-        .then(res => {
-            if(res.body !== null) {
-                res.json().then(json => {
-                    context.commit("flags", 'addFlags', json as st.flag[]);
-                })
-            }
-        })
-    },
     putNote(context, data) {
         api.putNote(data as st.note)
         .then(res => {

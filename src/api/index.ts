@@ -30,10 +30,6 @@ export async function postUserInfo(userInfo: st.userInfo) {
     });
 }
 
-export async function getUserFlags() {
-    return fetch(`${config.baseUrl}/api/flags`)
-}
-
 export async function putNote(note: st.note) {
     return fetch(`${config.baseUrl}/api/note`, {
         method: 'PUT',
