@@ -127,7 +127,9 @@ export default class CodeNote extends Component {
             event.preventDefault();
             // TODO: to my board request body
             console.warn("TODO: to my board request body");
-            window.$store.dispatch("postMyBoard", note);
+            window.$store.dispatch("postMyBoard", {
+                nid: note._id.$oid,
+            });
         });
     }
 }

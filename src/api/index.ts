@@ -45,7 +45,7 @@ export async function deleteNote(param: st.reqParamQuery) {
     })
 }
 
-export async function postMyBoard(note: st.note) {
+export async function postMyBoard(note: st.nid) {
     return fetch(`${config.baseUrl}/api/myboard`, {
         method: 'POST',
         body: JSON.stringify(note),

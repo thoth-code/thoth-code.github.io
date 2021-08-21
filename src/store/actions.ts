@@ -129,7 +129,7 @@ const actions: st.actions = {
         });
     },
     postMyBoard(context, data) {
-        api.postMyBoard(data as st.note)
+        api.postMyBoard(data as st.nid)
         .then(res => {
             if(res.body !== null) {
                 res.json().then(json => {
