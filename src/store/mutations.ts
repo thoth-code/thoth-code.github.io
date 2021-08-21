@@ -5,10 +5,6 @@ let mutations: st.mutations = {
         notes = <st.note[]>payload;
         return notes;
     },
-    addFlags(flags, payload) {
-        flags = <st.flag[]>payload;
-        return flags
-    }
 }
 
 export default mutations;
