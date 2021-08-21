@@ -10,7 +10,7 @@ export default class AsideFlags extends Component{
         if(cu.isAcceptTokenAvailable()) {
             return `<ul id="aside-items">
                         <li id="l0"><a id="sign-out">Sign Out</a></li>
-                        <li id="l1"><a href="/my-board">MyBoard</a></li>
+                        <li id="l1"><a href="/myboard">MyBoard</a></li>
                     </ul>`;
         } else {
             return `<ul id="aside-items">

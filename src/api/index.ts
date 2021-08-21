@@ -49,3 +49,10 @@ export async function postMyBoard(note: st.note) {
         body: JSON.stringify(note),
     });
 }
+
+export async function getMyBoard() {
+    return fetch(`${config.baseUrl}/api/myboard`, {
+        method: "GET",
+        credentials: 'include',
+    });
+}

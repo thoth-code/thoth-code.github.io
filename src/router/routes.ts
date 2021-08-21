@@ -28,8 +28,13 @@ export default function routes(path: string): st.elementForm {
                         name: "class",
                         value: "editor",
                     },
-                ]
-            }
+                ],
+            };
+        case '/myboard' :
+            return {
+                component: 'my-board',
+                attributes: [],
+            };
         default :
         /**
          * DYNAMIC ROUTES

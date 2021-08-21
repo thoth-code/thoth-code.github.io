@@ -148,6 +148,18 @@ const actions: st.actions = {
             console.error(err);
         });
     },
+    getMyBoard(context) {
+        api.getMyBoard()
+        .then(response => {
+            if(response.body !== null) {
+                response.json().then(json => {
+                    context.commit("notes", 'addNotes', json as st.note[]);
+                });
+            }
+        }).catch(err => {
+            console.error(err);
+        });
+    }
 }
 
 export default actions;
