@@ -121,7 +121,7 @@ export default class EditNote extends Component {
             const tags = tag.value.split(" ");
             const refs = ref.value.split(/\s+/g);
             window.$store.dispatch('putNote', {
-                nid: note.nid,
+                _id: {$oid: ""},
                 uid: note.uid,
                 title: title.value,
                 code: code.value,

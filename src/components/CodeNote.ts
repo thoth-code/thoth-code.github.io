@@ -120,7 +120,7 @@ export default class CodeNote extends Component {
         // Note delete
         this.querySelector(".delete-note")?.addEventListener("click", event => {
             event.preventDefault();
-            window.$store.dispatch("deleteNote", `/${note.nid}`);
+            window.$store.dispatch("deleteNote", `/${note._id.$oid}`);
         });
         // Note attach
         this.querySelector(".to-my-board")?.addEventListener("click", event => {
