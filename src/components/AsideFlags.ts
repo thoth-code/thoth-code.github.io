@@ -30,19 +30,15 @@ export default class AsideFlags extends Component{
                 '#89CFF0', // Blue
             ],
         };
-        const items = this.querySelector('#aside-items')?.children as HTMLCollection;
-        for(let i = 0; i < items.length; i++) {
-            let item = items.item(i) as HTMLElement;
-            item.style.backgroundColor = config.color[i%config.color.length];
-            item.style.zIndex = `${items.length - i - 1}`;
-        }
 
         let i = 0;
+        let selected = "l0";
         this.querySelectorAll('li').forEach(item => {
             item.style.backgroundColor = config.color[i++ % config.color.length];
+            selected = item.children.item(0)?.getAttribute("href") === window.location.pathname ? item.id : selected;
         });
 
-        this.setZIndex("l0");
+        this.setZIndex(selected);
     }
 
     addEvents() {
