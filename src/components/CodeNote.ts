@@ -2,7 +2,7 @@ import { st } from "state-types";
 import Component from "../domain/component";
 import * as codeUtils from '../tools/codeUtils';
 import * as clipboardUtils from '../tools/clipboardUtils';
-import { getUID } from "../tools/cookieUtils";
+import { getUID, isAcceptTokenAvailable } from "../tools/cookieUtils";
 
 export default class CodeNote extends Component {
     constructor() {
@@ -54,10 +54,8 @@ export default class CodeNote extends Component {
         const controllBox = this.querySelector(".note-controll-btns") as HTMLElement;
         const uid = getUID();
         let btns = '<button type="button" class="note-controll-btn to-my-board"><i class="bi bi-box-arrow-in-up-right"></i></button>';
-        if(uid === note.uid) {
-            btns += ' <button type="button" class="note-controll-btn edit-note"><i class="bi bi-eraser"></i></button> <button type="button" class="note-controll-btn delete-note"><i class="bi bi-trash"></i></button>'
-        }
-        controllBox.innerHTML = btns;
+        btns += uid === note.uid ? ' <button type="button" class="note-controll-btn edit-note"><i class="bi bi-eraser"></i></button> <button type="button" class="note-controll-btn delete-note"><i class="bi bi-trash"></i></button>' : "";
+        controllBox.innerHTML = isAcceptTokenAvailable() ? btns : "";
     }
 
     addEvents() {
