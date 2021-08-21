@@ -53,11 +53,11 @@ export default class CodeNote extends Component {
         // Note controll buttons
         const controllBox = this.querySelector(".note-controll-btns") as HTMLElement;
         const uid = getUID();
+        let btns = '<button type="button" class="note-controll-btn to-my-board"><i class="bi bi-box-arrow-in-up-right"></i></button>';
         if(uid === note.uid) {
-            controllBox.innerHTML = '<button type="button" class="note-controll-btn edit-note"><i class="bi bi-eraser"></i></button> <button type="button" class="note-controll-btn delete-note"><i class="bi bi-trash"></i></button>'
-        } else if(uid !== "") {
-            controllBox.innerHTML = '<button type="button" class="note-controll-btn to-my-board"><i class="bi bi-box-arrow-in-up-right"></i></button>'
+            btns += ' <button type="button" class="note-controll-btn edit-note"><i class="bi bi-eraser"></i></button> <button type="button" class="note-controll-btn delete-note"><i class="bi bi-trash"></i></button>'
         }
+        controllBox.innerHTML = btns;
     }
 
     addEvents() {

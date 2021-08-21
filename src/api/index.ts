@@ -34,12 +34,14 @@ export async function putNote(note: st.note) {
     return fetch(`${config.baseUrl}/api/note`, {
         method: 'PUT',
         body: JSON.stringify(note),
+        credentials: 'include',
     });
 }
 
 export async function deleteNote(param: st.reqParamQuery) {
     return fetch(`${config.baseUrl}/api/note${param}`, {
         method: 'DELETE',
+        credentials: 'include',
     })
 }
 
@@ -47,6 +49,7 @@ export async function postMyBoard(note: st.note) {
     return fetch(`${config.baseUrl}/api/myboard`, {
         method: 'POST',
         body: JSON.stringify(note),
+        credentials: 'include',
     });
 }
 
