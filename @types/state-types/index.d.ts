@@ -25,13 +25,12 @@ declare module 'state-types' {
         }
 
         type error = {error: string};
-        type userInfo = {email: string, password: string};
-        type note = {nid: string, uid: string, title: string, code: string, tag: string[], ref: string[]};
-        type flag = {title: string, path: string};
+        type note = {_id: {$oid: string}, uid: string, title: string, code: string, tag: string[], ref: string[]};
         type reqParamQuery = string;
+        type reqBody = object;
 
         type stateType = note | flag
-        type actionData = note | userInfo | reqParamQuery;
+        type actionData = reqBody | reqParamQuery;
         type mutationPayload = note[] | flag[];
 
         type action = (context: StoreInterface, data?: actionData) => void;

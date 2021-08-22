@@ -41,7 +41,7 @@ export default class Store implements st.StoreInterface {
         });
     };
 
-    dispatch(actionKey: string, data: st.actionData) {
+    dispatch(actionKey: string, data?: st.actionData) {
         if(typeof this.actions[actionKey] !== 'function') {
             console.error(`Action ${actionKey} doesn't exists`);
             return false;

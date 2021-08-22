@@ -15,7 +15,7 @@ const actions: st.actions = {
         });
     },
     postNote(context, data) {
-        api.postNote(data as st.note)
+        api.postNote(data as st.reqBody)
         .then(postRes => {
             if(postRes.body !== null) {
                 postRes.json().then(json => {
@@ -37,7 +37,7 @@ const actions: st.actions = {
         });
     },
     postAuth(context, data) {
-        api.postAuth(data as st.userInfo)
+        api.postAuth(data as st.reqBody)
         .then(postRes => {
             if(postRes.body !== null) {
                 postRes.json().then(json => {
@@ -63,7 +63,7 @@ const actions: st.actions = {
         });
     },
     postUserInfo(context, data) {
-        api.postUserInfo(data as st.userInfo)
+        api.postUserInfo(data as st.reqBody)
         .then(postRes => {
             if(postRes.body !== null) {
                 postRes.json().then(json => {
@@ -84,18 +84,8 @@ const actions: st.actions = {
             window.$router.push('/signin');
         });
     },
-    getFlags(context) {
-        api.getUserFlags()
-        .then(res => {
-            if(res.body !== null) {
-                res.json().then(json => {
-                    context.commit("flags", 'addFlags', json as st.flag[]);
-                })
-            }
-        })
-    },
     putNote(context, data) {
-        api.putNote(data as st.note)
+        api.putNote(data as st.reqBody)
         .then(res => {
             if(res.body !== null) {
                 res.json().then(json => {
@@ -139,7 +129,7 @@ const actions: st.actions = {
         });
     },
     postMyBoard(context, data) {
-        api.postMyBoard(data as st.note)
+        api.postMyBoard(data as st.reqBody)
         .then(res => {
             if(res.body !== null) {
                 res.json().then(json => {
@@ -158,6 +148,18 @@ const actions: st.actions = {
             console.error(err);
         });
     },
+    getMyBoard(context) {
+        api.getMyBoard()
+        .then(response => {
+            if(response.body !== null) {
+                response.json().then(json => {
+                    context.commit("notes", 'addNotes', json as st.note[]);
+                });
+            }
+        }).catch(err => {
+            console.error(err);
+        });
+    }
 }
 
 export default actions;

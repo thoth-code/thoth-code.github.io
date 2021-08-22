@@ -1,40 +1,22 @@
-import { st } from "state-types";
 import Component from "../domain/component";
 import * as cu from '../tools/cookieUtils';
 
 export default class AsideFlags extends Component{
     constructor() {
-        super({
-            subscribe: 'flagsChange'
-        });
+        super();
     }
 
     get template() {
-        return '<ul id="aside-items"></ul>';
-    }
-
-    dispatch() {
-        window.$store.dispatch('getFlags', window.location.search)
-    }
-
-    onStateChange() {
-        const aside = this.querySelector('#aside-items') as HTMLElement;
         if(cu.isAcceptTokenAvailable()) {
-            aside.innerHTML = `
-                <li id="l0"><a id="sign-out">Sign Out</a></li>
-                <li id="l1"><a href="/my-board">MyBoard</a></li>`;
-                let i = 2
-                window.$store.state["flags"].map(row => {
-                    const refined = row as st.flag;
-                    const li = document.createElement('li')
-                    li.id = `l${i++}`;
-                    li.innerHTML = `<a href="${refined.path}">${refined.title}</a>`;
-                    aside.appendChild(li);
-                })
+            return `<ul id="aside-items">
+                        <li id="l0"><a id="sign-out">Sign Out</a></li>
+                        <li id="l1"><a href="/myboard">MyBoard</a></li>
+                    </ul>`;
         } else {
-            aside.innerHTML = `
-                <li id="l0"><a href="/signin">Sign In</a></li>
-                <li id="l1"><a href="/signup">Sign Up</a></li>`;
+            return `<ul id="aside-items">
+                        <li id="l0"><a href="/signin">Sign In</a></li>
+                        <li id="l1"><a href="/signup">Sign Up</a></li>
+                    </ul>`;
         }
     }
 
@@ -48,19 +30,15 @@ export default class AsideFlags extends Component{
                 '#89CFF0', // Blue
             ],
         };
-        const items = this.querySelector('#aside-items')?.children as HTMLCollection;
-        for(let i = 0; i < items.length; i++) {
-            let item = items.item(i) as HTMLElement;
-            item.style.backgroundColor = config.color[i%config.color.length];
-            item.style.zIndex = `${items.length - i - 1}`;
-        }
 
         let i = 0;
+        let selected = "l0";
         this.querySelectorAll('li').forEach(item => {
             item.style.backgroundColor = config.color[i++ % config.color.length];
+            selected = item.children.item(0)?.getAttribute("href") === window.location.pathname ? item.id : selected;
         });
 
-        this.setZIndex("l0");
+        this.setZIndex(selected);
     }
 
     addEvents() {

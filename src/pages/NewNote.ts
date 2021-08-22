@@ -98,8 +98,6 @@ export default class NewNote extends Component {
             const tags = tag.value.split(" ");
             const refs = ref.value.split(/\s+/g);
             window.$store.dispatch('postNote', {
-                nid: "",
-                uid: "",
                 title: title.value,
                 code: code.value,
                 tag: tags,

@@ -6,14 +6,19 @@
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Hot-reloads for development
 ```
 npm run dev
 ```
 
-### View all commits, TODOs
+### Development build
 ```
-npm run todo
+npm run build
+```
+
+### Production build
+```
+npm run release
 ```
 
 ## Travel plans

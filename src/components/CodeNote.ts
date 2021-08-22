@@ -2,7 +2,7 @@ import { st } from "state-types";
 import Component from "../domain/component";
 import * as codeUtils from '../tools/codeUtils';
 import * as clipboardUtils from '../tools/clipboardUtils';
-import { getUID } from "../tools/cookieUtils";
+import { getUID, isAcceptTokenAvailable } from "../tools/cookieUtils";
 
 export default class CodeNote extends Component {
     constructor() {
@@ -53,11 +53,9 @@ export default class CodeNote extends Component {
         // Note controll buttons
         const controllBox = this.querySelector(".note-controll-btns") as HTMLElement;
         const uid = getUID();
-        if(uid === note.uid) {
-            controllBox.innerHTML = '<button type="button" class="note-controll-btn edit-note"><i class="bi bi-eraser"></i></button> <button type="button" class="note-controll-btn delete-note"><i class="bi bi-trash"></i></button>'
-        } else if(uid !== "") {
-            controllBox.innerHTML = '<button type="button" class="note-controll-btn to-my-board"><i class="bi bi-box-arrow-in-up-right"></i></button>'
-        }
+        let btns = '<button type="button" class="note-controll-btn to-my-board"><i class="bi bi-box-arrow-in-up-right"></i></button>';
+        btns += uid === note.uid ? ' <button type="button" class="note-controll-btn edit-note"><i class="bi bi-eraser"></i></button> <button type="button" class="note-controll-btn delete-note"><i class="bi bi-trash"></i></button>' : "";
+        controllBox.innerHTML = isAcceptTokenAvailable() ? btns : "";
     }
 
     addEvents() {
@@ -120,14 +118,16 @@ export default class CodeNote extends Component {
         // Note delete
         this.querySelector(".delete-note")?.addEventListener("click", event => {
             event.preventDefault();
-            window.$store.dispatch("deleteNote", `/${note.nid}`);
+            window.$store.dispatch("deleteNote", `/${note._id.$oid}`);
         });
         // Note attach
         this.querySelector(".to-my-board")?.addEventListener("click", event => {
             event.preventDefault();
             // TODO: to my board request body
             console.warn("TODO: to my board request body");
-            window.$store.dispatch("postMyBoard", note);
+            window.$store.dispatch("postMyBoard", {
+                nid: note._id.$oid,
+            });
         });
     }
 }
