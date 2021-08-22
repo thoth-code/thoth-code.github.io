@@ -1,5 +1,6 @@
 import Component from './domain/component';
 import * as su from './tools/searchUtils';
+import * as cu from './tools/cookieUtils';
 
 export default class MainApp extends Component {
     constructor() {
@@ -29,7 +30,12 @@ export default class MainApp extends Component {
     addEvents() {
         this.querySelector('#create-new-note')?.addEventListener('click', event => {
             event.preventDefault();
-            window.$router.push('/note/new')
+            if(cu.isAcceptTokenAvailable()) {
+                window.$router.push('/note/new');
+            } else {
+                alert("Sign in first");
+                window.$router.push('/signin');
+            }
         });
 
         this.querySelector('#logo')?.addEventListener('click', event => {
