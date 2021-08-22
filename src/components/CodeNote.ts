@@ -52,10 +52,14 @@ export default class CodeNote extends Component {
 
         // Note controll buttons
         const controllBox = this.querySelector(".note-controll-btns") as HTMLElement;
-        const uid = getUID();
-        let btns = '<button type="button" class="note-controll-btn to-my-board"><i class="bi bi-box-arrow-in-up-right"></i></button>';
-        btns += uid === note.uid ? ' <button type="button" class="note-controll-btn edit-note"><i class="bi bi-eraser"></i></button> <button type="button" class="note-controll-btn delete-note"><i class="bi bi-trash"></i></button>' : "";
-        controllBox.innerHTML = isAcceptTokenAvailable() ? btns : "";
+        if(window.location.pathname === "/myboard") {
+            controllBox.innerHTML = '<button type="button" class="note-controll-btn detach-note"><i class="bi bi-trash"></i></button>';
+        } else if(isAcceptTokenAvailable()) {
+            let btns = '<button type="button" class="note-controll-btn to-my-board"><i class="bi bi-box-arrow-in-up-right"></i></button>';
+            btns += getUID() === note.uid ? ' <button type="button" class="note-controll-btn edit-note"><i class="bi bi-eraser"></i></button> <button type="button" class="note-controll-btn delete-note"><i class="bi bi-trash"></i></button>' : "";
+            controllBox.innerHTML = btns;
+            
+        }
     }
 
     addEvents() {
@@ -128,6 +132,11 @@ export default class CodeNote extends Component {
             window.$store.dispatch("postMyBoard", {
                 nid: note._id.$oid,
             });
+        });
+        // Note detach
+        this.querySelector(".detach-note")?.addEventListener("click", event => {
+            event.preventDefault();
+            window.$store.dispatch("deleteMyBoard", `/${note._id.$oid}`);
         });
     }
 }

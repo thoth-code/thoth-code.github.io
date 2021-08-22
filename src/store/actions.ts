@@ -155,7 +155,28 @@ const actions: st.actions = {
         }).catch(err => {
             console.error(err);
         });
-    }
+    },
+    deleteMyBoard(context, data) {
+        api.deleteMyBoard(data as st.reqParamQuery)
+        .then(res => {
+            if(res.body !== null) {
+                res.json().then(json => {
+                    const refined = json as st.error;
+                    if(refined.error !== null) {
+                        throw new Error(refined.error);
+                    } else {
+                        alert('Note detached');
+                        window.$router.pushWithRefresh('/');
+                    }
+                });
+            } else {
+                throw new Error('Note detach failure');
+            }
+        }).catch(err => {
+            alert(err);
+            console.error(err);
+        });
+    },
 }
 
 export default actions;

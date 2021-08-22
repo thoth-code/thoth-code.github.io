@@ -64,3 +64,10 @@ export async function getMyBoard() {
         credentials: 'include',
     });
 }
+
+export async function deleteMyBoard(param: st.reqParamQuery) {
+    return fetch(`${config.baseUrl}/myboard${param}`, {
+        method: 'DELETE',
+        credentials: 'include',
+    })
+}
