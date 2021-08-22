@@ -127,8 +127,6 @@ export default class CodeNote extends Component {
         // Note attach
         this.querySelector(".to-my-board")?.addEventListener("click", event => {
             event.preventDefault();
-            // TODO: to my board request body
-            console.warn("TODO: to my board request body");
             window.$store.dispatch("postMyBoard", {
                 nid: note._id.$oid,
             });
