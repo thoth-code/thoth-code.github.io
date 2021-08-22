@@ -1,5 +1,6 @@
 import { st } from "state-types";
 import * as api from "../api";
+import * as cookieUtils from "../tools/cookieUtils";
 
 const actions: st.actions = {
     getAllNotes(context, data) {
@@ -24,6 +25,7 @@ const actions: st.actions = {
                         throw new Error(refined.error);
                     } else {
                         alert('Note Created');
+                        window.$router.pushWithRefresh('/');
                     }
                 })
             } else {
@@ -32,8 +34,6 @@ const actions: st.actions = {
         }).catch(err => {
             alert(err);
             console.error(err);
-        }).finally(() => {
-            window.$router.pushWithRefresh('/');
         });
     },
     postAuth(context, data) {
@@ -45,8 +45,9 @@ const actions: st.actions = {
                     if(refined.error !== null) {
                         throw new Error(refined.error);
                     } else {
-                        if(document.cookie.split('=').find(row => row.startsWith('accessToken'))) {
+                        if(cookieUtils.isAcceptTokenAvailable()) {
                             alert('Sign In Success');
+                            window.$router.pushWithRefresh('/');
                         } else {
                             throw new Error('Sign In Failure');
                         }
@@ -58,8 +59,6 @@ const actions: st.actions = {
         }).catch(err => {
             alert(err);
             console.error(err);
-        }).finally(() => {
-            window.$router.pushWithRefresh('/');
         });
     },
     postUserInfo(context, data) {
@@ -72,6 +71,7 @@ const actions: st.actions = {
                         throw new Error(refined.error);
                     } else {
                         alert('Sign Up Success');
+                        window.$router.push('/signin');
                     }
                 });
             } else {
@@ -80,8 +80,6 @@ const actions: st.actions = {
         }).catch(err => {
             alert(err);
             console.error(err);
-        }).finally(() => {
-            window.$router.push('/signin');
         });
     },
     putNote(context, data) {
@@ -94,6 +92,7 @@ const actions: st.actions = {
                         throw new Error(refined.error);
                     } else {
                         alert('Note Editted');
+                        window.$router.pushWithRefresh('/');
                     }
                 });
             } else {
@@ -102,8 +101,6 @@ const actions: st.actions = {
         }).catch(err => {
             alert(err);
             console.error(err);
-        }).finally(() => {
-            window.$router.pushWithRefresh('/');
         });
     },
     deleteNote(context, data) {
@@ -116,6 +113,7 @@ const actions: st.actions = {
                         throw new Error(refined.error);
                     } else {
                         alert('Note deleted');
+                        window.$router.pushWithRefresh('/');
                     }
                 });
             } else {
@@ -124,8 +122,6 @@ const actions: st.actions = {
         }).catch(err => {
             alert(err);
             console.error(err);
-        }).finally(() => {
-            window.$router.pushWithRefresh('/');
         });
     },
     postMyBoard(context, data) {
