@@ -1,7 +1,11 @@
 import { st } from 'state-types';
 
 const config = {
-    baseUrl: 'http://saltwalks.ddns.net:3000',
+    baseUrl: 'http://localhost:5000',
+}
+
+if(process.env.NODE_ENV === 'production') {
+    config.baseUrl = 'http://saltwalks.ddns.net:5000';
 }
 
 export async function getAllNotes(query: st.reqParamQuery) {
