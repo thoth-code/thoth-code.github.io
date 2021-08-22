@@ -36,9 +36,7 @@ export default class SignIn extends Component {
 
         this.querySelector('#signup-link')?.addEventListener('click', event => {
             event.preventDefault();
-            const target = event.target as HTMLElement;
-            const path = target.getAttribute('href') as string;
-            window.$router.push(path);
+            window.$router.push("/signup");
         });
     }
 }
