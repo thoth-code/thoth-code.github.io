@@ -96,7 +96,7 @@ export default class NewNote extends Component {
         //Do save
         save.addEventListener('click', () => {
             const tags = tag.value.split(" ");
-            const refs = ref.value.split(/\s+/g);
+            const refs = ref.value === "" ? [] : ref.value.split(/\s+/g);
             window.$store.dispatch('postNote', {
                 title: title.value,
                 code: code.value,

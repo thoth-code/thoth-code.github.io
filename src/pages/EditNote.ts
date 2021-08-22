@@ -119,7 +119,7 @@ export default class EditNote extends Component {
         //Do save
         save.addEventListener('click', () => {
             const tags = tag.value.split(" ");
-            const refs = ref.value.split(/\s+/g);
+            const refs = ref.value === "" ? [] : ref.value.split(/\s+/g);
             window.$store.dispatch('putNote', {
                 nid: note._id.$oid,
                 title: title.value,
