@@ -17,6 +17,9 @@ export async function postNote(note: st.reqBody) {
         method: 'POST',
         body: JSON.stringify(note),
         credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json',
+        }
     });
 }
 
@@ -25,6 +28,9 @@ export async function postAuth(userInfo: st.reqBody) {
         method: 'POST',
         body: JSON.stringify(userInfo),
         credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json',
+        }
     });
 }
 
@@ -32,6 +38,9 @@ export async function postUserInfo(userInfo: st.reqBody) {
     return fetch(`${config.baseUrl}/signup`, {
         method: 'POST',
         body: JSON.stringify(userInfo),
+        headers: {
+            'Content-Type': 'application/json',
+        }
     });
 }
 
@@ -40,6 +49,9 @@ export async function putNote(note: st.reqBody) {
         method: 'PUT',
         body: JSON.stringify(note),
         credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json',
+        }
     });
 }
 
@@ -55,6 +67,9 @@ export async function postMyBoard(note: st.reqBody) {
         method: 'POST',
         body: JSON.stringify(note),
         credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json',
+        }
     });
 }
 
