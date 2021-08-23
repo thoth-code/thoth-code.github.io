@@ -9,7 +9,7 @@ const actions: st.actions = {
         .then(response => {
             if(response.ok) {
                 response.json().then((json: st.note[]) => {
-                    context.commit("notes", 'addNotes', json);
+                    context.commit("notes", 'assignNotes', json);
                 }).catch(errors("Cannot load notes"));
             } else {
                 throwResponseError(response);
@@ -125,8 +125,8 @@ const actions: st.actions = {
         api.getMyBoard()
         .then(response => {
             if(response.ok) {
-                response.json().then(json => {
-                    context.commit("notes", 'addNotes', json as st.note[]);
+                response.json().then((json: st.note[]) => {
+                    context.commit("notes", 'assignNotes', json);
                 }).catch(errors("Cannot load my board"));
             } else {
                 throwResponseError(response);
