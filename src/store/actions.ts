@@ -127,7 +127,7 @@ const actions: st.actions = {
     postMyBoard(context, data) {
         api.postMyBoard(data as st.reqBody)
         .then(res => {
-            if(res.body !== null) {
+            if(res.ok) {
                 res.json().then(json => {
                     const refined = json as st.error;
                     if(refined.error !== null) {
@@ -137,10 +137,10 @@ const actions: st.actions = {
                     }
                 });
             } else {
-                throw new Error('Note attach failure');
+                throw new Error(res.status + " : " + res.statusText);
             }
         }).catch(err => {
-            alert(err);
+            alert("Note attached failed");
             console.error(err);
         });
     },
@@ -166,7 +166,7 @@ const actions: st.actions = {
                         throw new Error(refined.error);
                     } else {
                         alert('Note detached');
-                        window.$router.pushWithRefresh('/');
+                        window.$router.pushWithRefresh('/myboard');
                     }
                 });
             } else {

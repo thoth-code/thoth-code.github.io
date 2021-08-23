@@ -27,18 +27,6 @@ export default class Store implements st.StoreInterface {
                 return true;
             },
         });
-        const stateList = Object.entries(params.state)
-        stateList.forEach(row => {
-            this.state[row[0]] = new Proxy(row[1], {
-                set: function(target: st.stateType[], p, value: st.stateType) {
-                    target.push(value)
-                    console.log(`[${new Date()}] State changed : ${row[0]}`);
-                    self.events.publish(`${row[0]}Change`);
-                    self.status = 'mutations';
-                    return true;
-                }
-            });
-        });
     };
 
     dispatch(actionKey: string, data?: st.actionData) {
@@ -58,7 +46,7 @@ export default class Store implements st.StoreInterface {
         }
         this.status = 'mutation';
         let newState = this.mutations[mutationKey](this.state[stateKey], payLoad);
-        this.state[stateKey] = Object.assign(this.state[stateKey], newState);
+        this.state[stateKey] = newState;
         return true;
     }
 }
