@@ -48,8 +48,6 @@ export default class EditNote extends Component {
 
         const code = this.querySelector('#input-code') as HTMLInputElement;
         code.value = note.code;
-
-        console.log(note.tag.join(" "));
         
         const tag = this.querySelector('#input-tags') as HTMLInputElement;
         tag.value = note.tag.join(" ");

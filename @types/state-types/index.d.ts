@@ -29,13 +29,13 @@ declare module 'state-types' {
         type reqParamQuery = string;
         type reqBody = object;
 
-        type stateType = note | flag
+        type stateType = note;
         type actionData = reqBody | reqParamQuery;
         type mutationPayload = note[] | flag[];
 
         type action = (context: StoreInterface, data?: actionData) => void;
         type state = {[index: string]: stateType[]};
-        type mutation = (state: stateType[], payload: mutationPayload) => void;
+        type mutation = (state: stateType[], payload: mutationPayload) => stateType[];
 
         type components = {[index: string]: ComponentInterface[]};
         type actions = {[index: string]: action};
