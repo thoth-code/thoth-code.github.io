@@ -1,181 +1,154 @@
 import { st } from "state-types";
 import * as api from "../api";
 import * as cookieUtils from "../tools/cookieUtils";
+import { errors, throwResponseError } from "../tools/errorUtils";
 
 const actions: st.actions = {
     getAllNotes(context, data) {
         api.getAllNotes(data as st.reqParamQuery)
         .then(response => {
-            if(response.body !== null) {
-                response.json().then(json => {
-                    context.commit("notes", 'addNotes', json as st.note[]);
-                });
+            if(response.ok) {
+                response.json().then((json: st.note[]) => {
+                    context.commit("notes", 'addNotes', json);
+                }).catch(errors("Cannot load notes"));
+            } else {
+                throwResponseError(response);
             }
-        }).catch(err => {
-            console.error(err);
-        });
+        }).catch(errors("Cannot load notes"));
     },
     postNote(context, data) {
         api.postNote(data as st.reqBody)
         .then(postRes => {
-            if(postRes.body !== null) {
-                postRes.json().then(json => {
-                    const refined = json as st.error;
-                    if(refined.error !== null) {
-                        throw new Error(refined.error);
+            if(postRes.ok) {
+                postRes.json().then((json: st.error) => {
+                    if(json.error !== null) {
+                        throw new Error(json.error);
                     } else {
                         alert('Note Created');
                         window.$router.pushWithRefresh('/');
                     }
-                })
+                }).catch(errors("Note creation failure"));
             } else {
-                throw new Error('Note Creation Failure');
+                throwResponseError(postRes)
             }
-        }).catch(err => {
-            alert(err);
-            console.error(err);
-        });
+        }).catch(errors("Note creation failure"));
     },
     postAuth(context, data) {
         api.postAuth(data as st.reqBody)
         .then(postRes => {
-            if(postRes.body !== null) {
-                postRes.json().then(json => {
-                    const refined = json as st.error;
-                    if(refined.error !== null) {
-                        throw new Error(refined.error);
+            if(postRes.ok) {
+                postRes.json().then((json: st.error) => {
+                    if(json.error !== null) {
+                        throw new Error(json.error);
                     } else {
                         if(cookieUtils.isAcceptTokenAvailable()) {
                             alert('Sign In Success');
                             window.$router.pushWithRefresh('/');
                         } else {
-                            throw new Error('Sign In Failure');
+                            throw new Error('Cannot save cookie');
                         }
                     }
-                });
+                }).catch(errors("Sign in failure"));
             } else {
-                throw new Error('Sign In Failure');
+                throwResponseError(postRes);
             }
-        }).catch(err => {
-            alert(err);
-            console.error(err);
-        });
+        }).catch(errors("Sign in failure"));
     },
     postUserInfo(context, data) {
         api.postUserInfo(data as st.reqBody)
         .then(postRes => {
-            if(postRes.body !== null) {
-                postRes.json().then(json => {
-                    const refined = json as st.error;
-                    if(refined.error !== null) {
-                        throw new Error(refined.error);
+            if(postRes.ok) {
+                postRes.json().then((json: st.error) => {
+                    if(json.error !== null) {
+                        throw new Error(json.error);
                     } else {
                         alert('Sign Up Success');
                         window.$router.push('/signin');
                     }
-                });
+                }).catch(errors("Sign up failure"));
             } else {
-                throw new Error('Sign Up Failure');
+                throwResponseError(postRes);
             }
-        }).catch(err => {
-            alert(err);
-            console.error(err);
-        });
+        }).catch(errors("Sign up failure"));
     },
     putNote(context, data) {
         api.putNote(data as st.reqBody)
         .then(res => {
-            if(res.body !== null) {
-                res.json().then(json => {
-                    const refined = json as st.error;
-                    if(refined.error !== null) {
-                        throw new Error(refined.error);
+            if(res.ok) {
+                res.json().then((json: st.error) => {
+                    if(json.error !== null) {
+                        throw new Error(json.error);
                     } else {
                         alert('Note Editted');
                         window.$router.pushWithRefresh('/');
                     }
-                });
+                }).catch(errors("Note edit failure"));
             } else {
-                throw new Error('Note Edit Failure');
+                throwResponseError(res);
             }
-        }).catch(err => {
-            alert(err);
-            console.error(err);
-        });
+        }).catch(errors("Note edit failure"));
     },
     deleteNote(context, data) {
         api.deleteNote(data as st.reqParamQuery)
         .then(res => {
-            if(res.body !== null) {
-                res.json().then(json => {
-                    const refined = json as st.error;
-                    if(refined.error !== null) {
-                        throw new Error(refined.error);
+            if(res.ok) {
+                res.json().then((json: st.error) => {
+                    if(json.error !== null) {
+                        throw new Error(json.error);
                     } else {
                         alert('Note deleted');
                         window.$router.pushWithRefresh('/');
                     }
-                });
+                }).catch(errors("Note delete failure"));
             } else {
-                throw new Error('Note delete failure');
+                throwResponseError(res);
             }
-        }).catch(err => {
-            alert(err);
-            console.error(err);
-        });
+        }).catch(errors("Note delete failure"));
     },
     postMyBoard(context, data) {
         api.postMyBoard(data as st.reqBody)
         .then(res => {
             if(res.ok) {
-                res.json().then(json => {
-                    const refined = json as st.error;
-                    if(refined.error !== null) {
-                        throw new Error(refined.error);
+                res.json().then((json: st.error) => {
+                    if(json.error !== null) {
+                        throw new Error(json.error);
                     } else {
                         alert('Note attached');
                     }
-                });
+                }).catch(errors("Note attach failure"));
             } else {
-                throw new Error(res.status + " : " + res.statusText);
+                throwResponseError(res);
             }
-        }).catch(err => {
-            alert("Note attached failed");
-            console.error(err);
-        });
+        }).catch(errors("Note attach failure"));
     },
     getMyBoard(context) {
         api.getMyBoard()
         .then(response => {
-            if(response.body !== null) {
+            if(response.ok) {
                 response.json().then(json => {
                     context.commit("notes", 'addNotes', json as st.note[]);
-                });
+                }).catch(errors("Cannot load my board"));
+            } else {
+                throwResponseError(response);
             }
-        }).catch(err => {
-            console.error(err);
-        });
+        }).catch(errors("Cannot load my board"));
     },
     deleteMyBoard(context, data) {
         api.deleteMyBoard(data as st.reqParamQuery)
         .then(res => {
-            if(res.body !== null) {
-                res.json().then(json => {
-                    const refined = json as st.error;
-                    if(refined.error !== null) {
-                        throw new Error(refined.error);
+            if(res.ok) {
+                res.json().then((json: st.error) => {
+                    if(json.error !== null) {
+                        throw new Error(json.error);
                     } else {
                         alert('Note detached');
                         window.$router.pushWithRefresh('/myboard');
                     }
-                });
+                }).catch(errors("Note detach failure"));
             } else {
-                throw new Error('Note detach failure');
+                throwResponseError(res);
             }
-        }).catch(err => {
-            alert(err);
-            console.error(err);
-        });
+        }).catch(errors("Note detach failure"));
     },
 }
 
