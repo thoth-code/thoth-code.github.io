@@ -13,12 +13,22 @@ export default function routes(path: string): st.elementForm {
         case '/signin' :
             return {
                 component: 'sign-in',
-                attributes: [],
+                attributes: [
+                    {
+                        name: "class",
+                        value: "printer",
+                    },
+                ],
             };
         case '/signup' :
             return {
                 component: 'sign-up',
-                attributes: [],
+                attributes: [
+                    {
+                        name: "class",
+                        value: "printer",
+                    },
+                ],
             };
         case '/note/new' :
             return {

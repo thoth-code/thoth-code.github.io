@@ -122,7 +122,7 @@ nav>hr {
     border-top: none;
 }
 
-#whiteboard>* {
+#whiteboard .printer {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-evenly;
