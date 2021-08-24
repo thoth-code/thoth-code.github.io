@@ -1,5 +1,6 @@
 import Component from "../domain/component";
 import * as cookieUtils from "../tools/cookieUtils";
+import scrollUtils from "../tools/scrollUtils";
 
 export default class MyBoard extends Component{
     constructor() {
@@ -18,5 +19,15 @@ export default class MyBoard extends Component{
 
     render() {
         this.innerHTML = `<show-notes class="printer"></show-notes>`;
-    };
+    }
+
+    addEvents() {
+        scrollUtils.addBottomEventHandler(() => {
+            console.warn("TODO: load more my-board notes");
+        });
+    }
+
+    disconnectedCallback() {
+        scrollUtils.removeBottomEventHandler();
+    }
 }
