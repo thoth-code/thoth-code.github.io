@@ -7,7 +7,7 @@ declare module 'state-types' {
         }
         
         interface StoreInterface {
-            events: Channel;
+            events: ChannelInterface;
             actions: actions;
             mutations: mutations;
             state: state;
@@ -17,11 +17,13 @@ declare module 'state-types' {
         }
 
         interface ComponentInterface {
-            get template(): string
-            render: () => void
-            dispatch: () => void
-            addEvents: () => void
-            propsHandler: (props: string) => void
+            get template(): string;
+            connectedCallback: () => void;
+            render: () => void;
+            dispatch: () => void;
+            addEvents: () => void;
+            addStyles: () => void;
+            propsHandler: (props: string) => void;
         }
 
         type error = {error: string};

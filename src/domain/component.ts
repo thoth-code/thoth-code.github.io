@@ -20,18 +20,12 @@ export default class Component extends HTMLElement implements st.ComponentInterf
         this.addEvents();
     }
 
-    render() {
-        this.onStateChange();
-        this.addStyles();
-        this.addEvents();
-    }
-
     // Child-define methods
     get template() { return ''; }
 
+    render() {}
     dispatch() {}
     addStyles() {}
-    onStateChange() {}
     addEvents() {}
     propsHandler(props: string) {}
 }

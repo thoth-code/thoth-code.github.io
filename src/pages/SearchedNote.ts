@@ -11,7 +11,7 @@ export default class SearchedNotes extends Component{
         window.$store.dispatch('getAllNotes', window.location.search);
     }
 
-    onStateChange() {
+    render() {
         this.innerHTML = `<show-notes class="printer"></show-notes>`;
-    };
+    }
 }

@@ -16,7 +16,7 @@ export default class MyBoard extends Component{
         window.$store.dispatch('getMyBoard');
     }
 
-    onStateChange() {
+    render() {
         this.innerHTML = `<show-notes class="printer"></show-notes>`;
     };
 }
