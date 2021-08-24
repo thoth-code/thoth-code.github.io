@@ -17,7 +17,7 @@ export default class SignUp extends Component {
                             Password
                             <input type="password" id="password-input" class="sign-input" />
                         </label>
-                        <button class="sign-submit" id="signup-submit">Sign In</button>
+                        <button class="sign-submit" id="signup-submit">Sign Up</button>
                     <form>
                 </article>`;
     }
