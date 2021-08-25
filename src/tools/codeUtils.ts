@@ -1,3 +1,4 @@
+// noHTML has been DEPRECATED. use <pre><code> instead.
 export function noHTML(str: string) {
     return str.replace(/</g, '&lt;')
         .replace(/>/g, '&gt;')

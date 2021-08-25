@@ -155,7 +155,7 @@ nav>hr {
     white-space: pre-wrap;
 }
 
-.note-code {
+.note-code, .note-code * {
     font-size: 14px;
     font-family: "CODE";
 }

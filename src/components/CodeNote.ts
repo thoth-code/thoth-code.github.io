@@ -1,8 +1,8 @@
 import { st } from "state-types";
 import Component from "../domain/component";
-import * as codeUtils from '../tools/codeUtils';
 import * as clipboardUtils from '../tools/clipboardUtils';
 import { getUID, isAcceptTokenAvailable } from "../tools/cookieUtils";
+import hljs from "highlight.js";
 
 export default class CodeNote extends Component {
     constructor() {
@@ -33,11 +33,11 @@ export default class CodeNote extends Component {
         const title = this.querySelector('.note-title') as HTMLElement;
         title.innerText = note.title;
 
-        const code = this.querySelector('.note-code') as HTMLElement;
-        code.innerHTML = codeUtils.noHTML(note.code);
-
         const tag = this.querySelector('.note-tags') as HTMLElement;
         tag.innerText = note.tag.join(" ");
+
+        const code = this.querySelector('.note-code') as HTMLElement;
+        code.innerHTML = hljs.highlight(note.code, {language: note.tag[0].substring(1).toLowerCase()}).value;
 
         // References
         if(note.ref.length === 0) {
@@ -58,7 +58,6 @@ export default class CodeNote extends Component {
             let btns = '<button type="button" class="note-controll-btn to-my-board"><i class="bi bi-box-arrow-in-up-right"></i></button>';
             btns += getUID() === note.uid ? ' <button type="button" class="note-controll-btn edit-note"><i class="bi bi-eraser"></i></button> <button type="button" class="note-controll-btn delete-note"><i class="bi bi-trash"></i></button>' : "";
             controllBox.innerHTML = btns;
-            
         }
     }
 
