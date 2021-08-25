@@ -1,7 +1,12 @@
+// this function has been DEPRECATED. use <pre><code> instead.
 export function noHTML(str: string) {
     return str.replace(/</g, '&lt;')
         .replace(/>/g, '&gt;')
         .replace(/\t/g, '&emsp;&emsp;');
+}
+
+export function replaceTab(str: string) {
+    return str.replace(/\t/g, '    ');
 }
 
 export function maintainIndent(str: string) {

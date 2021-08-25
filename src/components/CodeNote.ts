@@ -3,7 +3,7 @@ import Component from "../domain/component";
 import * as clipboardUtils from '../tools/clipboardUtils';
 import { getUID, isAcceptTokenAvailable } from "../tools/cookieUtils";
 import hljs from "highlight.js";
-import { noHTML } from "../tools/codeUtils";
+import { replaceTab } from "../tools/codeUtils";
 
 export default class CodeNote extends Component {
     constructor() {
@@ -39,9 +39,9 @@ export default class CodeNote extends Component {
 
         const code = this.querySelector('.note-code') as HTMLElement;
         try {
-            code.innerHTML = hljs.highlight(note.code, {language: note.tag[0].substring(1).toLowerCase()}).value;
+            code.innerHTML = hljs.highlight(replaceTab(note.code), {language: note.tag[0].substring(1).toLowerCase()}).value;
         } catch {
-            code.innerHTML = noHTML(note.code);
+            code.innerHTML = replaceTab(note.code);
         }
 
 

@@ -42,10 +42,6 @@ body .m26 {
 }
 
 /* --------------------------------------- HEADER ------------------------------------------ */
-:host {
-    margin: 0px 60px 0px 20px;
-}
-
 header {
     position: fixed;
     width: calc(100% - 80px);
