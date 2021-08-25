@@ -29,7 +29,7 @@ input, textarea, button {
     display: flex;
 }
 
-body row>* {
+body .row>* {
     height: 100%;
 }
 
@@ -122,10 +122,14 @@ nav>hr {
     border-top: none;
 }
 
-#whiteboard .printer {
+#whiteboard .printer,
+#whiteboard>.editor {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-evenly;
+}
+
+#whiteboard .printer {
     align-items: flex-start;
 }
 
