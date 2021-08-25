@@ -66,6 +66,13 @@ export function addCodeBoxEvents(inputEl: HTMLInputElement) {
             }
             inputEl.value = inputEl.value.substring(0, start) + event.key + nextKey + inputEl.value.substring(end);
             inputEl.selectionStart = inputEl.selectionEnd = start + 1;
+        // Ignore auto-generated closed bracket
+        } else if(event.key === ']' || event.key === '}' || event.key === ')' || event.key === '\"' || event.key === '\'') {
+            const end = inputEl.selectionEnd as number;
+            if(inputEl.value.charAt(end) === event.key) {
+                event.preventDefault();
+                inputEl.selectionStart = inputEl.selectionEnd = end + 1;
+            }
         }
     });
 }
