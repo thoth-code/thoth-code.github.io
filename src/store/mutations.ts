@@ -5,6 +5,10 @@ let mutations: st.mutations = {
         notes = <st.note[]>payload;
         return notes;
     },
+    addNotes(notes, payload) {
+        const result = notes.concat(payload);
+        return result;
+    }
 }
 
 export default mutations;

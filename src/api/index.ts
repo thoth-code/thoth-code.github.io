@@ -8,7 +8,7 @@ if(process.env.NODE_ENV === 'production') {
     config.baseUrl = 'http://saltwalks.ddns.net:5000/api';
 }
 
-export async function getAllNotes(query: st.reqParamQuery) {
+export async function getSearchNotes(query: st.reqParamQuery) {
     return fetch(`${config.baseUrl}/notes${query}`);
 }
 
@@ -73,8 +73,8 @@ export async function postMyBoard(note: st.reqBody) {
     });
 }
 
-export async function getMyBoard() {
-    return fetch(`${config.baseUrl}/myboard`, {
+export async function getMyBoard(query: st.reqParamQuery) {
+    return fetch(`${config.baseUrl}/myboard${query}`, {
         method: "GET",
         credentials: 'include',
     });

@@ -3,6 +3,8 @@ import * as cookieUtils from "../tools/cookieUtils";
 import scrollUtils from "../tools/scrollUtils";
 
 export default class MyBoard extends Component{
+    count: number;
+
     constructor() {
         super({
             subscribe: 'notesChange'
@@ -11,10 +13,18 @@ export default class MyBoard extends Component{
             alert("Sign in first");
             window.$router.pushWithRefresh('/signin');
         }
+        this.count = 0;
+    }
+
+    get searchParam() {
+        const count = `count=${this.count++}`;
+        return window.location.search.startsWith('?')
+        ? window.location.search + '&' + count
+        : '?' + count;
     }
 
     dispatch() {
-        window.$store.dispatch('getMyBoard');
+        window.$store.dispatch('getInitMyBoard', this.searchParam);
     }
 
     render() {
@@ -23,7 +33,7 @@ export default class MyBoard extends Component{
 
     addEvents() {
         scrollUtils.addBottomEventHandler(() => {
-            console.warn("TODO: load more my-board notes");
+            window.$store.dispatch('getMoreMyBoard', this.searchParam);
         });
     }
 

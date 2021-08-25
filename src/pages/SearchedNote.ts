@@ -2,14 +2,24 @@ import Component from "../domain/component";
 import scrollUtils from "../tools/scrollUtils";
 
 export default class SearchedNotes extends Component{
+    count: number;
+
     constructor() {
         super({
             subscribe: 'notesChange'
         });
+        this.count = 0;
+    }
+
+    get searchParam() {
+        const count = `count=${this.count++}`;
+        return window.location.search.startsWith('?')
+        ? window.location.search + '&' + count
+        : '?' + count;
     }
 
     dispatch() {
-        window.$store.dispatch('getAllNotes', window.location.search);
+        window.$store.dispatch('getInitNotes', this.searchParam);
     }
 
     render() {
@@ -18,7 +28,7 @@ export default class SearchedNotes extends Component{
 
     addEvents() {
         scrollUtils.addBottomEventHandler(() => {
-            console.warn("TODO: load more notes");
+            window.$store.dispatch('getMoreNotes', this.searchParam);
         });
     }
 

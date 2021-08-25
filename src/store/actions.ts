@@ -4,12 +4,24 @@ import * as cookieUtils from "../tools/cookieUtils";
 import { errors, throwResponseError } from "../tools/errorUtils";
 
 const actions: st.actions = {
-    getAllNotes(context, data) {
-        api.getAllNotes(data as st.reqParamQuery)
+    getInitNotes(context, data) {
+        api.getSearchNotes(data as st.reqParamQuery)
         .then(response => {
             if(response.ok) {
                 response.json().then((json: st.note[]) => {
                     context.commit("notes", 'assignNotes', json);
+                }).catch(errors("Cannot load notes"));
+            } else {
+                throwResponseError(response);
+            }
+        }).catch(errors("Cannot load notes"));
+    },
+    getMoreNotes(context, data) {
+        api.getSearchNotes(data as st.reqParamQuery)
+        .then(response => {
+            if(response.ok) {
+                response.json().then((json: st.note[]) => {
+                    context.commit("notes", 'addNotes', json);
                 }).catch(errors("Cannot load notes"));
             } else {
                 throwResponseError(response);
@@ -121,12 +133,24 @@ const actions: st.actions = {
             }
         }).catch(errors("Note attach failure"));
     },
-    getMyBoard(context) {
-        api.getMyBoard()
+    getInitMyBoard(context, data) {
+        api.getMyBoard(data as st.reqParamQuery)
         .then(response => {
             if(response.ok) {
                 response.json().then((json: st.note[]) => {
                     context.commit("notes", 'assignNotes', json);
+                }).catch(errors("Cannot load my board"));
+            } else {
+                throwResponseError(response);
+            }
+        }).catch(errors("Cannot load my board"));
+    },
+    getMoreMyBoard(context, data) {
+        api.getMyBoard(data as st.reqParamQuery)
+        .then(response => {
+            if(response.ok) {
+                response.json().then((json: st.note[]) => {
+                    context.commit("notes", 'addNotes', json);
                 }).catch(errors("Cannot load my board"));
             } else {
                 throwResponseError(response);
