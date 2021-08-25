@@ -3,6 +3,7 @@ import Component from "../domain/component";
 import * as clipboardUtils from '../tools/clipboardUtils';
 import { getUID, isAcceptTokenAvailable } from "../tools/cookieUtils";
 import hljs from "highlight.js";
+import { noHTML } from "../tools/codeUtils";
 
 export default class CodeNote extends Component {
     constructor() {
@@ -37,7 +38,12 @@ export default class CodeNote extends Component {
         tag.innerText = note.tag.join(" ");
 
         const code = this.querySelector('.note-code') as HTMLElement;
-        code.innerHTML = hljs.highlight(note.code, {language: note.tag[0].substring(1).toLowerCase()}).value;
+        try {
+            code.innerHTML = hljs.highlight(note.code, {language: note.tag[0].substring(1).toLowerCase()}).value;
+        } catch {
+            code.innerHTML = noHTML(note.code);
+        }
+
 
         // References
         if(note.ref.length === 0) {
