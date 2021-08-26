@@ -38,12 +38,16 @@ export default class CodeNote extends Component {
         tag.innerText = note.tag.join(" ");
 
         const code = this.querySelector('.note-code') as HTMLElement;
-        try {
-            code.innerHTML = hljs.highlight(replaceTab(note.code), {language: note.tag[0].substring(1).toLowerCase()}).value;
-        } catch {
+        const highlightable = note.tag.filter(row => {
+            return hljs.listLanguages().includes(row.substring(1).toLowerCase())
+        });
+        if(highlightable.length === 0) {
             code.innerHTML = replaceTab(note.code);
+        } else {
+            code.innerHTML = hljs.highlight(replaceTab(note.code), {
+                language: highlightable[0].substring(1).toLowerCase()
+            }).value;
         }
-
 
         // References
         if(note.ref.length === 0) {
