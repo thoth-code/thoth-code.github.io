@@ -2,6 +2,7 @@ import { st } from "state-types";
 import * as api from "../api";
 import * as cookieUtils from "../tools/cookieUtils";
 import { errors, throwResponseError } from "../tools/errorUtils";
+import * as exceptionUtils from "../tools/exceptionUtils";
 
 const actions: st.actions = {
     getInitNotes(context, data) {
@@ -34,7 +35,10 @@ const actions: st.actions = {
             if(postRes.ok) {
                 postRes.json().then((json: st.error) => {
                     if(json.error !== null) {
-                        throw new Error(json.error);
+                        const err = exceptionUtils.handle(json.error);
+                        if(err !== null) {
+                            throw err;
+                        }
                     } else {
                         alert('Note Created');
                         window.$router.pushWithRefresh('/');
@@ -51,7 +55,10 @@ const actions: st.actions = {
             if(postRes.ok) {
                 postRes.json().then((json: st.error) => {
                     if(json.error !== null) {
-                        throw new Error(json.error);
+                        const err = exceptionUtils.handle(json.error);
+                        if(err !== null) {
+                            throw err;
+                        }
                     } else {
                         if(cookieUtils.isAccessTokenAvailable()) {
                             alert('Sign In Success');
@@ -72,7 +79,10 @@ const actions: st.actions = {
             if(postRes.ok) {
                 postRes.json().then((json: st.error) => {
                     if(json.error !== null) {
-                        throw new Error(json.error);
+                        const err = exceptionUtils.handle(json.error);
+                        if(err !== null) {
+                            throw err;
+                        }
                     } else {
                         alert('Sign Up Success');
                         window.$router.push('/signin');
@@ -89,7 +99,10 @@ const actions: st.actions = {
             if(res.ok) {
                 res.json().then((json: st.error) => {
                     if(json.error !== null) {
-                        throw new Error(json.error);
+                        const err = exceptionUtils.handle(json.error);
+                        if(err !== null) {
+                            throw err;
+                        }
                     } else {
                         alert('Note Editted');
                         window.$router.pushWithRefresh('/');
@@ -106,7 +119,10 @@ const actions: st.actions = {
             if(res.ok) {
                 res.json().then((json: st.error) => {
                     if(json.error !== null) {
-                        throw new Error(json.error);
+                        const err = exceptionUtils.handle(json.error);
+                        if(err !== null) {
+                            throw err;
+                        }
                     } else {
                         alert('Note deleted');
                         window.$router.pushWithRefresh('/');
@@ -123,7 +139,10 @@ const actions: st.actions = {
             if(res.ok) {
                 res.json().then((json: st.error) => {
                     if(json.error !== null) {
-                        throw new Error(json.error);
+                        const err = exceptionUtils.handle(json.error);
+                        if(err !== null) {
+                            throw err;
+                        }
                     } else {
                         alert('Note attached');
                     }
@@ -163,7 +182,10 @@ const actions: st.actions = {
             if(res.ok) {
                 res.json().then((json: st.error) => {
                     if(json.error !== null) {
-                        throw new Error(json.error);
+                        const err = exceptionUtils.handle(json.error);
+                        if(err !== null) {
+                            throw err;
+                        }
                     } else {
                         alert('Note detached');
                         window.$router.pushWithRefresh('/myboard');
@@ -180,7 +202,10 @@ const actions: st.actions = {
             if(res.ok) {
                 res.json().then((json: st.error) => {
                     if(json.error !== null) {
-                        throw new Error(json.error);
+                        const err = exceptionUtils.handle(json.error);
+                        if(err !== null) {
+                            throw err;
+                        }
                     } else {
                         alert('Note Editted');
                         window.$router.pushWithRefresh('/');
