@@ -118,13 +118,18 @@ export default class EditNote extends Component {
         save.addEventListener('click', () => {
             const tags = tag.value.split(" ");
             const refs = ref.value === "" ? [] : ref.value.split(/\s+/g);
-            window.$store.dispatch('putNote', {
+            const reqBody = {
                 nid: note._id.$oid,
                 title: title.value,
                 code: code.value,
                 tag: tags,
                 ref: refs,
-            });
+            }
+            if(window.location.pathname.startsWith("/myboard")) {
+                window.$store.dispatch('putMyBoard', reqBody);
+            } else {
+                window.$store.dispatch('putNote', reqBody);
+            }
         });
 
         //Maintain note

@@ -86,3 +86,14 @@ export async function deleteMyBoard(param: st.reqParamQuery) {
         credentials: 'include',
     })
 }
+
+export async function putMyBoard(note: st.reqBody) {
+    return fetch(`${config.baseUrl}/myboard`, {
+        method: 'PUT',
+        body: JSON.stringify(note),
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    });
+}

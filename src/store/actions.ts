@@ -174,6 +174,23 @@ const actions: st.actions = {
             }
         }).catch(errors("Note detach failure"));
     },
+    putMyBoard(context, data) {
+        api.putMyBoard(data as st.reqBody)
+        .then(res => {
+            if(res.ok) {
+                res.json().then((json: st.error) => {
+                    if(json.error !== null) {
+                        throw new Error(json.error);
+                    } else {
+                        alert('Note Editted');
+                        window.$router.pushWithRefresh('/');
+                    }
+                }).catch(errors("Note edit failure"));
+            } else {
+                throwResponseError(res);
+            }
+        }).catch(errors("Note edit failure"));
+    },
 }
 
 export default actions;

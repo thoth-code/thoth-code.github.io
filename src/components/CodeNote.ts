@@ -63,10 +63,10 @@ export default class CodeNote extends Component {
         // Note controll buttons
         const controllBox = this.querySelector(".note-controll-btns") as HTMLElement;
         if(window.location.pathname === "/myboard") {
-            controllBox.innerHTML = '<button type="button" class="note-controll-btn detach-note"><i class="bi bi-trash"></i></button>';
+            controllBox.innerHTML = '<button type="button" class="note-controll-btn edit-my-board"><i class="bi bi-pencil-square"></i></button> <button type="button" class="note-controll-btn detach-note"><i class="bi bi-trash"></i></button>';
         } else if(isAccessTokenAvailable()) {
             let btns = '<button type="button" class="note-controll-btn to-my-board"><i class="bi bi-box-arrow-in-up-right"></i></button>';
-            btns += getUID() === note.uid ? ' <button type="button" class="note-controll-btn edit-note"><i class="bi bi-eraser"></i></button> <button type="button" class="note-controll-btn delete-note"><i class="bi bi-trash"></i></button>' : "";
+            btns += getUID() === note.uid ? ' <button type="button" class="note-controll-btn edit-note"><i class="bi bi-pencil-square"></i></button> <button type="button" class="note-controll-btn delete-note"><i class="bi bi-trash"></i></button>' : "";
             controllBox.innerHTML = btns;
         }
     }
@@ -144,6 +144,10 @@ export default class CodeNote extends Component {
         this.querySelector(".detach-note")?.addEventListener("click", event => {
             event.preventDefault();
             window.$store.dispatch("deleteMyBoard", `/${note._id.$oid}`);
+        });
+        this.querySelector(".edit-my-board")?.addEventListener("click", event => {
+            event.preventDefault();
+            window.$router.push('/myboard/edit/' + idx)
         });
     }
 }

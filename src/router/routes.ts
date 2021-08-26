@@ -49,6 +49,11 @@ export default function routes(path: string): st.elementForm {
                     component: 'searched-notes',
                     attributes: [],
                 };
+            } else if(/\/myboard.*/.test(path)) {
+                return {
+                    component: 'my-board',
+                    attributes: [],
+                };
             } else if(/\/note\/edit\/.*/.test(path)) {
                 return {
                     component: 'edit-note',
@@ -59,11 +64,16 @@ export default function routes(path: string): st.elementForm {
                         },
                     ],
                 }
-            } else if(/\/myboard.*/.test(path)) {
+            } else if(/\/myboard\/edit\/.*/.test(path)) {
                 return {
-                    component: 'my-board',
-                    attributes: [],
-                };
+                    component: 'edit-note',
+                    attributes: [
+                        {
+                            name: "class",
+                            value: "editor",
+                        },
+                    ],
+                }
             } else {
                 return {
                     component: path,
