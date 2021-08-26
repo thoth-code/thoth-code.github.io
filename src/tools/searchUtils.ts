@@ -1,6 +1,6 @@
 import queryString from 'query-string'
 
-export function urlify(query: string) {
+export function urlify(path: string, query: string) {
     let search = '';
     let lang: string[] = []
     let ptr = 0
@@ -20,5 +20,5 @@ export function urlify(query: string) {
         lang,
         search,
     });
-    return `/notes?${reqParam}`;
+    return `${path}?${reqParam}`;
 }

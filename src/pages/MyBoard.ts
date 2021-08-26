@@ -14,6 +14,8 @@ export default class MyBoard extends Component{
             window.$router.pushWithRefresh('/signin');
         }
         this.count = 0;
+        const searchPlaceholder = document.getElementById("search-input") as HTMLInputElement;
+        searchPlaceholder.placeholder = "@lang Search from my board!"
     }
 
     get searchParam() {
@@ -39,5 +41,7 @@ export default class MyBoard extends Component{
 
     disconnectedCallback() {
         scrollUtils.removeBottomEventHandler();
+        const searchPlaceholder = document.getElementById("search-input") as HTMLInputElement;
+        searchPlaceholder.placeholder = "@lang Search notes!"
     }
 }

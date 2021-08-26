@@ -40,11 +40,6 @@ export default function routes(path: string): st.elementForm {
                     },
                 ],
             };
-        case '/myboard' :
-            return {
-                component: 'my-board',
-                attributes: [],
-            };
         default :
         /**
          * DYNAMIC ROUTES
@@ -64,6 +59,11 @@ export default function routes(path: string): st.elementForm {
                         },
                     ],
                 }
+            } else if(/\/myboard.*/.test(path)) {
+                return {
+                    component: 'my-board',
+                    attributes: [],
+                };
             } else {
                 return {
                     component: path,

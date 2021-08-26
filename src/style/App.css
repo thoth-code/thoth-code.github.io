@@ -81,15 +81,15 @@ header {
 nav {
     position: fixed;
     top: 40px;
-    width: calc(100% - 84px);
     height: 98px;
+    width: calc(100% - 84px);
     border: 2px solid black;
     border-bottom: none;
     background-color: white;
     z-index: 1111;
 }
 
-nav>hr {
+#search-container>hr {
     border: 3px solid black;
     border-radius: 2px;
     margin: 0px 14px 14px 14px;

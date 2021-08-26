@@ -15,11 +15,13 @@ export default class MainApp extends Component {
                     <button id="create-new-note">New Note</button>
                 </header>
                 <nav class="m26">
-                    <div class="row" id="search-box">
-                        <input type="text" id="search-input" placeholder="@lang Search Notes!">
-                        <button id="search-submit"><i class="bi bi-search"></i></button>
+                    <div id="search-container">
+                        <div class="row" id="search-box">
+                            <input type="text" id="search-input" placeholder="@lang Search notes!">
+                            <button id="search-submit"><i class="bi bi-search"></i></button>
+                        </div>
+                        <hr>
                     </div>
-                    <hr>
                 </nav>
                 <aside-flags></aside-flags>
                 <!-- Routed -->
@@ -59,6 +61,8 @@ export default class MainApp extends Component {
 
     searchSubmitEvent() {
         const input = this.querySelector('#search-input') as HTMLInputElement;
-        window.$router.push(su.urlify(input.value));
+        window.$router.push(su.urlify(
+            window.location.pathname.startsWith("/myboard") ? "/myboard" : "/notes",
+            input.value));
     } 
 }
