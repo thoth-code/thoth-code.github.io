@@ -53,7 +53,7 @@ const actions: st.actions = {
                     if(json.error !== null) {
                         throw new Error(json.error);
                     } else {
-                        if(cookieUtils.isAcceptTokenAvailable()) {
+                        if(cookieUtils.isAccessTokenAvailable()) {
                             alert('Sign In Success');
                             window.$router.pushWithRefresh('/');
                         } else {

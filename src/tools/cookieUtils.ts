@@ -1,4 +1,4 @@
-export function isAcceptTokenAvailable() {
+export function isAccessTokenAvailable() {
     return isCookieAvailable('accessToken');
 }
 

@@ -9,7 +9,7 @@ export default class MyBoard extends Component{
         super({
             subscribe: 'notesChange'
         });
-        if(!cookieUtils.isAcceptTokenAvailable()) {
+        if(!cookieUtils.isAccessTokenAvailable()) {
             alert("Sign in first");
             window.$router.pushWithRefresh('/signin');
         }

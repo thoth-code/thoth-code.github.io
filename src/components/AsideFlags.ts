@@ -7,7 +7,7 @@ export default class AsideFlags extends Component{
     }
 
     get template() {
-        if(cu.isAcceptTokenAvailable()) {
+        if(cu.isAccessTokenAvailable()) {
             return `<ul id="aside-items">
                         <li id="l0"><a id="sign-out">Sign Out</a></li>
                         <li id="l1"><a href="/myboard">MyBoard</a></li>

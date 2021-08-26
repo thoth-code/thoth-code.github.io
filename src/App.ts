@@ -30,7 +30,7 @@ export default class MainApp extends Component {
     addEvents() {
         this.querySelector('#create-new-note')?.addEventListener('click', event => {
             event.preventDefault();
-            if(cu.isAcceptTokenAvailable()) {
+            if(cu.isAccessTokenAvailable()) {
                 window.$router.push('/note/new');
             } else {
                 alert("Sign in first");

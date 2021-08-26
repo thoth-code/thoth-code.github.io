@@ -6,7 +6,7 @@ import * as cookieUtils from "../tools/cookieUtils";
 export default class EditNote extends Component {
     constructor() {
         super();
-        if(!cookieUtils.isAcceptTokenAvailable()) {
+        if(!cookieUtils.isAccessTokenAvailable()) {
             alert("Sign in first");
             window.$router.pushWithRefresh('/signin');
         }

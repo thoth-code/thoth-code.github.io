@@ -1,7 +1,7 @@
 import { st } from "state-types";
 import Component from "../domain/component";
 import * as clipboardUtils from '../tools/clipboardUtils';
-import { getUID, isAcceptTokenAvailable } from "../tools/cookieUtils";
+import { getUID, isAccessTokenAvailable } from "../tools/cookieUtils";
 import hljs from "highlight.js";
 import { replaceTab } from "../tools/codeUtils";
 
@@ -60,7 +60,7 @@ export default class CodeNote extends Component {
         const controllBox = this.querySelector(".note-controll-btns") as HTMLElement;
         if(window.location.pathname === "/myboard") {
             controllBox.innerHTML = '<button type="button" class="note-controll-btn detach-note"><i class="bi bi-trash"></i></button>';
-        } else if(isAcceptTokenAvailable()) {
+        } else if(isAccessTokenAvailable()) {
             let btns = '<button type="button" class="note-controll-btn to-my-board"><i class="bi bi-box-arrow-in-up-right"></i></button>';
             btns += getUID() === note.uid ? ' <button type="button" class="note-controll-btn edit-note"><i class="bi bi-eraser"></i></button> <button type="button" class="note-controll-btn delete-note"><i class="bi bi-trash"></i></button>' : "";
             controllBox.innerHTML = btns;
