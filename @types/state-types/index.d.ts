@@ -33,7 +33,7 @@ declare module 'state-types' {
 
         type stateType = note;
         type actionData = reqBody | reqParamQuery;
-        type mutationPayload = note[] | flag[];
+        type mutationPayload = note[];
 
         type action = (context: StoreInterface, data?: actionData) => void;
         type state = {[index: string]: stateType[]};
