@@ -1,7 +1,7 @@
 * {
     padding: 0;
     margin: 0;
-    font-family: "AS", "SP";
+    font-family: 'Antic Slab', 'Poor Story', serif;
 }
 
 html {
@@ -66,7 +66,7 @@ header {
 #create-new-note {
     flex: 0 0 192px;
     height: 40px;
-    font-family: "PM";
+    font-family: 'Permanent Marker', cursive;
     font-size: 24px;
     background: url(./images/newNote.png) no-repeat;
     background-size: cover;
@@ -157,7 +157,7 @@ nav {
 
 .note-code, .note-code * {
     font-size: 14px;
-    font-family: "CODE";
+    font-family: 'Fira Code', monospace;
 }
 
 guide-note.note {
@@ -301,8 +301,8 @@ footer {
 #input-code {
     background: #89CFF0;
     border-radius: 2px;
-    font-family: "CODE";
     font-size: 15px;
+    font-family: 'Fira Code', monospace;
     height: calc(100% - 20px);
     width: calc(100% - 20px);
     border: 0px;

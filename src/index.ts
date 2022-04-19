@@ -1,6 +1,5 @@
 // Install CSS
 import './style/App';
-import './style/fonts';
 
 // Install Custom Components
 import InstallComponents from './components';
